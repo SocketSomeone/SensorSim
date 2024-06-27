@@ -1,0 +1,15 @@
+D:\Web-API-Chat\SensorSim.Domain\bin\Debug\net6.0\SensorSim.Domain.deps.json
+D:\Web-API-Chat\SensorSim.Domain\bin\Debug\net6.0\SensorSim.Domain.runtimeconfig.json
+D:\Web-API-Chat\SensorSim.Domain\bin\Debug\net6.0\SensorSim.Domain.dll
+D:\Web-API-Chat\SensorSim.Domain\bin\Debug\net6.0\SensorSim.Domain.pdb
+D:\Web-API-Chat\SensorSim.Domain\obj\Debug\net6.0\SensorSim.Domain.csproj.AssemblyReference.cache
+D:\Web-API-Chat\SensorSim.Domain\obj\Debug\net6.0\SensorSim.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\Web-API-Chat\SensorSim.Domain\obj\Debug\net6.0\SensorSim.Domain.AssemblyInfoInputs.cache
+D:\Web-API-Chat\SensorSim.Domain\obj\Debug\net6.0\SensorSim.Domain.AssemblyInfo.cs
+D:\Web-API-Chat\SensorSim.Domain\obj\Debug\net6.0\SensorSim.Domain.csproj.CoreCompileInputs.cache
+D:\Web-API-Chat\SensorSim.Domain\obj\Debug\net6.0\SensorSim.Domain.sourcelink.json
+D:\Web-API-Chat\SensorSim.Domain\obj\Debug\net6.0\SensorSim.Domain.dll
+D:\Web-API-Chat\SensorSim.Domain\obj\Debug\net6.0\refint\SensorSim.Domain.dll
+D:\Web-API-Chat\SensorSim.Domain\obj\Debug\net6.0\SensorSim.Domain.pdb
+D:\Web-API-Chat\SensorSim.Domain\obj\Debug\net6.0\SensorSim.Domain.genruntimeconfig.cache
+D:\Web-API-Chat\SensorSim.Domain\obj\Debug\net6.0\ref\SensorSim.Domain.dll
