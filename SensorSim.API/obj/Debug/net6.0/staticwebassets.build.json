@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "c5XNbKxa35XBajLeR1UXlC8x5kLP6M8+9/eCrTDbgPI=",
+  "Source": "SensorSim.API",
+  "BasePath": "_content/SensorSim.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

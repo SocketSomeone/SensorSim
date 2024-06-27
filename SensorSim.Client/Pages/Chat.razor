@@ -1,0 +1,44 @@
+﻿@page "/chats/{id}"
+@using SensorSim.Client.Models
+@using SensorSim.Client.Interfaces
+@using SensorSim.Client.Services
+@inject IChatClient ChatClient
+@inject TokenService TokenService
+
+<h3>Send new message</h3>
+<EditForm Model="@CreateMessageModel" OnValidSubmit="@CreateMessage">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+    <input class="form-control" id="text" @bind="@CreateMessageModel.Text"/>
+    <button type="submit">Submit</button>
+</EditForm>
+
+<h3>@CurrentChat.Name</h3>
+
+@if (CurrentChat.Messages != null)
+{
+    foreach (var message in CurrentChat.Messages)
+    {
+        <Message Author="@message.Author.Username" Text="@message.Text"/>
+    }
+}
+
+@code {
+    [Parameter]
+    public string Id { get; set; }
+    
+    public CreateMessageModel CreateMessageModel { get; set; } = new();
+    
+    public ChatModel? CurrentChat { get; set; }
+    
+    public async Task CreateMessage()
+    {
+        await ChatClient.AddMessageAsync(await TokenService.GetToken(), Id, CreateMessageModel);
+        await OnInitializedAsync();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        CurrentChat = await ChatClient.GetChatAsync(await TokenService.GetToken(), Id);
+    }
+}
