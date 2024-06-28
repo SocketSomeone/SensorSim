@@ -62,7 +62,7 @@ jobs:
           file: ./SensorSim.${{ matrix.service }}/Dockerfile
           push: true
           builder: ${{ steps.buildx.outputs.name }}
-          tags: ${{ steps.meta.outputs.tags }}, ${{ env.REGISTRY }}/${{ env.ORGANIZATION }}/${{ matrix.service }}:${{ steps.environment.outputs.name }}
+          tags: ${{ steps.meta.outputs.tags }}, ${{ env.REGISTRY }}/SocketSomeone/${{ matrix.service }}:${{ steps.environment.outputs.name }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
