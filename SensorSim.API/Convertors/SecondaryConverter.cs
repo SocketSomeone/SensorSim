@@ -1,24 +1,42 @@
-﻿using SensorSim.Domain.Interface;
+﻿using SensorSim.Domain;
+using SensorSim.Domain.Interface;
 
 namespace SensorSim.API.Convertors;
 
-public class SecondaryConverter : IConverter
+public class SecondaryConverter : IConvert
 {
-    public IStaticFunction StaticFunction { get; set; }
+    public double RateOfChange { get; set; }
 
-    public ISystematicError SystematicError { get; set; }
+    public Queue<PhysicalValueExposure> Exposure { get; set; }
 
-    public IRandomError RandomError { get; set; }
-
-    public SecondaryConverter(IStaticFunction staticFunction, ISystematicError systematicError, IRandomError randomError)
+    public SecondaryConverter(double rateOfChange, Queue<PhysicalValueExposure> exposure)
     {
-        StaticFunction = staticFunction;
-        SystematicError = systematicError;
-        RandomError = randomError;
+        RateOfChange = rateOfChange;
+        Exposure = exposure;
     }
 
-    public double Calculate(double value)
+    public double Convert(double value)
     {
-        return StaticFunction.Calculate(value) + SystematicError.Emulate(value) + RandomError.Emulate(value);
+        if (Exposure.Count == 0)
+        {
+            return value;
+        }
+
+        var target = Exposure.Peek();
+        var difference = target.Value - value;
+        var change = RateOfChange * target.TimeStep.TotalSeconds;
+
+        if (IsStable(difference, change))
+        {
+            Exposure.Dequeue();
+            return target.Value;
+        }
+
+        return value + Math.Sign(difference) * change;
+    }
+
+    public bool IsStable(double difference, double change)
+    {
+        return Math.Abs(difference) < change;
     }
 }

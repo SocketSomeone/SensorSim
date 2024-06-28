@@ -13,13 +13,7 @@ public class PolynomialStaticFunction : IStaticFunction
     
     public double Calculate(double value)
     {
-        double result = 0;
-        
-        for (int i = 0; i < Coefficients.Count; i++)
-        {
-            result += Coefficients[i] * Math.Pow(value, i);
-        }
-        
-        return result;
+
+        return value;
     }
 }

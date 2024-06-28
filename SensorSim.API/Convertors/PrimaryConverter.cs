@@ -2,7 +2,7 @@
 
 namespace SensorSim.API.Convertors;
 
-public class PrimaryConverter : IConverter
+public class PrimaryConverter : IConvert
 {
     public IStaticFunction StaticFunction { get; set; }
 
@@ -17,8 +17,8 @@ public class PrimaryConverter : IConverter
         RandomError = randomError;
     }
 
-    public double Calculate(double value)
+    public double Convert(double value)
     {
-        return StaticFunction.Calculate(value) + SystematicError.Emulate(value) + RandomError.Emulate(value);
+        return StaticFunction.Calculate(value) + SystematicError.Calculate(value) + RandomError.Calculate(value);
     }
 }

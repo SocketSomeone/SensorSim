@@ -2,35 +2,42 @@
 
 namespace SensorSim.Domain;
 
-public class Sensor
+public class Sensor<T> where T : IPhysicalQuantity
 {
-    // Volts, Amps, Ohms, Watts, etc.
-    public MeasurementQuantity Parameter { get; set; }
+    private T Quantity { get; set; }
 
-    // Temperature, Pressure, Humidity, etc.
-    public PhysicalQuantity Quantity { get; set; }
+    private IConvert PrimaryConvert { get; set; }
 
-    private IConverter PrimaryConverter { get; set; }
+    private IConvert SecondaryConvert { get; set; }
+    
+    private SensorMetrics Metrics { get; set; } = new SensorMetrics();
 
-    private IConverter SecondaryConverter { get; set; }
-
-    public Sensor(IConverter primaryConverter, IConverter secondaryConverter) : this(new MeasurementQuantity(),
-        new PhysicalQuantity(), primaryConverter, secondaryConverter)
+    public Sensor(T quantity, IConvert primaryConvert,
+        IConvert secondaryConvert)
     {
-        PrimaryConverter = primaryConverter;
-    }
-
-    public Sensor(MeasurementQuantity parameter, PhysicalQuantity quantity, IConverter primaryConverter,
-        IConverter secondaryConverter)
-    {
-        Parameter = parameter;
         Quantity = quantity;
-        PrimaryConverter = primaryConverter;
-        SecondaryConverter = secondaryConverter;
+        PrimaryConvert = primaryConvert;
+        SecondaryConvert = secondaryConvert;
     }
+    
+    public double Parameter => PrimaryConvert.Convert(Quantity.Value);
+    
+    public double ParameterWithError => SecondaryConvert.Convert(Parameter);
 
-    public double Measure()
+    public void Update()
     {
-        return PrimaryConverter.Calculate(Parameter.Value);
+        var value = ParameterWithError;
+        Quantity.Value = value;
+        Metrics.Update(value);
+    }
+    
+    public T GetQuantity()
+    {
+        return Quantity;
+    }
+    
+    public SensorMetrics GetMetrics()
+    {
+        return Metrics;
     }
 }

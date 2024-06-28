@@ -11,7 +11,7 @@ public class ConstantSystematicError: ISystematicError
         Value = value;
     }
     
-    public double Emulate(double value)
+    public double Calculate(double value)
     {
         return Value;
     }

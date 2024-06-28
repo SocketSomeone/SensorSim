@@ -4,5 +4,31 @@
         <name>SensorSim.API</name>
     </assembly>
     <members>
+        <member name="M:SensorSim.API.Controllers.SensorController`1.Get">
+            <summary>
+            Get current sensor value
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SensorSim.API.Controllers.SensorController`1.AddExposure(SensorSim.API.Models.SensorsModels.AddExposureRequest)">
+            <summary>
+            Add exposure to sensor
+            </summary>
+            <param name="exposure"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SensorSim.API.Controllers.SensorController`1.SetExposures(SensorSim.API.Models.SensorsModels.AddExposureRequest[])">
+            <summary>
+            Set exposures to sensor
+            </summary>
+            <param name="exposures"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SensorSim.API.Controllers.SensorController`1.RemoveExposure">
+            <summary>
+             Remove exposure from sensor
+            </summary>
+            <returns></returns>
+        </member>
     </members>
 </doc>

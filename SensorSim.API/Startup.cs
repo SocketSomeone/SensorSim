@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
+using SensorSim.API.Config;
+using SensorSim.API.Services;
 using SensorSim.Domain;
 using SensorSim.Infrastructure;
 using SensorSim.Infrastructure.Repositories;
@@ -39,6 +41,12 @@ public class Startup
                 assembly => assembly.MigrationsAssembly("SensorSim.Domain.Migrations")
             )
         );
+
+        services.AddSingleton<ISensorConfig<Temperature>, TemperatureSensorConfig>();
+        services.AddSingleton<ISensorService<Temperature>, TemperatureSensorService>();
+        
+        services.AddSingleton<ISensorConfig<Pressure>, PressureSensorConfig>();
+        services.AddSingleton<ISensorService<Pressure>, PressureSensorService>();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

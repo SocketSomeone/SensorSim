@@ -4,21 +4,25 @@ namespace SensorSim.API.Helpers;
 
 public class GaussianRandomError : IRandomError
 {
-    public double Mean { get; set; }
+    public double Mean { get; set; } = 0.0;
     
-    public double StandardDeviation { get; set; }
-
-    private GaussianDistribution _gaussianDistribution;
+    public double StandardDeviation { get; set; } = 1.0;
+    
+    private Random _random = new Random();
     
     public GaussianRandomError(double mean, double standardDeviation)
     {
         Mean = mean;
         StandardDeviation = standardDeviation;
-        _gaussianDistribution = new GaussianDistribution(mean, standardDeviation);
     }
     
-    public double Emulate(double value)
+    public double Calculate(double value)
     {
-        return _gaussianDistribution.Next();
+        var u = 1.0 - _random.NextDouble();
+        var v = 1.0 - _random.NextDouble();
+        
+        var randStdNormal = Math.Sqrt(-2.0 * Math.Log(u)) * Math.Sin(2.0 * Math.PI * v);
+        
+        return Mean + StandardDeviation * randStdNormal;
     }
 }
