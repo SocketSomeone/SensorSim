@@ -14,18 +14,6 @@ public class PressureSensorConfig : ISensorConfig<Pressure>
     public ISystematicError SystematicError { get; } = new ConstantSystematicError(0.05);
 
     public IRandomError RandomError { get; } = new GaussianRandomError(-0.02, 0.03);
-
-    public double Inertia { get; } = 0.05;
-
-    public Queue<PhysicalValueExposure> Exposures { get; } = new Queue<PhysicalValueExposure>(
-        new[]
-        {
-            new PhysicalValueExposure(50), // Новые начальные условия
-            new PhysicalValueExposure(70),
-            new PhysicalValueExposure(80),
-            new PhysicalValueExposure(60),
-            new PhysicalValueExposure(75),
-            new PhysicalValueExposure(85),
-        }
-    );
+    
+    public IMotionFunction MotionFunction { get; } = new InertiaMotionFunction(0.05);
 }

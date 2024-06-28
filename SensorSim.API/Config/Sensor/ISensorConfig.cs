@@ -13,7 +13,5 @@ public interface ISensorConfig<T> where T : IPhysicalQuantity
    
    IRandomError RandomError { get; }
    
-   double Inertia { get; }
-   
-   Queue<PhysicalValueExposure> Exposures { get; }
+   IMotionFunction MotionFunction { get; }
 }

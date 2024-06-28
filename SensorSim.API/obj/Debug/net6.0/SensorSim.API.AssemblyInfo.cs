@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SensorSim.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+70e60f5c0a8aa9c749b48e6770802fcb3fad4957")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+50390c4948d0edc639e953618a686e1246af3357")]
 [assembly: System.Reflection.AssemblyProductAttribute("SensorSim.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SensorSim.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
