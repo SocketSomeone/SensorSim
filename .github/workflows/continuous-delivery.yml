@@ -53,7 +53,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ${{ env.REGISTRY }}/${{ env.ORGANIZATION }}/${{ matrix.service }}:${{ github.sha }}
+          images: ${{ env.REGISTRY }}/SocketSomeone/${{ matrix.service }}:${{ github.sha }}, ${{ env.REGISTRY }}/SocketSomeone/${{ matrix.service }}:latest
 
       - name: Build and push
         uses: docker/build-push-action@v4
