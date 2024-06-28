@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SensorSim.Domain.Migrations")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+50504b76c6b8c6343b79d558a4baee6212f47be2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+70e60f5c0a8aa9c749b48e6770802fcb3fad4957")]
 [assembly: System.Reflection.AssemblyProductAttribute("SensorSim.Domain.Migrations")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SensorSim.Domain.Migrations")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
