@@ -53,7 +53,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ${{ env.REGISTRY }}/SocketSomeone/${{ matrix.service }}:${{ github.sha }}, ${{ env.REGISTRY }}/SocketSomeone/${{ matrix.service }}:latest
+          images: ${{ env.REGISTRY }}/SocketSomeone/${{ matrix.service }}:${{ steps.environment.outputs.name }}, ${{ env.REGISTRY }}/SocketSomeone/${{ matrix.service }}:latest
 
       - name: Build and push
         uses: docker/build-push-action@v4
@@ -62,7 +62,7 @@ jobs:
           file: ./SensorSim.${{ matrix.service }}/Dockerfile
           push: true
           builder: ${{ steps.buildx.outputs.name }}
-          tags: ${{ steps.meta.outputs.tags }}, ${{ env.REGISTRY }}/SocketSomeone/${{ matrix.service }}:${{ steps.environment.outputs.name }}
+          tags: ${{ steps.meta.outputs.tags }}, ${{ env.REGISTRY }}/SocketSomeone/SensorSim/${{ matrix.service }}:${{ steps.environment.outputs.name }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
