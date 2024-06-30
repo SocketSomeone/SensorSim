@@ -12,23 +12,20 @@ public class Actuator<T> : IActuator<T> where T : IPhysicalQuantity
 
     public ISensor<T> Sensor { get; set; }
 
+    public T ReferenceQuantity { get; set; }
+
     public Actuator(ILogger<Actuator<T>> logger, IActuatorConfig<T> config, ISensor<T> sensor)
     {
         Logger = logger;
         Config = config;
         Sensor = sensor;
+        ReferenceQuantity = (T)Activator.CreateInstance(typeof(T), Sensor.Read().Value);
     }
 
     public ActuatorResponseModels.CalibrationResponseModel Calibrate(double target,
         Queue<PhysicalValueExposure> exposures)
     {
-        List<double> referencedValues = new();
-        List<double> measuredValues = new();
-
-        double error = 0;
-        double correction = 0;
-        
-        if (exposures.Count == 0 || exposures.Last().Value != target)
+        if (exposures.Count == 0 || !exposures.Last().Value.Equals(target))
         {
             exposures.Enqueue(new PhysicalValueExposure
             {
@@ -37,37 +34,80 @@ public class Actuator<T> : IActuator<T> where T : IPhysicalQuantity
             });
         }
 
-        while (exposures.Count > 0)
-        {
-            var exposure = exposures.Peek();
-            var measurement = Sensor.Read();
+        List<MeasurementOfImpact> impacts = Measurement(exposures);
 
-            Logger.LogInformation($"Exposure: {exposure.Value}, Measurement: {measurement.Value}");
-            Sensor.SetDirection(exposure);
-            Sensor.Update();
-            if (exposure.Value.Equals(measurement.Value))
-            {
-                exposures.Dequeue();
-            }
+        // Calculate error rate and correction
+        double error = impacts.Sum(x => x.MeasuredValues.Average() - x.DesiredValue);
+        double correctionFactor = error / impacts.Count;
 
-            referencedValues.Add(exposure.Value);
-            measuredValues.Add(measurement.Value);
-        }
+        // Calculate static function characteristics for polynomial regression
+        double maxDesiredValue = Config.MaxDesiredValue;
+        double minDesiredValue = Config.MinDesiredValue;
+
+        double maxMeasuredValue = impacts.Max(x => x.DesiredValue);
+        double minMeasuredValue = impacts.Min(x => x.DesiredValue);
+
         
-        for (int i = 0; i < referencedValues.Count; i++)
-        {
-            error += referencedValues[i] - measuredValues[i];
-        }
+        double slope = (maxMeasuredValue - minMeasuredValue) / (maxDesiredValue - minDesiredValue);
+        double intercept = minMeasuredValue - slope * minDesiredValue;
         
-        correction = error / referencedValues.Count;
+        Logger.LogInformation($"Calibration: Slope = {slope}, Intercept = {intercept}");
+
+        Sensor.Calibrate(new List<double>() { intercept, slope });
 
 
         return new ActuatorResponseModels.CalibrationResponseModel
         {
-            referenceValues = referencedValues,
-            measuredValues = measuredValues,
+            referenceValues = new List<double>(),
+            measuredValues = new List<double>(),
             errors = error,
-            correction = correction
+            correction = correctionFactor
         };
+    }
+
+    private List<MeasurementOfImpact> Measurement(Queue<PhysicalValueExposure> exposures)
+    {
+        List<MeasurementOfImpact> impacts = new();
+
+        var exposure = exposures.Peek();
+        var measurement = Sensor.Read();
+        var currentImpact = new MeasurementOfImpact(exposure.Value);
+
+        while (exposures.Count > 0)
+        {
+            exposure = exposures.Peek();
+            measurement = Sensor.Read();
+
+            if (currentImpact.DesiredValue != exposure.Value)
+            {
+                currentImpact = new MeasurementOfImpact(exposure.Value);
+            }
+
+            Sensor.SetDirection(exposure);
+            Sensor.Update();
+
+            currentImpact.MeasuredValues.Add(measurement.Value);
+
+            if (exposure.Value.Equals(measurement.Value))
+            {
+                exposures.Dequeue();
+                impacts.Add(currentImpact);
+            }
+        }
+
+        return impacts;
+    }
+
+    private class MeasurementOfImpact
+    {
+        public double DesiredValue { get; set; }
+
+        public List<double> MeasuredValues { get; set; }
+
+        public MeasurementOfImpact(double desiredValue)
+        {
+            DesiredValue = desiredValue;
+            MeasuredValues = new();
+        }
     }
 }

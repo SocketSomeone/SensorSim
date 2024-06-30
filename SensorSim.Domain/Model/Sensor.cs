@@ -6,11 +6,11 @@ namespace SensorSim.Domain;
 public abstract class Sensor<T> : ISensor<T> where T : IPhysicalQuantity
 {
     public ILogger<ISensor<T>> Logger { get; set; }
-    
+
     public ISensorConfig<T> Config { get; set; }
 
     public T CurrentQuantity { get; set; }
-    
+
     public PhysicalValueExposure Exposure { get; set; }
 
     public Sensor(ILogger<ISensor<T>> logger, ISensorConfig<T> config)
@@ -59,9 +59,14 @@ public abstract class Sensor<T> : ISensor<T> where T : IPhysicalQuantity
             Duration = duration
         });
     }
-    
+
     public void SetDirection(PhysicalValueExposure exposure)
     {
         Exposure = exposure;
+    }
+
+    public void Calibrate(List<double> values)
+    {
+        Config.StaticFunction.SetOptions(values);
     }
 }

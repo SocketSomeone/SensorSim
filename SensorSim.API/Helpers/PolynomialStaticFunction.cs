@@ -20,4 +20,9 @@ public class PolynomialStaticFunction : IStaticFunction
         }
         return result;
     }
+    
+    public void SetOptions(List<double> values)
+    {
+        Coefficients = values;
+    }
 }

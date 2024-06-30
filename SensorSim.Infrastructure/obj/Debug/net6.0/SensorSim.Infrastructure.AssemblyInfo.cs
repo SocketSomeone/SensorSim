@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SensorSim.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+16ce69e03928df91e57f908bba20d22e92fed7a4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9e97fd80a80f60cdcc8fe1013463af75b8eb9f22")]
 [assembly: System.Reflection.AssemblyProductAttribute("SensorSim.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SensorSim.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

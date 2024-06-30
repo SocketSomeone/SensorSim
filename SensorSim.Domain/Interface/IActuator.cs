@@ -5,6 +5,9 @@ namespace SensorSim.Domain.Interface;
 
 public interface IActuatorConfig<T> where T : IPhysicalQuantity
 {
+    public double MinDesiredValue { get; set; }
+    
+    public double MaxDesiredValue { get; set; }
 }
 
 public interface IActuator<T> where T : IPhysicalQuantity
