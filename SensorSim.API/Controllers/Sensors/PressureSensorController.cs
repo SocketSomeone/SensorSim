@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SensorSim.API.Services;
 using SensorSim.Domain;
+using SensorSim.Domain.Interface;
 
 namespace SensorSim.API.Controllers;
 
@@ -8,7 +9,7 @@ namespace SensorSim.API.Controllers;
 [Route("api/sensors/pressure")]
 public class PressureSensorController : SensorController<Pressure>
 {
-    public PressureSensorController(ISensorService<Pressure> service) : base(service)
+    public PressureSensorController(ISensor<Pressure> service) : base(service)
     {
     }
 }

@@ -6,13 +6,13 @@ namespace SensorSim.API.Config;
 
 public class TemperatureSensorConfig : ISensorConfig<Temperature>
 {
-    public Temperature DefaultValue { get; } = new Temperature(20);
+    public Temperature InitialQuantity { get; } = new Temperature(25.0);
     
-    public IStaticFunction StaticFunction { get; } = new PolynomialStaticFunction(new List<double>() { 1, 1, 1 });
+    public IStaticFunction StaticFunction { get; } = new PolynomialStaticFunction(new List<double>() {0.1, 1.0});
     
-    public ISystematicError SystematicError { get; } = new ConstantSystematicError(0.1);
+    public ISystematicError SystematicError { get; } = new ConstantSystematicError(0.6);
     
     public IRandomError RandomError { get; } = new GaussianRandomError(0.0, 1.0);
     
-    public IMotionFunction MotionFunction { get; } = new InertiaMotionFunction(0.5);
+    public IMotionFunction MotionFunction { get; } = new InertiaMotionFunction(1.0);
 }

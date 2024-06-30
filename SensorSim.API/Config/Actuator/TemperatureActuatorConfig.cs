@@ -1,8 +1,9 @@
-﻿namespace SensorSim.API.Config;
+﻿using SensorSim.Domain;
+using SensorSim.Domain.Interface;
 
-public class TemperatureActuatorConfig : IActuatorConfig
+namespace SensorSim.API.Config;
+
+public class TemperatureActuatorConfig : IActuatorConfig<Temperature>
 {
-    public double MinValue { get; set; } = 0;
     
-    public double MaxValue { get; set; } = 100;
 }

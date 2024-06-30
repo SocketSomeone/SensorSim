@@ -4,7 +4,9 @@ using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using SensorSim.API.Config;
 using SensorSim.API.Services;
+using SensorSim.API.Services.Actuator;
 using SensorSim.Domain;
+using SensorSim.Domain.Interface;
 using SensorSim.Infrastructure;
 using SensorSim.Infrastructure.Repositories;
 
@@ -43,10 +45,12 @@ public class Startup
         );
 
         services.AddSingleton<ISensorConfig<Temperature>, TemperatureSensorConfig>();
-        services.AddSingleton<ISensorService<Temperature>, TemperatureSensorService>();
+        services.AddSingleton<ISensor<Temperature>, TemperatureSensorService>();
+        services.AddSingleton<IActuatorConfig<Temperature>, TemperatureActuatorConfig>();
+        services.AddSingleton<IActuator<Temperature>, TemperatureActuatorService>();
         
         services.AddSingleton<ISensorConfig<Pressure>, PressureSensorConfig>();
-        services.AddSingleton<ISensorService<Pressure>, PressureSensorService>();
+        services.AddSingleton<ISensor<Pressure>, PressureSensorService>();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -23,9 +23,9 @@ public interface IContinuousFunction : ICalculable
 
 public interface IMotionFunction : ICalculable
 {
-    public void SetDestination(double destination);
-    
-    public void SetSpeed(double speed);
-    
-    public bool IsStable(double value);
+    double Calculate(double value, double destination, double speed);
+}
+
+public interface IApproximationFunction : ICalculable
+{
 }

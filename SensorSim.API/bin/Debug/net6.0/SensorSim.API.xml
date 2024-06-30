@@ -10,24 +10,18 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SensorSim.API.Controllers.SensorController`1.AddExposure(SensorSim.API.Models.SensorsModels.AddExposureRequest)">
+        <member name="M:SensorSim.API.Controllers.SensorController`1.SetTargetSensorValue(SensorSim.Domain.DTO.Sensor.SensorsRequestModels.SetTargetSensorRequestModel)">
             <summary>
-            Add exposure to sensor
+            Set sensor value (with inertia)
             </summary>
-            <param name="exposure"></param>
+            <param name="dto"></param>
             <returns></returns>
         </member>
-        <member name="M:SensorSim.API.Controllers.SensorController`1.SetExposures(SensorSim.API.Models.SensorsModels.AddExposureRequest[])">
+        <member name="M:SensorSim.API.Controllers.SensorController`1.SetSensorValue(SensorSim.Domain.DTO.Sensor.SensorsRequestModels.SetSensorValueRequestModel)">
             <summary>
-            Set exposures to sensor
+            Set sensor value (without inertia)
             </summary>
-            <param name="exposures"></param>
-            <returns></returns>
-        </member>
-        <member name="M:SensorSim.API.Controllers.SensorController`1.RemoveExposure">
-            <summary>
-             Remove exposure from sensor
-            </summary>
+            <param name="dto"></param>
             <returns></returns>
         </member>
     </members>

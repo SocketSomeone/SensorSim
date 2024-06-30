@@ -6,7 +6,7 @@ namespace SensorSim.API.Config;
 
 public class PressureSensorConfig : ISensorConfig<Pressure>
 {
-    public Pressure DefaultValue { get; } = new Pressure(100);
+    public Pressure InitialQuantity { get; } = new Pressure(100);
 
     public IStaticFunction StaticFunction { get; } =
         new PolynomialStaticFunction(new List<double>() { 0.5, -0.25, 0.125 });

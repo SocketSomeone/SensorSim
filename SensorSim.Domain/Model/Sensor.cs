@@ -1,43 +1,67 @@
-﻿using SensorSim.Domain.Interface;
+﻿using Microsoft.Extensions.Logging;
+using SensorSim.Domain.Interface;
 
 namespace SensorSim.Domain;
 
-public class Sensor<T> where T : IPhysicalQuantity
+public abstract class Sensor<T> : ISensor<T> where T : IPhysicalQuantity
 {
-    private T Quantity { get; set; }
-
-    private IConvert PrimaryConvert { get; set; }
-
-    private IConvert SecondaryConvert { get; set; }
+    public ILogger<ISensor<T>> Logger { get; set; }
     
-    private SensorMetrics Metrics { get; set; } = new SensorMetrics();
+    public ISensorConfig<T> Config { get; set; }
 
-    public Sensor(T quantity, IConvert primaryConvert,
-        IConvert secondaryConvert)
+    public T CurrentQuantity { get; set; }
+    
+    public PhysicalValueExposure Exposure { get; set; }
+
+    public Sensor(ILogger<ISensor<T>> logger, ISensorConfig<T> config)
     {
-        Quantity = quantity;
-        PrimaryConvert = primaryConvert;
-        SecondaryConvert = secondaryConvert;
+        Logger = logger;
+        Config = config;
+        CurrentQuantity = config.InitialQuantity;
+        SetDirection(CurrentQuantity.Value, 1);
+    }
+
+    public double PrimaryConverter()
+    {
+        return Config.StaticFunction.Calculate(CurrentQuantity.Value) +
+               Config.SystematicError.Calculate(CurrentQuantity.Value) +
+               Config.RandomError.Calculate(CurrentQuantity.Value);
+    }
+
+    public double SecondaryConverter()
+    {
+        return Config.MotionFunction.Calculate(PrimaryConverter(), Exposure.Value, Exposure.Duration);
+    }
+
+    public T Read()
+    {
+        return CurrentQuantity;
+    }
+
+    public T Update()
+    {
+        CurrentQuantity.Value = SecondaryConverter();
+        return Read();
+    }
+
+    public T Set(double value)
+    {
+        SetDirection(value, 1);
+        CurrentQuantity.Value = value;
+        return Read();
+    }
+
+    public void SetDirection(double destination, double duration)
+    {
+        SetDirection(new PhysicalValueExposure
+        {
+            Value = destination,
+            Duration = duration
+        });
     }
     
-    public double Parameter => PrimaryConvert.Convert(Quantity.Value);
-    
-    public double ParameterWithError => SecondaryConvert.Convert(Parameter);
-
-    public void Update()
+    public void SetDirection(PhysicalValueExposure exposure)
     {
-        var value = ParameterWithError;
-        Quantity.Value = value;
-        Metrics.Update(value);
-    }
-    
-    public T GetQuantity()
-    {
-        return Quantity;
-    }
-    
-    public SensorMetrics GetMetrics()
-    {
-        return Metrics;
+        Exposure = exposure;
     }
 }

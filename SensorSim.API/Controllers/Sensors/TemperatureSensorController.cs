@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SensorSim.API.Services;
 using SensorSim.Domain;
+using SensorSim.Domain.Interface;
 
 namespace SensorSim.API.Controllers;
 
@@ -8,7 +9,7 @@ namespace SensorSim.API.Controllers;
 [Route("api/sensors/temperature")]
 public class TemperatureSensorController : SensorController<Temperature>
 {
-    public TemperatureSensorController(ISensorService<Temperature> sensorService) : base(sensorService)
+    public TemperatureSensorController(ISensor<Temperature> sensorService) : base(sensorService)
     {
     }
 }
