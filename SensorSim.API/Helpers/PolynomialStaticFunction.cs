@@ -18,7 +18,8 @@ public class PolynomialStaticFunction : IStaticFunction
         {
             result += Coefficients[i] * Math.Pow(value, i);
         }
-        return result;
+
+        return result - value;
     }
     
     public void SetOptions(List<double> values)

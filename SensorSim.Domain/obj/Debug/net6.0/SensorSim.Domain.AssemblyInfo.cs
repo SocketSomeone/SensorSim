@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SensorSim.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9e97fd80a80f60cdcc8fe1013463af75b8eb9f22")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+12c6b199943e56958301651e6d7a0823d1a81e50")]
 [assembly: System.Reflection.AssemblyProductAttribute("SensorSim.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SensorSim.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,11 +1,12 @@
-﻿using SensorSim.Domain;
-using SensorSim.Domain.Interface;
+﻿using SensorSim.Domain.Interface;
 
 namespace SensorSim.API.Helpers;
 
 public class InertiaMotionFunction : IMotionFunction
 {
     private double RateOfChange { get; }
+    
+    private ILogger<InertiaMotionFunction> Logger { get; }
 
     public InertiaMotionFunction(double rateOfChange)
     {
@@ -17,16 +18,16 @@ public class InertiaMotionFunction : IMotionFunction
         return Calculate(value, value, 1.0);
     }
     
-    public double Calculate(double value, double Destionation, double Speed)
+    public double Calculate(double value, double destination, double speed)
     {
-        var difference = Destionation - value; 
-        var step = RateOfChange * Speed;
+        var difference = destination - value; 
+        var step = RateOfChange * speed;
 
-        if  (Math.Abs(difference) > step)
+        if (Math.Abs(difference) > step)
         {
             return value + Math.Sign(difference) * step;
         }
         
-        return Destionation;
+        return destination;
     }
 }

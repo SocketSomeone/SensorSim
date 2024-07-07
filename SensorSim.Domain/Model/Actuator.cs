@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using SensorSim.Domain.DTO.Actuator;
 using SensorSim.Domain.Interface;
 
@@ -12,18 +13,17 @@ public class Actuator<T> : IActuator<T> where T : IPhysicalQuantity
 
     public ISensor<T> Sensor { get; set; }
 
-    public T ReferenceQuantity { get; set; }
+    public Queue<PhysicalValueExposure> Exposures { get; set; }
 
     public Actuator(ILogger<Actuator<T>> logger, IActuatorConfig<T> config, ISensor<T> sensor)
     {
         Logger = logger;
         Config = config;
         Sensor = sensor;
-        ReferenceQuantity = (T)Activator.CreateInstance(typeof(T), Sensor.Read().Value);
+        Exposures = new();
     }
 
-    public ActuatorResponseModels.CalibrationResponseModel Calibrate(double target,
-        Queue<PhysicalValueExposure> exposures)
+    public ActuatorResponseModels.ActuatorResponseModel Set(double target, Queue<PhysicalValueExposure> exposures)
     {
         if (exposures.Count == 0 || !exposures.Last().Value.Equals(target))
         {
@@ -34,80 +34,157 @@ public class Actuator<T> : IActuator<T> where T : IPhysicalQuantity
             });
         }
 
-        List<MeasurementOfImpact> impacts = Measurement(exposures);
+        Exposures = exposures;
+        var measurement = Sensor.Read();
 
-        // Calculate error rate and correction
-        double error = impacts.Sum(x => x.MeasuredValues.Average() - x.DesiredValue);
-        double correctionFactor = error / impacts.Count;
-
-        // Calculate static function characteristics for polynomial regression
-        double maxDesiredValue = Config.MaxDesiredValue;
-        double minDesiredValue = Config.MinDesiredValue;
-
-        double maxMeasuredValue = impacts.Max(x => x.DesiredValue);
-        double minMeasuredValue = impacts.Min(x => x.DesiredValue);
-
-        
-        double slope = (maxMeasuredValue - minMeasuredValue) / (maxDesiredValue - minDesiredValue);
-        double intercept = minMeasuredValue - slope * minDesiredValue;
-        
-        Logger.LogInformation($"Calibration: Slope = {slope}, Intercept = {intercept}");
-
-        Sensor.Calibrate(new List<double>() { intercept, slope });
-
-
-        return new ActuatorResponseModels.CalibrationResponseModel
+        return new ActuatorResponseModels.ActuatorResponseModel()
         {
-            referenceValues = new List<double>(),
-            measuredValues = new List<double>(),
-            errors = error,
-            correction = correctionFactor
+            Value = measurement.Value,
+            Unit = measurement.Unit,
+            Exposures = Exposures
         };
     }
 
-    private List<MeasurementOfImpact> Measurement(Queue<PhysicalValueExposure> exposures)
+    public ActuatorResponseModels.ActuatorResponseModel Read()
     {
-        List<MeasurementOfImpact> impacts = new();
-
-        var exposure = exposures.Peek();
         var measurement = Sensor.Read();
-        var currentImpact = new MeasurementOfImpact(exposure.Value);
 
-        while (exposures.Count > 0)
+        if (Exposures.Count > 0)
         {
-            exposure = exposures.Peek();
-            measurement = Sensor.Read();
-
-            if (currentImpact.DesiredValue != exposure.Value)
-            {
-                currentImpact = new MeasurementOfImpact(exposure.Value);
-            }
+            var exposure = Exposures.Peek();
 
             Sensor.SetDirection(exposure);
             Sensor.Update();
 
-            currentImpact.MeasuredValues.Add(measurement.Value);
-
             if (exposure.Value.Equals(measurement.Value))
             {
-                exposures.Dequeue();
-                impacts.Add(currentImpact);
+                Exposures.Dequeue();
             }
         }
 
-        return impacts;
+        Logger.LogInformation($"Read: {measurement.Value} {measurement.Unit}");
+
+        return new ActuatorResponseModels.ActuatorResponseModel()
+        {
+            Value = measurement.Value,
+            Unit = measurement.Unit,
+            Exposures = Exposures
+        };
     }
 
-    private class MeasurementOfImpact
+    public ActuatorResponseModels.CalibrationResponseModel Calibrate()
     {
-        public double DesiredValue { get; set; }
+        var (X, Y) = RunMeasurements();
 
-        public List<double> MeasuredValues { get; set; }
+        double[,] errors = new double[Config.NumOfExperiments, Config.NumOfMeasurements];
+        double[,] correction = new double[Config.NumOfExperiments, Config.NumOfMeasurements];
 
-        public MeasurementOfImpact(double desiredValue)
+        var (a, b) = LinearLeastSquares(X, Y);
+        var coefficients = new List<double> { b, a };
+
+        for (int i = 0; i < Config.NumOfExperiments; i++)
         {
-            DesiredValue = desiredValue;
-            MeasuredValues = new();
+            for (int j = 0; j < Config.NumOfMeasurements; j++)
+            {
+                correction[i, j] = X[i, j] / Y[i, j];
+                errors[i, j] = Math.Abs(Y[i, j] - X[i, j]);
+
+                Logger.LogInformation($"Measurement: {Y[i, j]}, " +
+                                      $"Etalon: {X[i, j]}, " +
+                                      $"Error: {errors[i, j]}, Correction: " +
+                                      $"{correction[i, j]} " +
+                                      $"Actual: {Y[i, j] * correction[i, j]} " +
+                                      $"With coefficient: {a * Y[i, j] + b}");
+            }
         }
+
+        Sensor.Calibrate(coefficients);
+        Logger.LogInformation($"Check: {Check(X, Y)}");
+
+
+        return new ActuatorResponseModels.CalibrationResponseModel
+        {
+            referenceValues = X,
+            measuredValues = Y,
+            errors = errors,
+            correction = correction
+        };
+    }
+
+    private (double, double) LinearLeastSquares(double[,] x, double[,] y)
+    {
+        double n = Config.NumOfExperiments * Config.NumOfMeasurements;
+        double sumX = 0;
+        double sumY = 0;
+        double sumXY = 0;
+        double sumX2 = 0;
+
+        for (int i = 0; i < Config.NumOfExperiments; i++)
+        {
+            for (int j = 0; j < Config.NumOfMeasurements; j++)
+            {
+                sumX += x[i, j];
+                sumY += y[i, j];
+                sumXY += x[i, j] * y[i, j];
+                sumX2 += x[i, j] * x[i, j];
+            }
+        }
+
+        double a = (n * sumXY - sumX * sumY) /
+                   (n * sumX2 - sumX * sumX);
+
+        double b = (sumY - a * sumX) / n;
+
+        Logger.LogInformation($"a: {a}, b: {b}");
+        return (a, b);
+    }
+
+    public IActionResult Approximate()
+    {
+        var (X, Y) = RunMeasurements();
+        var result = Check(X, Y);
+
+        return result ? new OkResult() : new BadRequestResult();
+    }
+
+    private (double[,], double[,]) RunMeasurements()
+    {
+        double[,] X = new double[Config.NumOfExperiments, Config.NumOfMeasurements];
+        double[,] Y = new double[Config.NumOfExperiments, Config.NumOfMeasurements];
+        Sensor.Set(Config.ReferenceValues.First());
+
+        for (var i = 0; i < Config.NumOfExperiments; i++)
+        {
+            var etalonValue = Config.ReferenceValues[i];
+
+            Sensor.SetDirection(etalonValue, 1);
+
+            for (int j = 0; j < Config.NumOfMeasurements; j++)
+            {
+                Sensor.Update();
+                var measurement = Sensor.PrimaryConverter();
+
+                X[i, j] = etalonValue;
+                Y[i, j] = measurement;
+            }
+        }
+
+        return (X, Y);
+    }
+
+    private bool Check(double[,] X, double[,] Y)
+    {
+        double maxDelta = 0;
+
+        for (int i = 0; i < Config.NumOfExperiments; i++)
+        {
+            for (int j = 0; j < Config.NumOfMeasurements; j++)
+            {
+                var delta = Math.Abs(X[i, j] - Y[i, j]);
+                maxDelta = Math.Max(maxDelta, delta);
+            }
+        }
+
+        return maxDelta < Config.MaxDeviation;
     }
 }

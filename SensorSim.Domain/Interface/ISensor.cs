@@ -17,12 +17,6 @@ public interface ISensorConfig<T> where T : IPhysicalQuantity
 
 public interface ISensor<T> where T : IPhysicalQuantity
 {
-    public ILogger<ISensor<T>> Logger { get; set; }
-    
-    public ISensorConfig<T> Config { get; set; }
-    
-    public T CurrentQuantity { get; set; }
-    
     public T Update();
     
     public T Read();

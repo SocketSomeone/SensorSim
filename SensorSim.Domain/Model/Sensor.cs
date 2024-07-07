@@ -18,12 +18,13 @@ public abstract class Sensor<T> : ISensor<T> where T : IPhysicalQuantity
         Logger = logger;
         Config = config;
         CurrentQuantity = config.InitialQuantity;
-        SetDirection(CurrentQuantity.Value, 1);
+        Exposure = new PhysicalValueExposure(CurrentQuantity.Value, 1);
     }
 
     public double PrimaryConverter()
     {
-        return Config.StaticFunction.Calculate(CurrentQuantity.Value) +
+        return CurrentQuantity.Value +
+               Config.StaticFunction.Calculate(CurrentQuantity.Value) +
                Config.SystematicError.Calculate(CurrentQuantity.Value) +
                Config.RandomError.Calculate(CurrentQuantity.Value);
     }

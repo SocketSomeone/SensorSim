@@ -1,22 +1,22 @@
-﻿using Microsoft.Extensions.Logging;
-using SensorSim.Domain.DTO.Actuator;
+﻿using SensorSim.Domain.DTO.Actuator;
 
 namespace SensorSim.Domain.Interface;
 
 public interface IActuatorConfig<T> where T : IPhysicalQuantity
 {
-    public double MinDesiredValue { get; set; }
+    public double MaxDeviation { get; set; }
     
-    public double MaxDesiredValue { get; set; }
+    public int NumOfExperiments { get; set; }
+    
+    public int NumOfMeasurements { get; set; }
+    
+    public List<double> ReferenceValues { get; set; }
 }
 
 public interface IActuator<T> where T : IPhysicalQuantity
 {
-    public ILogger<IActuator<T>> Logger { get; set; }
+    public ActuatorResponseModels.ActuatorResponseModel Set(double target, Queue<PhysicalValueExposure> exposures);
     
-    public IActuatorConfig<T> Config { get; set; }
-    
-    public ISensor<T> Sensor { get; set; }
-    
-    public ActuatorResponseModels.CalibrationResponseModel Calibrate(double target, Queue<PhysicalValueExposure> exposures);
+    public ActuatorResponseModels.CalibrationResponseModel Calibrate();
+    public ActuatorResponseModels.ActuatorResponseModel Read();
 }
