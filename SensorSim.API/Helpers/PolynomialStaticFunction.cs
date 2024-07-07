@@ -19,11 +19,11 @@ public class PolynomialStaticFunction : IStaticFunction
             result += Coefficients[i] * Math.Pow(value, i);
         }
 
-        return result - value;
+        return result;
     }
     
     public void SetOptions(List<double> values)
     {
-        Coefficients = values;
+        Coefficients = values.Select(Math.Abs).ToList();
     }
 }

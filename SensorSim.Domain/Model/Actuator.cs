@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using SensorSim.Domain.DTO.Actuator;
 using SensorSim.Domain.Interface;
 
@@ -21,6 +20,18 @@ public class Actuator<T> : IActuator<T> where T : IPhysicalQuantity
         Config = config;
         Sensor = sensor;
         Exposures = new();
+        sensor.ArrivalEvent += (sender, exposure) =>
+        {
+            if (Exposures.Count > 0)
+            {
+                Exposures.Dequeue();
+            }
+            
+            if (Exposures.Count > 0)
+            {
+                Sensor.SetDirection(Exposures.Peek());
+            }
+        };
     }
 
     public ActuatorResponseModels.ActuatorResponseModel Set(double target, Queue<PhysicalValueExposure> exposures)
@@ -36,6 +47,7 @@ public class Actuator<T> : IActuator<T> where T : IPhysicalQuantity
 
         Exposures = exposures;
         var measurement = Sensor.ReadQuantity();
+        Sensor.SetDirection(Exposures.Peek());
 
         return new ActuatorResponseModels.ActuatorResponseModel()
         {
@@ -47,20 +59,7 @@ public class Actuator<T> : IActuator<T> where T : IPhysicalQuantity
 
     public ActuatorResponseModels.ActuatorResponseModel Read()
     {
-        var measurement = Sensor.ReadQuantity();
-
-        if (Exposures.Count > 0)
-        {
-            var exposure = Exposures.Peek();
-
-            Sensor.SetDirection(exposure);
-            Sensor.UpdateQuantity();
-
-            if (exposure.Value.Equals(measurement.Value))
-            {
-                Exposures.Dequeue();
-            }
-        }
+        var measurement = Sensor.UpdateQuantity();
 
         Logger.LogInformation($"Read: {measurement.Value} {measurement.Unit}");
 
@@ -74,12 +73,12 @@ public class Actuator<T> : IActuator<T> where T : IPhysicalQuantity
 
     public ActuatorResponseModels.CalibrationResponseModel Calibrate()
     {
-        var (X, Y) = RunMeasurements();
+        var (X, Y) = Measurements();
 
         double[,] errors = new double[Config.NumOfExperiments, Config.NumOfMeasurements];
         double[,] correction = new double[Config.NumOfExperiments, Config.NumOfMeasurements];
 
-        var (a, b) = LinearLeastSquares(X, Y);
+        var (a, b) = LinearLeastSquares(Y, X);
         var coefficients = new List<double> { b, a };
 
         for (int i = 0; i < Config.NumOfExperiments; i++)
@@ -99,17 +98,34 @@ public class Actuator<T> : IActuator<T> where T : IPhysicalQuantity
         }
 
         Sensor.Calibrate(coefficients);
-        Logger.LogInformation($"Check: {Check(X, Y)}");
+        (X, Y) = Measurements();
 
+        for (int i = 0; i < Config.NumOfExperiments; i++)
+        {
+            for (int j = 0; j < Config.NumOfMeasurements; j++)
+            {
+                Logger.LogInformation($"Measurement: {Y[i, j]}, " +
+                                      $"Etalon: {X[i, j]}, " +
+                                      $"Error: {errors[i, j]}, Correction: " +
+                                      $"{correction[i, j]} " +
+                                      $"Actual: {Y[i, j] * correction[i, j]} " +
+                                      $"With coefficient: {a * Y[i, j] + b}");
+            }
+        }
+
+        Logger.LogInformation($"Check: {Check(X, Y)}");
 
         return new ActuatorResponseModels.CalibrationResponseModel
         {
             referenceValues = X,
             measuredValues = Y,
             errors = errors,
-            correction = correction
+            correction = correction,
+            IsValid = Check(X, Y)
         };
     }
+
+
 
     private (double, double) LinearLeastSquares(double[,] x, double[,] y)
     {
@@ -134,25 +150,17 @@ public class Actuator<T> : IActuator<T> where T : IPhysicalQuantity
                    (n * sumX2 - sumX * sumX);
 
         double b = (sumY - a * sumX) / n;
-
+        
         Logger.LogInformation($"a: {a}, b: {b}");
         return (a, b);
     }
 
-    public IActionResult Approximate()
-    {
-        var (X, Y) = RunMeasurements();
-        var result = Check(X, Y);
-
-        return result ? new OkResult() : new BadRequestResult();
-    }
-
-    private (double[,], double[,]) RunMeasurements()
+    private (double[,], double[,]) Measurements()
     {
         double[,] X = new double[Config.NumOfExperiments, Config.NumOfMeasurements];
         double[,] Y = new double[Config.NumOfExperiments, Config.NumOfMeasurements];
-        Sensor.SetQuantity(Config.ReferenceValues.First());
 
+        Sensor.SetQuantity(Config.ReferenceValues.First());
         for (var i = 0; i < Config.NumOfExperiments; i++)
         {
             var etalonValue = Config.ReferenceValues[i];
@@ -162,7 +170,7 @@ public class Actuator<T> : IActuator<T> where T : IPhysicalQuantity
             for (int j = 0; j < Config.NumOfMeasurements; j++)
             {
                 Sensor.UpdateQuantity();
-                var measurement = Sensor.PrimaryConverter();
+                var measurement = Sensor.GetParameter();
 
                 X[i, j] = etalonValue;
                 Y[i, j] = measurement;

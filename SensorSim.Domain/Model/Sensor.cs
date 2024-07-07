@@ -5,6 +5,8 @@ namespace SensorSim.Domain;
 
 public abstract class Sensor<T> : ISensor<T> where T : IPhysicalQuantity
 {
+    public event ISensor<T>.ArrivalEventHandler? ArrivalEvent;
+
     public ILogger<ISensor<T>> Logger { get; set; }
 
     public ISensorConfig<T> Config { get; set; }
@@ -21,27 +23,34 @@ public abstract class Sensor<T> : ISensor<T> where T : IPhysicalQuantity
         Exposure = new PhysicalValueExposure(CurrentQuantity.Value, 1);
     }
 
-    public double PrimaryConverter()
+    public double PrimaryConverter(double value)
     {
-        return CurrentQuantity.Value +
-               Config.StaticFunction.Calculate(CurrentQuantity.Value) +
-               Config.SystematicError.Calculate(CurrentQuantity.Value) +
-               Config.RandomError.Calculate(CurrentQuantity.Value);
+        return Config.StaticFunction.Calculate(value) +
+               Config.SystematicError.Calculate(value) +
+               Config.RandomError.Calculate(value);
     }
 
-    public double SecondaryConverter()
+    public double SecondaryConverter(double value)
     {
-        return Config.MotionFunction.Calculate(PrimaryConverter(), Exposure.Value, Exposure.Duration);
+        return Config.MotionFunction.Calculate(value, Exposure.Value, Exposure.Duration);
     }
 
     public T ReadQuantity()
     {
-        return CurrentQuantity;
+        return (T)Activator.CreateInstance(typeof(T), PrimaryConverter(CurrentQuantity.Value));
     }
 
     public T UpdateQuantity()
     {
-        CurrentQuantity.Value = SecondaryConverter();
+        var parameter = GetParameter();
+        var affected = SecondaryConverter(parameter);
+        CurrentQuantity.Value = CurrentQuantity.Value + affected - parameter;
+        
+        if (affected.Equals(Exposure.Value))
+        {
+            ArrivalEvent?.Invoke(this, Exposure);
+        }
+
         return ReadQuantity();
     }
 
@@ -69,5 +78,15 @@ public abstract class Sensor<T> : ISensor<T> where T : IPhysicalQuantity
     public void Calibrate(List<double> values)
     {
         Config.StaticFunction.SetOptions(values);
+    }
+
+    public double GetParameter()
+    {
+        return PrimaryConverter(CurrentQuantity.Value);
+    }
+
+    public double GetAffected()
+    {
+        return SecondaryConverter(GetParameter());
     }
 }

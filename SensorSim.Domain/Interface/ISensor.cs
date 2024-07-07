@@ -17,13 +17,17 @@ public interface ISensorConfig<T> where T : IPhysicalQuantity
 
 public interface ISensor<T> where T : IPhysicalQuantity
 {
+    public delegate void ArrivalEventHandler(object sender, PhysicalValueExposure exposure);
+
+    public event ArrivalEventHandler ArrivalEvent;
+    
     public T UpdateQuantity();
     
     public T ReadQuantity();
     
-    public double PrimaryConverter();
+    public double PrimaryConverter(double value);
     
-    public double SecondaryConverter();
+    public double SecondaryConverter(double value);
 
     public T SetQuantity(double value);
     
@@ -32,4 +36,8 @@ public interface ISensor<T> where T : IPhysicalQuantity
     public void SetDirection(PhysicalValueExposure exposure);
     
     public void Calibrate(List<double> values);
+    
+    public double GetParameter();
+    
+    public double GetAffected();
 }

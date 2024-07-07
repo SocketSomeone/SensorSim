@@ -13,6 +13,8 @@ public class ActuatorResponseModels
         public double[,] errors { get; set; }
         
         public double[,] correction { get; set; }
+        
+        public bool IsValid { get; set; }
     }
 
     public class ActuatorResponseModel

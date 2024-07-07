@@ -4,7 +4,7 @@ public class PhysicalValueExposure
 {
     public double Value { get; set; }
     
-    public double Duration { get; set; } = TimeSpan.FromSeconds(1).TotalSeconds;
+    public double Duration { get; set; } = 1;
     
     public PhysicalValueExposure()
     {
