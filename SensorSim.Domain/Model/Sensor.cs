@@ -34,22 +34,22 @@ public abstract class Sensor<T> : ISensor<T> where T : IPhysicalQuantity
         return Config.MotionFunction.Calculate(PrimaryConverter(), Exposure.Value, Exposure.Duration);
     }
 
-    public T Read()
+    public T ReadQuantity()
     {
         return CurrentQuantity;
     }
 
-    public T Update()
+    public T UpdateQuantity()
     {
         CurrentQuantity.Value = SecondaryConverter();
-        return Read();
+        return ReadQuantity();
     }
 
-    public T Set(double value)
+    public T SetQuantity(double value)
     {
         SetDirection(value, 1);
         CurrentQuantity.Value = value;
-        return Read();
+        return ReadQuantity();
     }
 
     public void SetDirection(double destination, double duration)

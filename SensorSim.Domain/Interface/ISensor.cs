@@ -17,15 +17,15 @@ public interface ISensorConfig<T> where T : IPhysicalQuantity
 
 public interface ISensor<T> where T : IPhysicalQuantity
 {
-    public T Update();
+    public T UpdateQuantity();
     
-    public T Read();
+    public T ReadQuantity();
     
     public double PrimaryConverter();
     
     public double SecondaryConverter();
 
-    public T Set(double value);
+    public T SetQuantity(double value);
     
     public void SetDirection(double destination, double speed);
     

@@ -21,8 +21,8 @@ public abstract class SensorController<T> : ControllerBase where T : IPhysicalQu
     [HttpGet]
     public ActionResult<SensorsResponseModels.ISensorResponseModel> Get()
     {
-        SensorService.Update();
-        return Ok(SensorService.Read()); 
+        SensorService.UpdateQuantity();
+        return Ok(SensorService.ReadQuantity()); 
     }
     
     /// <summary>
@@ -34,7 +34,7 @@ public abstract class SensorController<T> : ControllerBase where T : IPhysicalQu
     public ActionResult<SensorsResponseModels.ISensorResponseModel> SetTargetSensorValue([FromBody] SensorsRequestModels.SetTargetSensorRequestModel dto)
     {
         SensorService.SetDirection(dto.Value, dto.Duration);
-        return Ok(SensorService.Read());
+        return Ok(SensorService.ReadQuantity());
     }
     
     /// <summary>
@@ -45,6 +45,6 @@ public abstract class SensorController<T> : ControllerBase where T : IPhysicalQu
     [HttpPut]
     public ActionResult<SensorsResponseModels.ISensorResponseModel> SetSensorValue([FromBody] SensorsRequestModels.SetSensorValueRequestModel dto)
     {
-        return Ok(SensorService.Set(dto.Value));
+        return Ok(SensorService.SetQuantity(dto.Value));
     }
 }

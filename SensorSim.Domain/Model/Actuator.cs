@@ -35,7 +35,7 @@ public class Actuator<T> : IActuator<T> where T : IPhysicalQuantity
         }
 
         Exposures = exposures;
-        var measurement = Sensor.Read();
+        var measurement = Sensor.ReadQuantity();
 
         return new ActuatorResponseModels.ActuatorResponseModel()
         {
@@ -47,14 +47,14 @@ public class Actuator<T> : IActuator<T> where T : IPhysicalQuantity
 
     public ActuatorResponseModels.ActuatorResponseModel Read()
     {
-        var measurement = Sensor.Read();
+        var measurement = Sensor.ReadQuantity();
 
         if (Exposures.Count > 0)
         {
             var exposure = Exposures.Peek();
 
             Sensor.SetDirection(exposure);
-            Sensor.Update();
+            Sensor.UpdateQuantity();
 
             if (exposure.Value.Equals(measurement.Value))
             {
@@ -151,7 +151,7 @@ public class Actuator<T> : IActuator<T> where T : IPhysicalQuantity
     {
         double[,] X = new double[Config.NumOfExperiments, Config.NumOfMeasurements];
         double[,] Y = new double[Config.NumOfExperiments, Config.NumOfMeasurements];
-        Sensor.Set(Config.ReferenceValues.First());
+        Sensor.SetQuantity(Config.ReferenceValues.First());
 
         for (var i = 0; i < Config.NumOfExperiments; i++)
         {
@@ -161,7 +161,7 @@ public class Actuator<T> : IActuator<T> where T : IPhysicalQuantity
 
             for (int j = 0; j < Config.NumOfMeasurements; j++)
             {
-                Sensor.Update();
+                Sensor.UpdateQuantity();
                 var measurement = Sensor.PrimaryConverter();
 
                 X[i, j] = etalonValue;
