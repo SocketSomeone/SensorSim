@@ -8,8 +8,4 @@ public class ActuatorsRequestModels
 
         public Queue<PhysicalValueExposure> Exposures { get; set; }
     }
-    
-    public class CalibrationRequestModel
-    {
-    }
 }

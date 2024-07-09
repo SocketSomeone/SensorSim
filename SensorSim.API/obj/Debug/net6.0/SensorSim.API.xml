@@ -11,22 +11,21 @@
             <param name="setModel"></param>
             <returns></returns>
         </member>
+        <member name="M:SensorSim.API.Controllers.Actuators.ActuatorController`1.Get">
+            <summary>
+            Get the current value of the actuator
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:SensorSim.API.Controllers.SensorController`1.Get">
             <summary>
             Get current sensor value
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SensorSim.API.Controllers.SensorController`1.SetTargetSensorValue(SensorSim.Domain.DTO.Sensor.SensorsRequestModels.SetTargetSensorRequestModel)">
-            <summary>
-            Set sensor value (with inertia)
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
         <member name="M:SensorSim.API.Controllers.SensorController`1.SetSensorValue(SensorSim.Domain.DTO.Sensor.SensorsRequestModels.SetSensorValueRequestModel)">
             <summary>
-            Set sensor value (without inertia)
+            Set sensor value
             </summary>
             <param name="dto"></param>
             <returns></returns>

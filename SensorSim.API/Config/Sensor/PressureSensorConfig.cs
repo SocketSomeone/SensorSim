@@ -14,6 +14,4 @@ public class PressureSensorConfig : ISensorConfig<Pressure>
     public ISystematicError SystematicError { get; } = new ConstantSystematicError(0.05);
 
     public IRandomError RandomError { get; } = new GaussianRandomError(-0.02, 0.03);
-    
-    public IMotionFunction MotionFunction { get; } = new InertiaMotionFunction(0.05);
 }

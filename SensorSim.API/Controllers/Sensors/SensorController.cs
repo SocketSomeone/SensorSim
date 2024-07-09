@@ -8,43 +8,40 @@ namespace SensorSim.API.Controllers;
 public abstract class SensorController<T> : ControllerBase where T : IPhysicalQuantity
 {
     public ISensor<T> SensorService { get; }
-    
+
     public SensorController(ISensor<T> sensorService)
     {
         SensorService = sensorService;
     }
-    
+
     /// <summary>
     /// Get current sensor value
     /// </summary>
     /// <returns></returns>
     [HttpGet]
-    public ActionResult<SensorsResponseModels.ISensorResponseModel> Get()
+    public ActionResult<SensorsResponseModels.GetSensorResponseModel> Get()
     {
-        SensorService.UpdateQuantity();
-        return Ok(SensorService.ReadQuantity()); 
+        return Ok(new SensorsResponseModels.GetSensorResponseModel
+        {
+            Current = SensorService.ReadQuantity(),
+            Parameter = SensorService.ReadParameter()
+        });
     }
-    
+
     /// <summary>
-    /// Set sensor value (with inertia)
+    /// Set sensor value
     /// </summary>
     /// <param name="dto"></param>
     /// <returns></returns>
     [HttpPost]
-    public ActionResult<SensorsResponseModels.ISensorResponseModel> SetTargetSensorValue([FromBody] SensorsRequestModels.SetTargetSensorRequestModel dto)
+    public ActionResult<SensorsResponseModels.GetSensorResponseModel> SetSensorValue(
+        [FromBody] SensorsRequestModels.SetSensorValueRequestModel dto)
     {
-        SensorService.SetDirection(dto.Value, dto.Duration);
-        return Ok(SensorService.ReadQuantity());
-    }
-    
-    /// <summary>
-    /// Set sensor value (without inertia)
-    /// </summary>
-    /// <param name="dto"></param>
-    /// <returns></returns>
-    [HttpPut]
-    public ActionResult<SensorsResponseModels.ISensorResponseModel> SetSensorValue([FromBody] SensorsRequestModels.SetSensorValueRequestModel dto)
-    {
-        return Ok(SensorService.SetQuantity(dto.Value));
+        SensorService.SetQuantity(dto.Value);
+        return Ok(new SensorsResponseModels.GetSensorResponseModel
+        {
+            Current = SensorService.ReadQuantity(),
+            Parameter = SensorService.ReadParameter()
+        });
     }
 }

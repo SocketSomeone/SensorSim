@@ -11,7 +11,6 @@ public interface IRandomError : ICalculable
 
 public interface IStaticFunction : ICalculable
 {
-    void SetOptions(List<double> values);
 }
 
 public interface ISystematicError : ICalculable

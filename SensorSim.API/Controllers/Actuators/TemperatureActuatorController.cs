@@ -4,7 +4,7 @@ using SensorSim.Domain.Interface;
 
 namespace SensorSim.API.Controllers.Actuators;
 
-[ApiController]
+[Controller]
 [Route("api/actuators/temperature")]
 public class TemperatureActuatorController : ActuatorController<Temperature>
 {

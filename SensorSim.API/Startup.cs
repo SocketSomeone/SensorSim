@@ -51,6 +51,10 @@ public class Startup
         
         services.AddSingleton<ISensorConfig<Pressure>, PressureSensorConfig>();
         services.AddSingleton<ISensor<Pressure>, PressureSensorService>();
+        services.AddSingleton<IActuatorConfig<Pressure>, PressureActuatorConfig>();
+        services.AddSingleton<IActuator<Pressure>, PressureActuatorService>();
+
+        services.AddHostedService<ConsumeActuatorHostedService>();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

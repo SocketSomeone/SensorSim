@@ -6,8 +6,4 @@ public class SensorsRequestModels
     {
         public double Value { get; set; }
     }
-
-    public class SetTargetSensorRequestModel : PhysicalValueExposure
-    {
-    }
 }
