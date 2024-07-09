@@ -8,7 +8,7 @@ public class TemperatureSensorConfig : ISensorConfig<Temperature>
 {
     public Temperature InitialQuantity { get; } = new (25.0);
     
-    public IStaticFunction StaticFunction { get; } = new PolynomialStaticFunction(new () {3.0, 1.2, 0.125});
+    public IStaticFunction StaticFunction { get; } = new PolynomialStaticFunction(new () {0.0, 1.0});
     
     public ISystematicError SystematicError { get; } = new ConstantSystematicError(0.2);
     
