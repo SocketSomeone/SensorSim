@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\SensorSim.Sensor.API.props" />
+</Project>

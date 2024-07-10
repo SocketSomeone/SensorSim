@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SensorSim.API</name>
+    </assembly>
+    <members>
+        <member name="M:SensorSim.API.Controllers.Actuators.ActuatorController`1.Set(SensorSim.Domain.DTO.Actuator.ActuatorsRequestModels.SetRequestModel)">
+            <summary>
+            Set the value of the actuator
+            </summary>
+            <param name="setModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SensorSim.API.Controllers.Actuators.ActuatorController`1.Get">
+            <summary>
+            Get the current value of the actuator
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SensorSim.API.Controllers.SensorController`1.Get">
+            <summary>
+            Get current sensor value
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SensorSim.API.Controllers.SensorController`1.SetSensorValue(SensorSim.Domain.DTO.Sensor.SensorsRequestModels.SetSensorValueRequestModel)">
+            <summary>
+            Set sensor value
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d695652e-bc7f-47a1-ada8-21a5a6929f49" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SensorSim.Actuator.API/Clients/ISensorApi.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SensorSim.Actuator.API/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SensorSim.Actuator.API/SensorSim.Actuator.API.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SensorSim.Actuator.API/Startup.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/SensorSim.Sensor.API.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/appsettings.Development.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/appsettings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/System.Text.Json.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net8.0/SensorSim.Sensor.API.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net8.0/SensorSim.Sensor.API.pdb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/SensorSim.API.AssemblyInfoInputs.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/SensorSim.API.assets.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/SensorSim.API.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/SensorSim.API.sourcelink.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/SensorSim.API.csproj.nuget.dgspec.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/project.assets.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/project.nuget.cache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/project.packagespec.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/Config/Actuator/PressureActuatorConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Actuator.API/Config/PressureActuatorConfig.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/Config/Actuator/TemperatureActuatorConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Actuator.API/Config/TemperatureActuatorConfig.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/Config/Sensor/PressureSensorConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/Config/PressureSensorConfig.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/Config/Sensor/TemperatureSensorConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/Config/TemperatureSensorConfig.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/Controllers/Actuators/ActuatorController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Actuator.API/Controllers/ActuatorController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/Controllers/Actuators/PressureActuatorController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Actuator.API/Controllers/PressureActuatorController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/Controllers/Actuators/TemperatureActuatorController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Actuator.API/Controllers/TemperatureActuatorController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/Controllers/Sensors/PressureSensorController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/Controllers/PressureSensorController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/Controllers/Sensors/SensorController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/Controllers/SensorController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/Controllers/Sensors/TemperatureSensorController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/Controllers/TemperatureSensorController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/Helpers/ConstantSystematicError.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Infrastructure/Helpers/ConstantSystematicError.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/Helpers/GaussianRandomError.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Infrastructure/Helpers/GaussianRandomError.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/Helpers/InertiaMotionFunction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Infrastructure/Helpers/InertiaMotionFunction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/Helpers/PiecewiseContinuousFunction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Infrastructure/Helpers/PiecewiseContinuousFunction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/Helpers/PolynomialStaticFunction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Infrastructure/Helpers/PolynomialStaticFunction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/Properties/launchSettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/SensorSim.API.csproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/Services/Actuator/PressureActuatorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Actuator.API/Services/PressureActuatorService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/Services/Actuator/TemperatureActuatorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Actuator.API/Services/TemperatureActuatorService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/Services/ConsumeActuatorHostedService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Actuator.API/Services/ConsumeActuatorHostedService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/Services/Sensor/PressureSensorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/Services/PressureSensorService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/Services/Sensor/TemperatureSensorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/Services/TemperatureSensorService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/appsettings.Development.json" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/appsettings.Development.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Azure.Core.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Azure.Core.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Azure.Identity.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Azure.Identity.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Humanizer.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Humanizer.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Microsoft.AspNetCore.JsonPatch.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Microsoft.AspNetCore.JsonPatch.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Microsoft.Bcl.AsyncInterfaces.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Microsoft.Bcl.AsyncInterfaces.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Microsoft.Data.SqlClient.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Microsoft.Data.SqlClient.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Design.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Design.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Relational.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.Relational.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.SqlServer.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.SqlServer.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Microsoft.EntityFrameworkCore.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Microsoft.Extensions.Caching.Abstractions.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Microsoft.Extensions.Caching.Abstractions.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Microsoft.Extensions.Caching.Memory.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Microsoft.Extensions.Caching.Memory.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Microsoft.Extensions.Configuration.Abstractions.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Microsoft.Extensions.Configuration.Abstractions.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Microsoft.Extensions.DependencyInjection.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Microsoft.Extensions.DependencyInjection.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Microsoft.Extensions.DependencyModel.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Microsoft.Extensions.DependencyModel.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Microsoft.Extensions.Logging.Abstractions.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Microsoft.Extensions.Logging.Abstractions.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Microsoft.Extensions.Logging.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Microsoft.Extensions.Logging.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Microsoft.Extensions.Options.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Microsoft.Extensions.Options.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Microsoft.Extensions.Primitives.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Microsoft.Extensions.Primitives.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Microsoft.Identity.Client.Extensions.Msal.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Microsoft.Identity.Client.Extensions.Msal.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Microsoft.Identity.Client.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Microsoft.Identity.Client.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Microsoft.IdentityModel.Abstractions.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Microsoft.IdentityModel.Abstractions.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Microsoft.IdentityModel.JsonWebTokens.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Microsoft.IdentityModel.JsonWebTokens.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Microsoft.IdentityModel.Logging.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Microsoft.IdentityModel.Logging.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Microsoft.IdentityModel.Protocols.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Microsoft.IdentityModel.Protocols.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Microsoft.IdentityModel.Tokens.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Microsoft.IdentityModel.Tokens.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Microsoft.OpenApi.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Microsoft.OpenApi.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Microsoft.SqlServer.Server.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Microsoft.SqlServer.Server.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Microsoft.Win32.SystemEvents.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Microsoft.Win32.SystemEvents.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Mono.TextTemplating.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Mono.TextTemplating.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Newtonsoft.Json.Bson.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Newtonsoft.Json.Bson.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Newtonsoft.Json.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Newtonsoft.Json.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/RESTfull.API" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/RESTfull.API" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/RESTfull.API.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/RESTfull.API.deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/RESTfull.API.exe" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/RESTfull.API.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/RESTfull.API.runtimeconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/RESTfull.API.runtimeconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/RESTfull.API.xml" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/RESTfull.API.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/RESTfull.Domain.Migrations.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/RESTfull.Domain.Migrations.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/RESTfull.Domain.Migrations.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/RESTfull.Domain.Migrations.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/RESTfull.Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/RESTfull.Domain.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/RESTfull.Domain.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/RESTfull.Domain.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/RESTfull.Infrastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/RESTfull.Infrastructure.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/RESTfull.Infrastructure.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/RESTfull.Infrastructure.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/SensorSim.API.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/SensorSim.API.deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/SensorSim.API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/SensorSim.API.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/SensorSim.API.exe" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/SensorSim.API.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/SensorSim.API.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/SensorSim.API.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/SensorSim.API.runtimeconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/SensorSim.API.runtimeconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/SensorSim.API.xml" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/SensorSim.API.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/SensorSim.Domain.Migrations.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/SensorSim.Domain.Migrations.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/SensorSim.Domain.Migrations.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/SensorSim.Domain.Migrations.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/SensorSim.Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/SensorSim.Domain.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/SensorSim.Domain.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/SensorSim.Domain.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/SensorSim.Infrastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/SensorSim.Infrastructure.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/SensorSim.Infrastructure.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/SensorSim.Infrastructure.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Swashbuckle.AspNetCore.Swagger.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Swashbuckle.AspNetCore.Swagger.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/System.CodeDom.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/System.CodeDom.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/System.Configuration.ConfigurationManager.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/System.Configuration.ConfigurationManager.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/System.Drawing.Common.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/System.Drawing.Common.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/System.IdentityModel.Tokens.Jwt.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/System.IdentityModel.Tokens.Jwt.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/System.Memory.Data.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/System.Memory.Data.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/System.Runtime.Caching.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/System.Runtime.Caching.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/System.Security.Cryptography.ProtectedData.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/System.Security.Cryptography.ProtectedData.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/System.Security.Permissions.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/System.Security.Permissions.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/System.Text.Encodings.Web.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/System.Text.Encodings.Web.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/System.Text.Json.dll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/System.Windows.Extensions.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/System.Windows.Extensions.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/appsettings.Development.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/appsettings.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/runtimes/browser/lib/net6.0/System.Text.Encodings.Web.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/runtimes/browser/lib/net6.0/System.Text.Encodings.Web.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/runtimes/unix/lib/netcoreapp3.0/System.Drawing.Common.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/runtimes/unix/lib/netcoreapp3.0/System.Drawing.Common.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/runtimes/unix/lib/netcoreapp3.1/Microsoft.Data.SqlClient.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/runtimes/unix/lib/netcoreapp3.1/Microsoft.Data.SqlClient.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/runtimes/win-arm/native/Microsoft.Data.SqlClient.SNI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/runtimes/win-arm/native/Microsoft.Data.SqlClient.SNI.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/runtimes/win-arm64/native/Microsoft.Data.SqlClient.SNI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/runtimes/win-arm64/native/Microsoft.Data.SqlClient.SNI.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/runtimes/win-x64/native/Microsoft.Data.SqlClient.SNI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/runtimes/win-x64/native/Microsoft.Data.SqlClient.SNI.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/runtimes/win/lib/netcoreapp3.0/Microsoft.Win32.SystemEvents.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/runtimes/win/lib/netcoreapp3.0/Microsoft.Win32.SystemEvents.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/runtimes/win/lib/netcoreapp3.0/System.Drawing.Common.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/runtimes/win/lib/netcoreapp3.0/System.Drawing.Common.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/runtimes/win/lib/netcoreapp3.0/System.Windows.Extensions.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/runtimes/win/lib/netcoreapp3.0/System.Windows.Extensions.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/runtimes/win/lib/netcoreapp3.1/Microsoft.Data.SqlClient.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/runtimes/win/lib/netcoreapp3.1/Microsoft.Data.SqlClient.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/runtimes/win/lib/netstandard2.0/System.Runtime.Caching.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/runtimes/win/lib/netstandard2.0/System.Runtime.Caching.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/bin/Debug/net6.0/runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/migration.bat" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/migration.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/.NETCoreApp,Version=v6.0.AssemblyAttributes.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/RESTfull.API.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/RESTfull.API.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/RESTfull.API.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/RESTfull.API.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/RESTfull.API.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/RESTfull.API.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/RESTfull.API.GlobalUsings.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/RESTfull.API.GlobalUsings.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/RESTfull.API.MvcApplicationPartsAssemblyInfo.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/RESTfull.API.MvcApplicationPartsAssemblyInfo.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/RESTfull.API.MvcApplicationPartsAssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/RESTfull.API.MvcApplicationPartsAssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/RESTfull.API.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/RESTfull.API.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/RESTfull.API.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/RESTfull.API.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/RESTfull.API.csproj.CopyComplete" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/RESTfull.API.csproj.CopyComplete" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/RESTfull.API.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/RESTfull.API.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/RESTfull.API.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/RESTfull.API.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/RESTfull.API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/RESTfull.API.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/RESTfull.API.genruntimeconfig.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/RESTfull.API.genruntimeconfig.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/RESTfull.API.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/RESTfull.API.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/RESTfull.API.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/RESTfull.API.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/RESTfull.API.xml" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/RESTfull.API.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/RESTfull.CD58085D.Up2Date" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/RESTfull.CD58085D.Up2Date" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/SensorSi.FA649AA9.Up2Date" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/SensorSi.FA649AA9.Up2Date" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/SensorSim.API.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/SensorSim.API.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/SensorSim.API.AssemblyInfoInputs.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/SensorSim.API.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/SensorSim.API.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/SensorSim.API.GlobalUsings.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/SensorSim.API.GlobalUsings.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/SensorSim.API.MvcApplicationPartsAssemblyInfo.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/SensorSim.API.MvcApplicationPartsAssemblyInfo.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/SensorSim.API.MvcApplicationPartsAssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/SensorSim.API.MvcApplicationPartsAssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/SensorSim.API.assets.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/SensorSim.API.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/SensorSim.API.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/SensorSim.API.csproj.CoreCompileInputs.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/SensorSim.API.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/SensorSim.API.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/SensorSim.API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/SensorSim.API.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/SensorSim.API.genruntimeconfig.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/SensorSim.API.genruntimeconfig.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/SensorSim.API.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/bin/Debug/net6.0/SensorSim.API.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/SensorSim.API.sourcelink.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/SensorSim.API.xml" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/SensorSim.API.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/apphost.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/ref/RESTfull.API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/ref/RESTfull.API.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/ref/SensorSim.API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/ref/SensorSim.API.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/refint/RESTfull.API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/refint/RESTfull.API.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/refint/SensorSim.API.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/refint/SensorSim.API.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/staticwebassets.build.json" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/staticwebassets.build.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/staticwebassets/msbuild.build.RESTfull.API.props" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/staticwebassets/msbuild.build.RESTfull.API.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/staticwebassets/msbuild.build.SensorSim.API.props" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/staticwebassets/msbuild.build.SensorSim.API.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/staticwebassets/msbuild.buildMultiTargeting.RESTfull.API.props" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/staticwebassets/msbuild.buildMultiTargeting.RESTfull.API.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/staticwebassets/msbuild.buildMultiTargeting.SensorSim.API.props" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/staticwebassets/msbuild.buildMultiTargeting.SensorSim.API.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/staticwebassets/msbuild.buildTransitive.RESTfull.API.props" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/staticwebassets/msbuild.buildTransitive.RESTfull.API.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/Debug/net6.0/staticwebassets/msbuild.buildTransitive.SensorSim.API.props" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/Debug/net6.0/staticwebassets/msbuild.buildTransitive.SensorSim.API.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/RESTfull.API.csproj.EntityFrameworkCore.targets" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/RESTfull.API.csproj.EntityFrameworkCore.targets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/RESTfull.API.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/RESTfull.API.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/RESTfull.API.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/RESTfull.API.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/RESTfull.API.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/RESTfull.API.csproj.nuget.g.targets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/SensorSim.API.csproj.nuget.dgspec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/SensorSim.API.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/SensorSim.API.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/SensorSim.API.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/SensorSim.API.csproj.nuget.g.targets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/project.assets.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/project.nuget.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/project.packagespec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/rider.project.model.nuget.info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/rider.project.restore.info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.API/obj/staticwebassets.pack.sentinel" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/obj/staticwebassets.pack.sentinel" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Client/SensorSim.Client.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Client/SensorSim.Client.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Client/obj/Debug/net7.0/SensorSim.Client.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Client/obj/Debug/net7.0/SensorSim.Client.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Client/obj/Debug/net7.0/SensorSim.Client.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Client/obj/Debug/net7.0/SensorSim.Client.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Client/obj/SensorSim.Client.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Client/obj/SensorSim.Client.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Client/obj/SensorSim.Client.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Client/obj/SensorSim.Client.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Client/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Client/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Client/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Client/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Client/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Client/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Client/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Client/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain.Migrations/SensorSim.Domain.Migrations.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain.Migrations/SensorSim.Domain.Migrations.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain.Migrations/bin/Debug/net6.0/SensorSim.Domain.Migrations.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain.Migrations/bin/Debug/net6.0/SensorSim.Domain.Migrations.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain.Migrations/bin/Debug/net6.0/SensorSim.Domain.Migrations.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain.Migrations/bin/Debug/net6.0/SensorSim.Domain.Migrations.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain.Migrations/bin/Debug/net6.0/SensorSim.Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain.Migrations/bin/Debug/net6.0/SensorSim.Domain.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain.Migrations/bin/Debug/net6.0/SensorSim.Domain.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain.Migrations/bin/Debug/net6.0/SensorSim.Domain.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain.Migrations/bin/Debug/net6.0/SensorSim.Infrastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain.Migrations/bin/Debug/net6.0/SensorSim.Infrastructure.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain.Migrations/bin/Debug/net6.0/SensorSim.Infrastructure.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain.Migrations/bin/Debug/net6.0/SensorSim.Infrastructure.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/Debug/net6.0/SensorSim.Domain.Migrations.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/Debug/net6.0/SensorSim.Domain.Migrations.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/Debug/net6.0/SensorSim.Domain.Migrations.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/Debug/net6.0/SensorSim.Domain.Migrations.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/Debug/net6.0/SensorSim.Domain.Migrations.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/Debug/net6.0/SensorSim.Domain.Migrations.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/Debug/net6.0/SensorSim.Domain.Migrations.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/Debug/net6.0/SensorSim.Domain.Migrations.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/Debug/net6.0/SensorSim.Domain.Migrations.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/Debug/net6.0/SensorSim.Domain.Migrations.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/Debug/net6.0/SensorSim.Domain.Migrations.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/Debug/net6.0/SensorSim.Domain.Migrations.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/Debug/net6.0/SensorSim.Domain.Migrations.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/Debug/net6.0/SensorSim.Domain.Migrations.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/Debug/net6.0/ref/SensorSim.Domain.Migrations.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/Debug/net6.0/ref/SensorSim.Domain.Migrations.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/Debug/net6.0/refint/SensorSim.Domain.Migrations.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/Debug/net6.0/refint/SensorSim.Domain.Migrations.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/SensorSim.Domain.Migrations.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/SensorSim.Domain.Migrations.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/SensorSim.Domain.Migrations.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/SensorSim.Domain.Migrations.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/SensorSim.Domain.Migrations.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/SensorSim.Domain.Migrations.csproj.nuget.g.targets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain.Migrations/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain/DTO/Sensor/SensorsResponseModels.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain/DTO/Sensor/SensorsResponseModels.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain/Interface/IActuator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain/Interface/IActuator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain/Model/Actuator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Actuator.API/Services/ActuatorService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain/Model/Sensor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Sensor.API/Services/Sensor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain/SensorSim.Domain.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain/SensorSim.Domain.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain/bin/Debug/net6.0/SensorSim.Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain/bin/Debug/net6.0/SensorSim.Domain.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain/bin/Debug/net6.0/SensorSim.Domain.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain/bin/Debug/net6.0/SensorSim.Domain.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain/obj/Debug/net6.0/SensorSim.Domain.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain/obj/Debug/net6.0/SensorSim.Domain.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain/obj/Debug/net6.0/SensorSim.Domain.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain/obj/Debug/net6.0/SensorSim.Domain.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain/obj/Debug/net6.0/SensorSim.Domain.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain/obj/Debug/net6.0/SensorSim.Domain.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain/obj/Debug/net6.0/SensorSim.Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain/obj/Debug/net6.0/SensorSim.Domain.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain/obj/Debug/net6.0/SensorSim.Domain.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain/obj/Debug/net6.0/SensorSim.Domain.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain/obj/Debug/net6.0/SensorSim.Domain.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain/obj/Debug/net6.0/SensorSim.Domain.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain/obj/Debug/net6.0/ref/SensorSim.Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain/obj/Debug/net6.0/ref/SensorSim.Domain.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain/obj/Debug/net6.0/refint/SensorSim.Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain/obj/Debug/net6.0/refint/SensorSim.Domain.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain/obj/SensorSim.Domain.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain/obj/SensorSim.Domain.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain/obj/SensorSim.Domain.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain/obj/SensorSim.Domain.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain/obj/SensorSim.Domain.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain/obj/SensorSim.Domain.csproj.nuget.g.targets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Domain/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Domain/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Infrastructure/Data/DataContext.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Infrastructure/Repositories/Repository.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Infrastructure/SensorSim.Infrastructure.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Infrastructure/SensorSim.Infrastructure.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Infrastructure/bin/Debug/net6.0/SensorSim.Domain.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Infrastructure/bin/Debug/net6.0/SensorSim.Domain.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Infrastructure/bin/Debug/net6.0/SensorSim.Domain.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Infrastructure/bin/Debug/net6.0/SensorSim.Domain.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Infrastructure/bin/Debug/net6.0/SensorSim.Infrastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Infrastructure/bin/Debug/net6.0/SensorSim.Infrastructure.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Infrastructure/bin/Debug/net6.0/SensorSim.Infrastructure.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Infrastructure/bin/Debug/net6.0/SensorSim.Infrastructure.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/Debug/net6.0/SensorSim.Infrastructure.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/Debug/net6.0/SensorSim.Infrastructure.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/Debug/net6.0/SensorSim.Infrastructure.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/Debug/net6.0/SensorSim.Infrastructure.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/Debug/net6.0/SensorSim.Infrastructure.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/Debug/net6.0/SensorSim.Infrastructure.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/Debug/net6.0/SensorSim.Infrastructure.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/Debug/net6.0/SensorSim.Infrastructure.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/Debug/net6.0/SensorSim.Infrastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/Debug/net6.0/SensorSim.Infrastructure.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/Debug/net6.0/SensorSim.Infrastructure.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/Debug/net6.0/SensorSim.Infrastructure.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/Debug/net6.0/SensorSim.Infrastructure.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/Debug/net6.0/SensorSim.Infrastructure.sourcelink.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/Debug/net6.0/ref/SensorSim.Infrastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/Debug/net6.0/ref/SensorSim.Infrastructure.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/Debug/net6.0/refint/SensorSim.Infrastructure.dll" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/Debug/net6.0/refint/SensorSim.Infrastructure.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/SensorSim.Infrastructure.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/SensorSim.Infrastructure.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/SensorSim.Infrastructure.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/SensorSim.Infrastructure.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/SensorSim.Infrastructure.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/SensorSim.Infrastructure.csproj.nuget.g.targets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/rider.project.model.nuget.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Infrastructure/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Test/SensorSim.Test.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Test/SensorSim.Test.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Test/obj/Debug/net6.0/SensorSim.Test.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Test/obj/Debug/net6.0/SensorSim.Test.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Test/obj/Debug/net6.0/SensorSim.Test.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Test/obj/Debug/net6.0/SensorSim.Test.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Test/obj/Debug/net6.0/SensorSim.Test.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Test/obj/Debug/net6.0/SensorSim.Test.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Test/obj/Debug/net6.0/SensorSim.Test.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Test/obj/Debug/net6.0/SensorSim.Test.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Test/obj/SensorSim.Test.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Test/obj/SensorSim.Test.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Test/obj/SensorSim.Test.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Test/obj/SensorSim.Test.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Test/obj/SensorSim.Test.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Test/obj/SensorSim.Test.csproj.nuget.g.targets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Test/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Test/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Test/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Test/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Test/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Test/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.Test/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.Test/obj/rider.project.restore.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SensorSim.sln" beforeDir="false" afterPath="$PROJECT_DIR$/SensorSim.sln" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "SocketSomeone"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/SocketSomeone/SensorSim.git",
+    "accountId": "7c8039e6-33f5-49b0-b956-86ddb599891d"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 3
+}]]></component>
+  <component name="ProjectId" id="2j2IWGnu0hbU65gKp2phVhC0aRe" />
+  <component name="ProjectViewState">
+    <option name="autoscrollToSource" value="true" />
+    <option name="compactDirectories" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="false" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-WS-241.18034.50" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d695652e-bc7f-47a1-ada8-21a5a6929f49" name="Changes" comment="" />
+      <created>1720578778502</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1720578778502</updated>
+      <workItem from="1720578781098" duration="5000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

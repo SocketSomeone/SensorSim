@@ -1,0 +1,16 @@
+﻿services:
+  actuator:
+    container_name: actuator
+    build:
+      context: .
+      dockerfile: SensorSim.Actuator.API/Dockerfile
+    environment:
+      - SENSOR_API_BASE_URL=http://sensor:8080
+    ports:
+      - "5000:8080"
+  sensor:
+    container_name: sensor
+    build:
+      context: .
+      dockerfile: SensorSim.Sensor.API/Dockerfile
+      

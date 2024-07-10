@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "Wo+QcJKMKbT3HjO020a5XU8O4doSk6r1mYtQemHjuHg=",
+  "Source": "SensorSim.Actuator.API",
+  "BasePath": "_content/SensorSim.Actuator.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

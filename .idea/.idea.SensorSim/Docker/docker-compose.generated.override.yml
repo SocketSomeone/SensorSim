@@ -1,0 +1,40 @@
+# This is a generated file. Not intended for manual editing.
+services:
+  actuator:
+    build:
+      context: "D:\\Web-API-Chat"
+      dockerfile: "SensorSim.Actuator.API/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net8.0/SensorSim.Actuator.API.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "sensorsim.actuator.api:dev"
+    ports: []
+    volumes:
+    - "C:\\Users\\SocketSomeone\\.nuget\\packages:/home/app/.nuget/packages"
+    - "D:\\Web-API-Chat\\SensorSim.Actuator.API:/app:rw"
+    - "D:\\Web-API-Chat:/src:rw"
+    working_dir: "/app"
+  sensor:
+    build:
+      context: "D:\\Web-API-Chat"
+      dockerfile: "SensorSim.Sensor.API/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net8.0/SensorSim.Sensor.API.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "sensorsim.sensor.api:dev"
+    ports: []
+    volumes:
+    - "C:\\Users\\SocketSomeone\\.nuget\\packages:/home/app/.nuget/packages"
+    - "D:\\Web-API-Chat\\SensorSim.Sensor.API:/app:rw"
+    - "D:\\Web-API-Chat:/src:rw"
+    working_dir: "/app"

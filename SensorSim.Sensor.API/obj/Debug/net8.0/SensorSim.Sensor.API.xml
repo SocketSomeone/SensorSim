@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SensorSim.Sensor.API</name>
+    </assembly>
+    <members>
+        <member name="M:SensorSim.Sensor.API.Controllers.SensorController`1.Get">
+            <summary>
+            Get current sensor value
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SensorSim.Sensor.API.Controllers.SensorController`1.SetSensorValue(SensorSim.Domain.DTO.Sensor.SensorsRequestModels.SetSensorValueRequestModel)">
+            <summary>
+            Set sensor value
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

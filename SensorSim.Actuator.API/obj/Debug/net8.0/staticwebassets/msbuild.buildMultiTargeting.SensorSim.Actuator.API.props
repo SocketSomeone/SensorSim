@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\SensorSim.Actuator.API.props" />
+</Project>
