@@ -1,5 +1,4 @@
-﻿using SensorSim.Domain.Actuator;
-using SensorSim.Domain.DTO.Actuator;
+﻿using SensorSim.Domain.DTO.Actuator;
 
 namespace SensorSim.Domain.Interface;
 
@@ -25,8 +24,4 @@ public interface IActuator<T> where T : IPhysicalQuantity
     public ActuatorResponseModels.GetActuatorResponseModel Read();
     
     Task Update(CancellationToken stoppingToken);
-}
-
-public interface IActuatorEvents<T> : IList<ActuatorEvent> where T : IPhysicalQuantity
-{
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "t6TA2QJbTQfny8iyCG0zySoj4ahnwJm6XgHVwXCK/Me0vdC8X6dhhOfDNzGGI4yNAdcGDfyCx1bQtkGpKJDUXQ==",
+  "dgSpecHash": "k3iAQBjpfWRVjjdfJzNQepd1uOOfJx82IN9frG/X1hNTd7XpBlxWQQxaGxRFZlTXGhx7kt0jdAkMzhysBGKP2w==",
   "success": true,
   "projectFilePath": "D:\\Web-API-Chat\\SensorSim.Client\\SensorSim.Client.csproj",
   "expectedPackageFiles": [
@@ -30,8 +30,7 @@
     "C:\\Users\\SocketSomeone\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
     "C:\\Users\\SocketSomeone\\.nuget\\packages\\microsoft.jsinterop\\7.0.0\\microsoft.jsinterop.7.0.0.nupkg.sha512",
     "C:\\Users\\SocketSomeone\\.nuget\\packages\\microsoft.jsinterop.webassembly\\7.0.0\\microsoft.jsinterop.webassembly.7.0.0.nupkg.sha512",
-    "C:\\Users\\SocketSomeone\\.nuget\\packages\\microsoft.net.illink.analyzers\\7.0.100-1.23211.1\\microsoft.net.illink.analyzers.7.0.100-1.23211.1.nupkg.sha512",
-    "C:\\Users\\SocketSomeone\\.nuget\\packages\\microsoft.net.illink.tasks\\7.0.100-1.23211.1\\microsoft.net.illink.tasks.7.0.100-1.23211.1.nupkg.sha512",
+    "C:\\Users\\SocketSomeone\\.nuget\\packages\\microsoft.net.illink.tasks\\8.0.3\\microsoft.net.illink.tasks.8.0.3.nupkg.sha512",
     "C:\\Users\\SocketSomeone\\.nuget\\packages\\microsoft.net.sdk.webassembly.pack\\8.0.3\\microsoft.net.sdk.webassembly.pack.8.0.3.nupkg.sha512",
     "C:\\Users\\SocketSomeone\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\SocketSomeone\\.nuget\\packages\\refit\\6.3.2\\refit.6.3.2.nupkg.sha512",
@@ -41,10 +40,7 @@
     "C:\\Users\\SocketSomeone\\.nuget\\packages\\system.net.http.json\\6.0.0\\system.net.http.json.6.0.0.nupkg.sha512",
     "C:\\Users\\SocketSomeone\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
     "C:\\Users\\SocketSomeone\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512",
-    "C:\\Users\\SocketSomeone\\.nuget\\packages\\microsoft.netcore.app.ref\\7.0.17\\microsoft.netcore.app.ref.7.0.17.nupkg.sha512",
-    "C:\\Users\\SocketSomeone\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\7.0.17\\microsoft.netcore.app.runtime.mono.browser-wasm.7.0.17.nupkg.sha512",
-    "C:\\Users\\SocketSomeone\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\7.0.17\\microsoft.windowsdesktop.app.ref.7.0.17.nupkg.sha512",
-    "C:\\Users\\SocketSomeone\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\7.0.17\\microsoft.aspnetcore.app.ref.7.0.17.nupkg.sha512"
+    "C:\\Users\\SocketSomeone\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\8.0.3\\microsoft.netcore.app.runtime.mono.browser-wasm.8.0.3.nupkg.sha512"
   ],
   "logs": []
 }

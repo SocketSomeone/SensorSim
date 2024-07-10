@@ -2,7 +2,7 @@
 
 public class ActuatorsRequestModels
 {
-    public class SetRequestModel
+    public class SetActuatorRequestModel
     {
         public double Value { get; set; }
 
