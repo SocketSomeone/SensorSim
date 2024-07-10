@@ -23,12 +23,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\SensorSim.Domain\SensorSim.Domain.csproj" />
       <ProjectReference Include="..\SensorSim.Infrastructure\SensorSim.Infrastructure.csproj" />
     </ItemGroup>
