@@ -2,15 +2,10 @@
 
 namespace SensorSim.Infrastructure.Helpers;
 
-public class PolynomialStaticFunction : IStaticFunction
+public class PolynomialStaticFunction(List<double> coefficients) : IStaticFunction
 {
-    public List<double> Coefficients { get; set; }
-    
-    public PolynomialStaticFunction(List<double> coefficients)
-    {
-        Coefficients = coefficients;
-    }
-    
+    private List<double> Coefficients { get; set; } = coefficients;
+
     public double Calculate(double value)
     {
         double result = 0;
@@ -20,10 +15,5 @@ public class PolynomialStaticFunction : IStaticFunction
         }
 
         return result;
-    }
-    
-    public void SetOptions(List<double> values)
-    {
-        Coefficients = values.Select(Math.Abs).ToList();
     }
 }

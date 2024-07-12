@@ -17,15 +17,7 @@ public interface ISystematicError : ICalculable
 {
 }
 
-public interface IContinuousFunction : ICalculable
-{
-}
-
 public interface IMotionFunction : ICalculable
 {
     double Calculate(double value, double destination, double speed);
-}
-
-public interface IApproximationFunction : ICalculable
-{
 }

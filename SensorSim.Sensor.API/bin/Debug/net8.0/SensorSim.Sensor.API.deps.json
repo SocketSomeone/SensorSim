@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v8.0": {
       "SensorSim.Sensor.API/1.0.0": {
         "dependencies": {
+          "MathNet.Numerics": "6.0.0-beta1",
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "6.0.11",
           "Refit": "7.1.2",
           "SensorSim.Domain": "1.0.0",
@@ -16,6 +17,14 @@
         },
         "runtime": {
           "SensorSim.Sensor.API.dll": {}
+        }
+      },
+      "MathNet.Numerics/6.0.0-beta1": {
+        "runtime": {
+          "lib/net8.0/MathNet.Numerics.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.0.0"
+          }
         }
       },
       "Microsoft.AspNetCore.JsonPatch/6.0.11": {
@@ -156,6 +165,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "MathNet.Numerics/6.0.0-beta1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-GTwwNScDIL5+EvU6bN9+TP8bEbhcgR0hnVLZTriwSlXtzYU1h5EPpN58iojejeN/puC1+CVSoeuWNFhERkg71g==",
+      "path": "mathnet.numerics/6.0.0-beta1",
+      "hashPath": "mathnet.numerics.6.0.0-beta1.nupkg.sha512"
     },
     "Microsoft.AspNetCore.JsonPatch/6.0.11": {
       "type": "package",

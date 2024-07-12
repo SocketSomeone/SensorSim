@@ -4,17 +4,34 @@
         <name>SensorSim.Sensor.API</name>
     </assembly>
     <members>
-        <member name="M:SensorSim.Sensor.API.Controllers.SensorController`1.Get">
+        <member name="M:SensorSim.Sensor.API.Controllers.SensorController.Get(System.String)">
             <summary>
-            Get current sensor value
+            Get sensor value
             </summary>
+            <param name="sensorId"></param>
             <returns></returns>
         </member>
-        <member name="M:SensorSim.Sensor.API.Controllers.SensorController`1.SetSensorValue(SensorSim.Domain.DTO.Sensor.SensorsRequestModels.SetSensorValueRequestModel)">
+        <member name="M:SensorSim.Sensor.API.Controllers.SensorController.SetSensorValue(System.String,SensorSim.Domain.DTO.Sensor.SetSensorValueRequestModel)">
             <summary>
             Set sensor value
             </summary>
+            <param name="sensorId"></param>
             <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SensorSim.Sensor.API.Controllers.SensorController.GetConfig(System.String)">
+            <summary>
+            Get sensor config
+            </summary>
+            <param name="sensorId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SensorSim.Sensor.API.Controllers.SensorController.SetConfig(System.String,SensorSim.Domain.DTO.Sensor.SetSensorConfigRequestModel)">
+            <summary>
+            Set sensor config
+            </summary>
+            <param name="sensorId"></param>
+            <param name="config"></param>
             <returns></returns>
         </member>
     </members>

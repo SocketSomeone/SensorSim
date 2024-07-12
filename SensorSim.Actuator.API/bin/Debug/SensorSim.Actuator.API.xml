@@ -4,14 +4,44 @@
         <name>SensorSim.Actuator.API</name>
     </assembly>
     <members>
-        <member name="M:SensorSim.Actuator.API.Controllers.ActuatorController`1.Set(SensorSim.Domain.DTO.Actuator.ActuatorsRequestModels.SetActuatorRequestModel)">
+        <member name="M:SensorSim.Actuator.API.Clients.ISensorApi.ReadQuantity(System.String)">
+            <summary>
+            Read the quantity of a sensor
+            </summary>
+            <param name="sensorId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SensorSim.Actuator.API.Clients.ISensorApi.SetQuantity(System.String,SensorSim.Domain.DTO.Sensor.SetSensorValueRequestModel)">
+            <summary>
+            Set the quantity of a sensor
+            </summary>
+            <param name="sensorId"></param>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SensorSim.Actuator.API.Controllers.ActuatorController">
+            <summary>
+            Controller for the actuator
+            </summary>
+            <param name="logger"></param>
+            <param name="actuatorService"></param>
+        </member>
+        <member name="M:SensorSim.Actuator.API.Controllers.ActuatorController.#ctor(Microsoft.Extensions.Logging.ILogger{SensorSim.Actuator.API.Controllers.ActuatorController},SensorSim.Actuator.API.Services.IActuatorService)">
+            <summary>
+            Controller for the actuator
+            </summary>
+            <param name="logger"></param>
+            <param name="actuatorService"></param>
+        </member>
+        <member name="M:SensorSim.Actuator.API.Controllers.ActuatorController.Set(System.String,SensorSim.Domain.DTO.Actuator.SetActuatorRequestModel)">
             <summary>
             Set the value of the actuator
             </summary>
+            <param name="actuatorId"></param>
             <param name="setActuatorModel"></param>
             <returns></returns>
         </member>
-        <member name="M:SensorSim.Actuator.API.Controllers.ActuatorController`1.Get">
+        <member name="M:SensorSim.Actuator.API.Controllers.ActuatorController.Get(System.String)">
             <summary>
             Get the current value of the actuator
             </summary>
@@ -32,13 +62,13 @@
         <member name="M:Refit.Implementation.Generated.SensorSimActuatorAPIClientsISensorApi.ReadQuantity(System.String)">
             <inheritdoc />
         </member>
-        <member name="M:Refit.Implementation.Generated.SensorSimActuatorAPIClientsISensorApi.SetQuantity(System.String,SensorSim.Domain.DTO.Sensor.SensorsRequestModels.SetSensorValueRequestModel)">
+        <member name="M:Refit.Implementation.Generated.SensorSimActuatorAPIClientsISensorApi.SetQuantity(System.String,SensorSim.Domain.DTO.Sensor.SetSensorValueRequestModel)">
             <inheritdoc />
         </member>
         <member name="M:Refit.Implementation.Generated.SensorSimActuatorAPIClientsISensorApi.SensorSim#Actuator#API#Clients#ISensorApi#ReadQuantity(System.String)">
             <inheritdoc />
         </member>
-        <member name="M:Refit.Implementation.Generated.SensorSimActuatorAPIClientsISensorApi.SensorSim#Actuator#API#Clients#ISensorApi#SetQuantity(System.String,SensorSim.Domain.DTO.Sensor.SensorsRequestModels.SetSensorValueRequestModel)">
+        <member name="M:Refit.Implementation.Generated.SensorSimActuatorAPIClientsISensorApi.SensorSim#Actuator#API#Clients#ISensorApi#SetQuantity(System.String,SensorSim.Domain.DTO.Sensor.SetSensorValueRequestModel)">
             <inheritdoc />
         </member>
     </members>

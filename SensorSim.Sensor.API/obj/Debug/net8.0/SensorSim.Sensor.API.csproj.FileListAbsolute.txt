@@ -42,3 +42,4 @@ D:\Web-API-Chat\SensorSim.Sensor.API\obj\Debug\net8.0\SensorSim.Sensor.API.xml
 D:\Web-API-Chat\SensorSim.Sensor.API\obj\Debug\net8.0\SensorSim.Sensor.API.pdb
 D:\Web-API-Chat\SensorSim.Sensor.API\obj\Debug\net8.0\SensorSim.Sensor.API.genruntimeconfig.cache
 D:\Web-API-Chat\SensorSim.Sensor.API\obj\Debug\net8.0\ref\SensorSim.Sensor.API.dll
+D:\Web-API-Chat\SensorSim.Sensor.API\bin\Debug\net8.0\MathNet.Numerics.dll

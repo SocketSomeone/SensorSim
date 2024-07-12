@@ -1,40 +1,100 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SensorSim.Actuator.API.Services;
 using SensorSim.Domain.DTO.Actuator;
 using SensorSim.Domain.Interface;
+using SensorSim.Domain.Model;
 
 namespace SensorSim.Actuator.API.Controllers;
 
-public abstract class ActuatorController<T> : ControllerBase where T : IPhysicalQuantity
+/// <summary>
+/// Controller for the actuator
+/// </summary>
+/// <param name="logger"></param>
+/// <param name="actuatorService"></param>
+[ApiController]
+[Route("api/actuators")]
+public class ActuatorController(ILogger<ActuatorController> logger, IActuatorService actuatorService)
+    : ControllerBase
 {
-    public IActuator<T> ActuatorService { get; set; }
+    private ILogger<ActuatorController> Logger { get; set; } = logger;
 
-    public ILogger<ActuatorController<T>> Logger { get; set; }
+    private IActuatorService ActuatorService { get; } = actuatorService;
 
-    public ActuatorController(IActuator<T> actuatorService)
+    [HttpGet]
+    public ActionResult<IEnumerable<GetActuatorResponseModel>> GetAll()
     {
-        ActuatorService = actuatorService;
+        return Ok(ActuatorService.GetActuators().Select(actuatorId => new GetActuatorResponseModel
+        {
+            Current = ActuatorService.ReadCurrentQuantity(actuatorId),
+            Target = ActuatorService.ReadTargetQuantity(actuatorId),
+            IsOnTarget = ActuatorService.ReadCurrentQuantity(actuatorId).Value
+                .Equals(ActuatorService.ReadTargetQuantity(actuatorId).Value),
+            Exposures = ActuatorService.ReadExposures(actuatorId),
+            ExternalFactors = []
+        }));
     }
-
 
     /// <summary>
     /// Set the value of the actuator
     /// </summary>
+    /// <param name="actuatorId"></param>
     /// <param name="setActuatorModel"></param>
     /// <returns></returns>
-    [HttpPost]
-    public ActionResult<ActuatorResponseModels.SetActuatorResponseModel> Set(
-        [FromBody] ActuatorsRequestModels.SetActuatorRequestModel setActuatorModel)
+    [HttpPost("{actuatorId}")]
+    public ActionResult<SetActuatorResponseModel> Set(
+        string actuatorId,
+        [FromBody] SetActuatorRequestModel setActuatorModel)
     {
-        return Ok(ActuatorService.Set(setActuatorModel.Value, setActuatorModel.Exposures));
+        var targetQuantity = setActuatorModel.TargetQuantity;
+        var exposures = setActuatorModel.Exposures;
+        
+        if (setActuatorModel.CurrentQuantity != null)
+        {
+            ActuatorService.SetCurrentQuantity(actuatorId, setActuatorModel.CurrentQuantity.Value, setActuatorModel.CurrentQuantity.Unit);
+        }
+
+        if (exposures.Count == 0 || !exposures.Last().Value.Equals(targetQuantity.Value))
+        {
+            exposures.Enqueue(new PhysicalExposure
+            {
+                Value = targetQuantity.Value,
+                Duration = 1,
+                Speed = 1.0
+            });
+        }
+        
+        ActuatorService.SetTargetQuantity(actuatorId, targetQuantity.Value, targetQuantity.Unit);
+        ActuatorService.SetExposures(actuatorId, exposures);
+        var current = ActuatorService.ReadCurrentQuantity(actuatorId);
+        var target = ActuatorService.ReadTargetQuantity(actuatorId);
+
+        return Ok(new GetActuatorResponseModel()
+        {
+            Current = current,
+            Target = target,
+            IsOnTarget = current.Value.Equals(target.Value),
+            Exposures = ActuatorService.ReadExposures(actuatorId),
+            ExternalFactors = []
+        });
     }
 
     /// <summary>
     /// Get the current value of the actuator
     /// </summary>
     /// <returns></returns>
-    [HttpGet]
-    public IActionResult Get()
+    [HttpGet("{actuatorId}")]
+    public ActionResult<GetActuatorResponseModel> Get(string actuatorId)
     {
-        return Ok(ActuatorService.Read());
+        var current = ActuatorService.ReadCurrentQuantity(actuatorId);
+        var target = ActuatorService.ReadTargetQuantity(actuatorId);
+
+        return Ok(new GetActuatorResponseModel()
+        {
+            Current = current,
+            Target = target,
+            IsOnTarget = current.Value.Equals(target.Value),
+            Exposures = ActuatorService.ReadExposures(actuatorId),
+            ExternalFactors = []
+        });
     }
 }

@@ -1,11 +1,19 @@
-﻿namespace SensorSim.Domain.DTO.Actuator;
+﻿using SensorSim.Domain.Model;
 
-public class ActuatorsRequestModels
+namespace SensorSim.Domain.DTO.Actuator;
+
+public class TargetQuantityRequestModel
 {
-    public class SetActuatorRequestModel
-    {
-        public double Value { get; set; }
+    public double Value { get; set; }
 
-        public Queue<PhysicalValueExposure> Exposures { get; set; }
-    }
+    public string Unit { get; set; }
+}
+
+public class SetActuatorRequestModel
+{
+    public TargetQuantityRequestModel? CurrentQuantity { get; set; }
+    
+    public TargetQuantityRequestModel TargetQuantity { get; set; }
+
+    public Queue<PhysicalExposure> Exposures { get; set; }
 }

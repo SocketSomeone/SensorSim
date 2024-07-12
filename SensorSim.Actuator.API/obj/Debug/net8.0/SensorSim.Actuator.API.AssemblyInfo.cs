@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SensorSim.Actuator.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9767df7b18f46bb478bafe6d393c48d41200fc1e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4fc8c6a31da83ffbc1a05ebbbb3421ecd1590f31")]
 [assembly: System.Reflection.AssemblyProductAttribute("SensorSim.Actuator.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SensorSim.Actuator.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

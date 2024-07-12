@@ -1,21 +1,15 @@
 ﻿using System.Reflection;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
-using SensorSim.Domain;
-using SensorSim.Domain.Interface;
-using SensorSim.Sensor.API.Config;
+using SensorSim.Domain.Model;
+using SensorSim.Infrastructure.Repositories;
 using SensorSim.Sensor.API.Services;
 
 namespace SensorSim.Sensor.API;
 
-public class Startup
+public class Startup(IConfiguration configuration)
 {
-    private readonly IConfiguration _configuration;
-
-    public Startup(IConfiguration configuration)
-    {
-        _configuration = configuration;
-    }
+    private readonly IConfiguration _configuration = configuration;
 
     public void ConfigureServices(IServiceCollection services)
     {
@@ -33,11 +27,10 @@ public class Startup
             options.SwaggerDoc("v1", new OpenApiInfo { Title = "SensorSim.Sensor.API", Version = "v1" });
         });
 
-        services.AddSingleton<ISensorConfig<Temperature>, TemperatureSensorConfig>();
-        services.AddSingleton<ISensor<Temperature>, TemperatureSensorService>();
-        
-        services.AddSingleton<ISensorConfig<Pressure>, PressureSensorConfig>();
-        services.AddSingleton<ISensor<Pressure>, PressureSensorService>();
+
+        services.AddSingleton<CrudMemoryRepository<PhysicalQuantity>, QuantitiesRepository>();
+        services.AddSingleton<CrudMemoryRepository<SensorConfig>, SensorConfigsRepository>();
+        services.AddSingleton<ISensorService, SensorService>();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

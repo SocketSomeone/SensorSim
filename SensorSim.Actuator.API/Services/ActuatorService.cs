@@ -3,6 +3,9 @@ using SensorSim.Domain;
 using SensorSim.Domain.DTO.Actuator;
 using SensorSim.Domain.DTO.Sensor;
 using SensorSim.Domain.Interface;
+using SensorSim.Domain.Model;
+using SensorSim.Infrastructure.Helpers;
+using SensorSim.Infrastructure.Repositories;
 
 namespace SensorSim.Actuator.API.Services;
 
@@ -13,125 +16,156 @@ public class ActuatorEvent
     public object Value { get; set; }
 }
 
-public class ActuatorService<T> : IActuator<T> where T : IPhysicalQuantity
+public interface IActuatorService
 {
-    public event IActuator<T>.ValueChangedEventHandler? ValueChangedEvent;
+    public delegate void ValueChangedEventHandler(object sender, string actuatorId);
 
-    public event IActuator<T>.ValueReachedEventHandler? ValueReachedEvent;
+    public event ValueChangedEventHandler ValueChangedEvent;
 
-    public ILogger<IActuator<T>> Logger { get; set; }
+    public delegate void ValueReachedEventHandler(object sender, string actuatorId, PhysicalExposure exposure);
 
-    public IActuatorConfig<T> Config { get; set; }
+    public event ValueReachedEventHandler ValueReachedEvent;
 
-    public ISensorApi Sensor { get; set; }
+    string[] GetActuators();
 
-    public T CurrentQuantity { get; set; }
+    PhysicalQuantity ReadCurrentQuantity(string id);
 
-    public T TargetQuantity { get; set; }
+    PhysicalQuantity ReadTargetQuantity(string id);
 
-    public Queue<PhysicalValueExposure> Exposures { get; set; }
+    Queue<PhysicalExposure> ReadExposures(string id);
 
-    private Timer _updateTimer;
+    Task Update(CancellationToken stoppingToken);
+    
+    void SetCurrentQuantity(string actuatorId, double value, string unit);
+    void SetTargetQuantity(string actuatorId, double value, string unit);
+    
+    void SetExposures(string actuatorId, Queue<PhysicalExposure> exposures);
+}
 
-    private DateTime _waitUntil;
+public class ActuatorService(
+    ILogger<ActuatorService> logger,
+    CrudMemoryRepository<ActuatorConfig> actuatorConfigsRepository,
+    CrudMemoryRepository<PhysicalQuantity> quantitiesRepository,
+    ISensorApi sensorApi) : IActuatorService
+{
+    public event IActuatorService.ValueChangedEventHandler? ValueChangedEvent;
 
-    public ActuatorService(ILogger<ActuatorService<T>> logger, IActuatorConfig<T> config, ISensorApi sensorApi)
+    public event IActuatorService.ValueReachedEventHandler? ValueReachedEvent;
+
+    private ILogger<ActuatorService> Logger { get; set; } = logger;
+
+    private CrudMemoryRepository<ActuatorConfig> ActuatorConfigsRepository { get; set; } = actuatorConfigsRepository;
+
+    private CrudMemoryRepository<PhysicalQuantity> QuantitiesRepository { get; set; } = quantitiesRepository;
+
+    private ISensorApi SensorApi { get; set; } = sensorApi;
+
+    public string[] GetActuators()
     {
-        Logger = logger;
-        Config = config;
-        Sensor = sensorApi;
-        Exposures = new();
-
-        CurrentQuantity = (T)Activator.CreateInstance(typeof(T), Config.InitialQuantity.Value);
-        TargetQuantity = (T)Activator.CreateInstance(typeof(T), Config.InitialQuantity.Value);
-        _waitUntil = DateTime.Now;
-
-        var quantityName = typeof(T).Name.ToLower();
-
-        ValueChangedEvent += async (sender, exposure) =>
-        {
-            await sensorApi.SetQuantity(quantityName,
-                new SensorsRequestModels.SetSensorValueRequestModel(CurrentQuantity.Value)
-            );
-            
-            var sensorValue = await sensorApi.ReadQuantity(quantityName);
-            Logger.LogInformation($"ValueChanged: {CurrentQuantity.Value} | {sensorValue.Parameter}");
-        };
-
-        ValueReachedEvent += async (sender, exposure) =>
-        {
-            var sensorValue = await sensorApi.ReadQuantity(quantityName);
-            
-            Logger.LogInformation($"ValueReached: {CurrentQuantity.Value} | {sensorValue.Parameter}");
-            _waitUntil = DateTime.Now.AddSeconds(exposure.Duration);
-            Logger.LogInformation($"Waiting until: {_waitUntil}");
-        };
+        return ActuatorConfigsRepository.GetAll().Select(q => q.Id).ToArray();
+    }
+    
+    public void SetCurrentQuantity(string actuatorId, double value, string unit)
+    {
+        var quantity = QuantitiesRepository.GetOrDefault(actuatorId);
+        quantity.Value = value;
+        quantity.Unit = unit;
     }
 
-    public ActuatorResponseModels.SetActuatorResponseModel Set(double target, Queue<PhysicalValueExposure> exposures)
+    public void SetTargetQuantity(string actuatorId, double value, string unit)
     {
-        if (exposures.Count == 0 || !exposures.Last().Value.Equals(target))
-        {
-            exposures.Enqueue(new PhysicalValueExposure
-            {
-                Value = target,
-                Duration = 1,
-                Speed = 1.0
-            });
-        }
-
-        TargetQuantity.Value = target;
-        Exposures = exposures;
-
-        return new ActuatorResponseModels.SetActuatorResponseModel()
-        {
-            Target = TargetQuantity,
-            Exposures = Exposures
-        };
+        var config = ActuatorConfigsRepository.GetOrDefault(actuatorId);
+        config.TargetQuantity.Value = value;
+        config.TargetQuantity.Unit = unit;
+    }
+    
+    public void SetExposures(string actuatorId, Queue<PhysicalExposure> exposures)
+    {
+        var config = ActuatorConfigsRepository.GetOrDefault(actuatorId);
+        config.Exposures = exposures;
     }
 
-    public ActuatorResponseModels.GetActuatorResponseModel Read()
+    public PhysicalQuantity ReadCurrentQuantity(string id)
     {
-        return new ActuatorResponseModels.GetActuatorResponseModel()
-        {
-            Current = CurrentQuantity,
-            Target = TargetQuantity,
-            IsOnTarget = CurrentQuantity.Value.Equals(TargetQuantity.Value),
-            Exposures = Exposures
-        };
+        return QuantitiesRepository.GetOrDefault(id);
     }
 
+    public PhysicalQuantity ReadTargetQuantity(string id)
+    {
+        return ActuatorConfigsRepository.GetOrDefault(id).TargetQuantity;
+    }
+
+    public Queue<PhysicalExposure> ReadExposures(string id)
+    {
+        return ActuatorConfigsRepository.GetOrDefault(id).Exposures;
+    }
 
     public async Task Update(CancellationToken stoppingToken)
     {
+        const int timeUpdate = 250;
+        
+        ValueChangedEvent += async (sender, actuatorId) =>
+        {
+            var currentQuantity = QuantitiesRepository.GetOrDefault(actuatorId);
+
+            await SensorApi.SetQuantity(actuatorId, new(currentQuantity.Value, currentQuantity.Unit));
+
+            var sensorValue = await SensorApi.ReadQuantity(actuatorId);
+            Logger.LogInformation("ValueChanged: {CurrentQuantityValue} | {SensorValueParameter}",
+                currentQuantity.Value, sensorValue.Parameter);
+        };
+
+        ValueReachedEvent += async (sender, actuatorId, exposure) =>
+        {
+            var currentQuantity = QuantitiesRepository.GetOrDefault(actuatorId);
+            var config = ActuatorConfigsRepository.GetOrDefault(actuatorId);
+            var sensorValue = await SensorApi.ReadQuantity(actuatorId);
+
+            Logger.LogInformation("ValueReached: {CurrentQuantityValue} | {SensorValueParameter}",
+                currentQuantity.Value, sensorValue.Parameter);
+            config.WaitUntil = DateTime.Now.AddSeconds(exposure.Duration);
+            Logger.LogInformation("Waiting until: {ConfigWaitUntil}", config.WaitUntil);
+        };
+
         while (!stoppingToken.IsCancellationRequested)
         {
-            var _waiting = DateTime.Now < _waitUntil;
+            var actuatorIds = GetActuators();
 
-            if (_waiting)
+            foreach (var actuatorId in actuatorIds)
             {
-                Logger.LogInformation("Waiting... and waiting... and waiting...");
+                var config = ActuatorConfigsRepository.GetOrDefault(actuatorId);
+
+                var exposures = config.Exposures;
+
+                var waiting = DateTime.Now < config.WaitUntil;
+
+                if (waiting)
+                {
+                    Logger.LogInformation("Waiting... and waiting... and waiting...");
+                    continue;
+                }
+
+                if (exposures.Count > 0 && !waiting)
+                {
+                    var exposure = exposures.Peek();
+                    var measurement = QuantitiesRepository.GetOrDefault(actuatorId);
+
+                    if (measurement.Value.Equals(exposure.Value))
+                    {
+                        exposures.Dequeue();
+                        ValueReachedEvent?.Invoke(this, actuatorId, exposure);
+                    }
+                    else
+                    {
+                        var motion = new InertiaMotionFunction(timeUpdate / 1000.0);
+                        var value = motion.Calculate(measurement.Value, exposure.Value, exposure.Speed);
+                        SetCurrentQuantity(actuatorId, value, measurement.Unit);
+                        ValueChangedEvent?.Invoke(this, actuatorId);
+                    }
+                }
             }
 
-            if (Exposures.Count > 0 && !_waiting)
-            {
-                var exposure = Exposures.Peek();
-                var measurement = CurrentQuantity;
-
-                if (measurement.Value.Equals(exposure.Value))
-                {
-                    Exposures.Dequeue();
-                    ValueReachedEvent?.Invoke(this, exposure);
-                }
-                else
-                {
-                    var value = Config.MotionFunction.Calculate(measurement.Value, exposure.Value, exposure.Speed);
-                    CurrentQuantity.Value = value;
-                    ValueChangedEvent?.Invoke(this, exposure);
-                }
-            }
-
-            await Task.Delay(500, stoppingToken);
+            await Task.Delay(timeUpdate, stoppingToken);
         }
     }
 }

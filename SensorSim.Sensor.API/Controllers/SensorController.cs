@@ -1,58 +1,89 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SensorSim.Domain.Interface;
 using SensorSim.Domain.DTO.Sensor;
+using SensorSim.Domain.Model;
+using SensorSim.Sensor.API.Services;
 
 namespace SensorSim.Sensor.API.Controllers;
 
-public abstract class SensorController<T> : ControllerBase where T : IPhysicalQuantity
+[ApiController]
+[Route("api/sensors")]
+public class SensorController(ISensorService sensorService) : ControllerBase
 {
-    public ISensor<T> SensorService { get; }
+    private ISensorService SensorService { get; } = sensorService;
 
-    public SensorController(ISensor<T> sensorService)
+    [HttpGet]
+    public ActionResult<IEnumerable<GetSensorResponseModel[]>> Get()
     {
-        SensorService = sensorService;
+        return Ok(SensorService.GetSensors().Select(sensorId => new GetSensorResponseModel
+        {
+            Current = SensorService.ReadQuantity(sensorId),
+            Parameter = SensorService.ReadParameter(sensorId)
+        }));
     }
 
     /// <summary>
-    /// Get current sensor value
+    /// Get sensor value
     /// </summary>
+    /// <param name="sensorId"></param>
     /// <returns></returns>
-    [HttpGet]
-    public ActionResult<SensorsResponseModels.GetSensorResponseModel> Get()
+    [HttpGet("{sensorId}")]
+    public ActionResult<GetSensorResponseModel> Get(string sensorId)
     {
-        var quantity = SensorService.ReadQuantity();
+        var quantity = SensorService.ReadQuantity(sensorId);
+        var parameter = SensorService.ReadParameter(sensorId);
 
-        return Ok(new SensorsResponseModels.GetSensorResponseModel
+        return Ok(new GetSensorResponseModel
         {
-            Current = new SensorsResponseModels.PhysicalQuantity()
-            {
-                Value = quantity.Value,
-                Unit = quantity.Unit
-            },
-            Parameter = SensorService.ReadParameter()
+            Current = quantity,
+            Parameter = parameter
         });
     }
 
     /// <summary>
     /// Set sensor value
     /// </summary>
+    /// <param name="sensorId"></param>
     /// <param name="dto"></param>
     /// <returns></returns>
-    [HttpPost]
-    public ActionResult<SensorsResponseModels.SetSensorResponseModel> SetSensorValue(
-        [FromBody] SensorsRequestModels.SetSensorValueRequestModel dto)
+    [HttpPost("{sensorId}")]
+    public ActionResult<SetSensorResponseModel> SetSensorValue(string sensorId,
+        [FromBody] SetSensorValueRequestModel dto)
     {
-        SensorService.SetQuantity(dto.Value);
-        var quantity = SensorService.ReadQuantity();
+        var quantity = SensorService.SetQuantity(sensorId, dto.Value, dto.Unit);
+        var parameter = SensorService.ReadParameter(sensorId);
 
-        return Ok(new SensorsResponseModels.GetSensorResponseModel
+        return Ok(new GetSensorResponseModel
         {
-            Current = new SensorsResponseModels.PhysicalQuantity
-            {
-                Value = quantity.Value,
-                Unit = quantity.Unit
-            },
-            Parameter = SensorService.ReadParameter()
+            Current = quantity,
+            Parameter = parameter
         });
+    }
+
+    /// <summary>
+    /// Get sensor config
+    /// </summary>
+    /// <param name="sensorId"></param>
+    /// <returns></returns>
+    [HttpGet("{sensorId}/config")]
+    public ActionResult<SensorConfig> GetConfig(string sensorId)
+    {
+        return Ok(SensorService.GetConfig(sensorId));
+    }
+
+    /// <summary>
+    /// Set sensor config
+    /// </summary>
+    /// <param name="sensorId"></param>
+    /// <param name="config"></param>
+    /// <returns></returns>
+    [HttpPost("{sensorId}/config")]
+    public ActionResult<SensorConfig> SetConfig(string sensorId, [FromBody] SetSensorConfigRequestModel config)
+    {
+        var sensorConfig = SensorService.GetConfig(sensorId);
+
+        sensorConfig.StaticFunctionConfig.Coefficients =
+            new List<double>(config.StaticFunctionConfig.Coefficients[2..]);
+
+        return Ok(sensorConfig);
     }
 }

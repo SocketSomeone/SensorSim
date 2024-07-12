@@ -3,10 +3,9 @@ using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Refit;
 using SensorSim.Actuator.API.Clients;
-using SensorSim.Actuator.API.Config;
 using SensorSim.Actuator.API.Services;
-using SensorSim.Domain;
-using SensorSim.Domain.Interface;
+using SensorSim.Domain.Model;
+using SensorSim.Infrastructure.Repositories;
 
 namespace SensorSim.Actuator.API;
 
@@ -35,11 +34,9 @@ public class Startup
             options.SwaggerDoc("v1", new OpenApiInfo { Title = "SensorSim.Actuator.API", Version = "v1" });
         });
 
-        services.AddSingleton<IActuatorConfig<Temperature>, TemperatureActuatorConfig>();
-        services.AddSingleton<IActuator<Temperature>, TemperatureActuatorService>();
-
-        services.AddSingleton<IActuatorConfig<Pressure>, PressureActuatorConfig>();
-        services.AddSingleton<IActuator<Pressure>, PressureActuatorService>();
+        services.AddSingleton<CrudMemoryRepository<ActuatorConfig>, ActuatorConfigsRepository>();
+        services.AddSingleton<CrudMemoryRepository<PhysicalQuantity>, QuantitiesRepository>();
+        services.AddSingleton<IActuatorService, ActuatorService>();
 
         services.AddHostedService<ConsumeActuatorHostedService>();
 

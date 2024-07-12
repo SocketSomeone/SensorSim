@@ -2,15 +2,10 @@
 
 namespace SensorSim.Infrastructure.Helpers;
 
-public class ConstantSystematicError: ISystematicError
+public class ConstantSystematicError(double value) : ISystematicError
 {
-    public double Value { get; set; }
-    
-    public ConstantSystematicError(double value)
-    {
-        Value = value;
-    }
-    
+    private double Value { get; set; } = value;
+
     public double Calculate(double value)
     {
         return Value;

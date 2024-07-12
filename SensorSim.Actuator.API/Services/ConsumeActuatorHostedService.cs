@@ -30,16 +30,9 @@ public class ConsumeActuatorHostedService : BackgroundService
             "Consume Scoped Service Hosted Service is working.");
 
         // need get all actuators by IActutator<T> interface
-        var temperatureActuator = Services.GetRequiredService<IActuator<Temperature>>();
-        var pressureActuator = Services.GetRequiredService<IActuator<Pressure>>();
+        var actuatorService = Services.GetRequiredService<IActuatorService>();
 
-        var actuatorTasks = new List<Task>
-        {
-            temperatureActuator.Update(stoppingToken),
-            pressureActuator.Update(stoppingToken)
-        };
-        
-        await Task.WhenAll(actuatorTasks);
+        await actuatorService.Update(stoppingToken);
     }
 
     public override async Task StopAsync(CancellationToken stoppingToken)

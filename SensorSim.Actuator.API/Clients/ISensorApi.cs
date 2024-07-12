@@ -5,9 +5,20 @@ namespace SensorSim.Actuator.API.Clients;
 
 public interface ISensorApi
 {
-    [Get("/api/sensors/{sensorType}")]
-    Task<SensorsResponseModels.GetSensorResponseModel> ReadQuantity(string sensorType);
-    
-    [Post("/api/sensors/{sensorType}")]
-    Task<SensorsResponseModels.SetSensorResponseModel> SetQuantity(string sensorType, SensorsRequestModels.SetSensorValueRequestModel request);
+    /// <summary>
+    /// Read the quantity of a sensor
+    /// </summary>
+    /// <param name="sensorId"></param>
+    /// <returns></returns>
+    [Get("/api/sensors/{sensorId}")]
+    Task<GetSensorResponseModel> ReadQuantity(string sensorId);
+
+    /// <summary>
+    /// Set the quantity of a sensor
+    /// </summary>
+    /// <param name="sensorId"></param>
+    /// <param name="request"></param>
+    /// <returns></returns>
+    [Post("/api/sensors/{sensorId}")]
+    Task<SetSensorResponseModel> SetQuantity(string sensorId, SetSensorValueRequestModel request);
 }

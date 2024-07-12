@@ -2,14 +2,10 @@
 
 namespace SensorSim.Infrastructure.Helpers;
 
-public class InertiaMotionFunction : IMotionFunction
+public class InertiaMotionFunction(double rateOfChange) : IMotionFunction
 {
-    private double RateOfChange { get; }
-    public InertiaMotionFunction(double rateOfChange)
-    {
-        RateOfChange = rateOfChange;
-    }
-    
+    private double RateOfChange { get; } = rateOfChange;
+
     public double Calculate(double value)
     {
         return Calculate(value, value, 1.0);

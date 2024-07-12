@@ -1,9 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace SensorSim.Domain;
+﻿namespace SensorSim.Domain;
 
 public abstract class Entity
 {
-    [Key]
-    public Guid Id { get; set; }
+    public string Id { get; set; }
+
+    protected Entity()
+    {
+        Id = Guid.NewGuid().ToString();
+    }
+
+    protected Entity(string id)
+    {
+        Id = id;
+    }
 }

@@ -16,9 +16,4 @@
       <ProjectReference Include="..\SensorSim.Domain\SensorSim.Domain.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Data\" />
-      <Folder Include="Repositories\" />
-    </ItemGroup>
-
 </Project>
