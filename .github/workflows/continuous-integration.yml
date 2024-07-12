@@ -3,7 +3,8 @@ on:
   push:
 
 jobs:
-  build:
+  ci:
+    name: Continuous Integration
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
