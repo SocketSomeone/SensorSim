@@ -1,0 +1,7 @@
+D:\Web-API-Chat\SensorSim.Sensor.Tests\bin\Debug\net8.0\CoverletSourceRootsMapping
+D:\Web-API-Chat\SensorSim.Sensor.Tests\obj\Debug\net8.0\SensorSim.Sensor.Tests.csproj.AssemblyReference.cache
+D:\Web-API-Chat\SensorSim.Sensor.Tests\obj\Debug\net8.0\SensorSim.Sensor.Tests.GeneratedMSBuildEditorConfig.editorconfig
+D:\Web-API-Chat\SensorSim.Sensor.Tests\obj\Debug\net8.0\SensorSim.Sensor.Tests.AssemblyInfoInputs.cache
+D:\Web-API-Chat\SensorSim.Sensor.Tests\obj\Debug\net8.0\SensorSim.Sensor.Tests.AssemblyInfo.cs
+D:\Web-API-Chat\SensorSim.Sensor.Tests\obj\Debug\net8.0\SensorSim.Sensor.Tests.csproj.CoreCompileInputs.cache
+D:\Web-API-Chat\SensorSim.Sensor.Tests\obj\Debug\net8.0\SensorSim.Sensor.Tests.sourcelink.json
