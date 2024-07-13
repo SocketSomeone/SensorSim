@@ -16,6 +16,12 @@
             </summary>
             <param name="actuatorService"></param>
         </member>
+        <member name="M:SensorSim.Actuator.API.Controllers.ActuatorController.GetAll">
+            <summary>
+            Get all actuators
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:SensorSim.Actuator.API.Controllers.ActuatorController.Set(System.String,SensorSim.Domain.DTO.Actuator.SetActuatorRequestModel)">
             <summary>
             Set the value of the actuator

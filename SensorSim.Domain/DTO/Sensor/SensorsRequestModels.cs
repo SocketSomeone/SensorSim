@@ -2,17 +2,11 @@
 
 namespace SensorSim.Domain.DTO.Sensor;
 
-public class SetSensorValueRequestModel(double value)
+public class SetSensorValueRequestModel
 {
-    public double Value { get; } = value;
+    public double Value { get; set; }
 
-    public string Unit { get; }
-
-
-    public SetSensorValueRequestModel(double value, string unit) : this(value)
-    {
-        Unit = unit;
-    }
+    public string Unit { get; set; }
 }
 
 public class SetSensorConfigRequestModel

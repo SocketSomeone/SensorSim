@@ -20,5 +20,5 @@ public interface ISensorApi
     /// <param name="request"></param>
     /// <returns></returns>
     [Post("/api/sensors/{sensorId}")]
-    Task<SetSensorResponseModel> SetQuantity(string sensorId, SetSensorValueRequestModel request);
+    Task<SetSensorResponseModel> SetQuantity(string sensorId, [Body] SetSensorValueRequestModel request);
 }

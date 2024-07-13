@@ -4,6 +4,12 @@
         <name>SensorSim.Sensor.API</name>
     </assembly>
     <members>
+        <member name="M:SensorSim.Sensor.API.Controllers.SensorController.Get">
+            <summary>
+            Get all sensors
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:SensorSim.Sensor.API.Controllers.SensorController.Get(System.String)">
             <summary>
             Get sensor value

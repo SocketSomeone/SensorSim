@@ -1,5 +1,6 @@
 ﻿using SensorSim.Actuator.API.Clients;
 using SensorSim.Actuator.API.Interfaces;
+using SensorSim.Domain.DTO.Sensor;
 using SensorSim.Domain.Model;
 using SensorSim.Infrastructure.Helpers;
 using SensorSim.Infrastructure.Repositories;
@@ -67,7 +68,7 @@ public class ActuatorService(
     public async Task Update(CancellationToken stoppingToken)
     {
         const int timeUpdate = 250;
-        
+
         while (!stoppingToken.IsCancellationRequested)
         {
             var actuatorIds = GetActuators();
@@ -103,7 +104,8 @@ public class ActuatorService(
                     var value = motion.Calculate(measurement.Value, exposure.Value, exposure.Speed);
                     SetCurrentQuantity(actuatorId, value, measurement.Unit);
 
-                    await SensorApi.SetQuantity(actuatorId, new(measurement.Value, measurement.Unit));
+                    await SensorApi.SetQuantity(actuatorId,
+                        new SetSensorValueRequestModel { Value = measurement.Value, Unit = measurement.Unit });
                     var sensorValue = await SensorApi.ReadQuantity(actuatorId);
                     Logger.LogInformation("ValueChanged: {CurrentQuantityValue} | {SensorValueParameter}",
                         measurement.Value, sensorValue.Parameter);

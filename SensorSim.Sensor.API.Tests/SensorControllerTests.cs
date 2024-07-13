@@ -64,7 +64,7 @@ public class SensorControllerTests
     {
         // Arrange
         var sensorId = "sensor1";
-        var dto = new SetSensorValueRequestModel(20, "Fahrenheit");
+        var dto = new SetSensorValueRequestModel { Value = 20, Unit = "Fahrenheit"};
         _mockSensorService.Setup(service => service.SetQuantity(sensorId, dto.Value, dto.Unit))
             .Returns(new PhysicalQuantity(sensorId) { Value = dto.Value, Unit = dto.Unit });
         _mockSensorService.Setup(service => service.ReadParameter(sensorId)).Returns(30);
