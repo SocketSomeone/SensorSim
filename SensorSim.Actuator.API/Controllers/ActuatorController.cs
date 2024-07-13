@@ -18,6 +18,10 @@ public class ActuatorController(IActuatorService actuatorService)
 {
     private IActuatorService ActuatorService { get; } = actuatorService;
 
+    /// <summary>
+    /// Get all actuators
+    /// </summary>
+    /// <returns></returns>
     [HttpGet]
     public ActionResult<IEnumerable<GetActuatorResponseModel>> GetAll()
     {

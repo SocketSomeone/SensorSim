@@ -11,6 +11,10 @@ public class SensorController(ISensorService sensorService) : ControllerBase
 {
     private ISensorService SensorService { get; } = sensorService;
 
+    /// <summary>
+    /// Get all sensors
+    /// </summary>
+    /// <returns></returns>
     [HttpGet]
     public ActionResult<IEnumerable<GetSensorResponseModel[]>> Get()
     {
