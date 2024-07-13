@@ -10,18 +10,4 @@ public class PhysicalExposure
     
     // Speed of the value change
     public double Speed { get; set; } = 1;
-    
-    public PhysicalExposure()
-    {
-    }
-    
-    public PhysicalExposure(double value)
-    {
-        Value = value;
-    }
-    
-    public PhysicalExposure(double value, double duration) : this(value)
-    {
-        Duration = duration;
-    }
 }

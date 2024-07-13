@@ -1,5 +1,4 @@
-﻿using SensorSim.Domain;
-using SensorSim.Domain.Interface;
+﻿using SensorSim.Actuator.API.Clients;
 
 namespace SensorSim.Actuator.API.Services;
 

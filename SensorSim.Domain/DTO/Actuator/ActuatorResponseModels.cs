@@ -3,13 +3,6 @@ using SensorSim.Domain.Model;
 
 namespace SensorSim.Domain.DTO.Actuator;
 
-public class SetActuatorResponseModel
-{
-    public IPhysicalQuantity Target { get; set; }
-
-    public Queue<PhysicalExposure> Exposures { get; set; }
-}
-
 public class GetActuatorResponseModel
 {
     public IPhysicalQuantity Current { get; set; }

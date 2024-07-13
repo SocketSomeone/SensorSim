@@ -3,6 +3,7 @@ using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Refit;
 using SensorSim.Actuator.API.Clients;
+using SensorSim.Actuator.API.Interfaces;
 using SensorSim.Actuator.API.Services;
 using SensorSim.Domain.Model;
 using SensorSim.Infrastructure.Repositories;

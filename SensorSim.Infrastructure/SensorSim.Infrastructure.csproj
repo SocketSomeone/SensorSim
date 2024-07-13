@@ -6,6 +6,7 @@
         <Nullable>enable</Nullable>
         <RootNamespace>SensorSim.Infrastructure</RootNamespace>
         <LangVersion>12</LangVersion>
+        <IsTestProject>false</IsTestProject>
     </PropertyGroup>
 
     <ItemGroup>

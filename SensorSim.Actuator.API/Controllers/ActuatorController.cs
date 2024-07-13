@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SensorSim.Actuator.API.Clients;
 using SensorSim.Actuator.API.Services;
 using SensorSim.Domain.DTO.Actuator;
 using SensorSim.Domain.Interface;
@@ -9,15 +10,12 @@ namespace SensorSim.Actuator.API.Controllers;
 /// <summary>
 /// Controller for the actuator
 /// </summary>
-/// <param name="logger"></param>
 /// <param name="actuatorService"></param>
 [ApiController]
 [Route("api/actuators")]
-public class ActuatorController(ILogger<ActuatorController> logger, IActuatorService actuatorService)
+public class ActuatorController(IActuatorService actuatorService)
     : ControllerBase
 {
-    private ILogger<ActuatorController> Logger { get; set; } = logger;
-
     private IActuatorService ActuatorService { get; } = actuatorService;
 
     [HttpGet]
@@ -41,7 +39,7 @@ public class ActuatorController(ILogger<ActuatorController> logger, IActuatorSer
     /// <param name="setActuatorModel"></param>
     /// <returns></returns>
     [HttpPost("{actuatorId}")]
-    public ActionResult<SetActuatorResponseModel> Set(
+    public ActionResult<GetActuatorResponseModel> Set(
         string actuatorId,
         [FromBody] SetActuatorRequestModel setActuatorModel)
     {

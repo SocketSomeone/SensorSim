@@ -4,7 +4,7 @@ namespace SensorSim.Infrastructure.Repositories;
 
 public abstract class CrudMemoryRepository<T> where T : Entity
 {
-    private Dictionary<string, T> Data { get; set; } = new();
+    private Dictionary<string, T> Data { get; } = new();
 
     public IEnumerable<T> GetAll()
     {

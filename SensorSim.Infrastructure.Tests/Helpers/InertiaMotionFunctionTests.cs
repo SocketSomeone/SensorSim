@@ -24,4 +24,20 @@ public class InertiaMotionFunctionTests
         // Assert
         Assert.Equal(expected, result, 3); // Допустимое отклонение в 3 знака после запятой
     }
+
+    [Theory]
+    [InlineData(0.1, 0, 0)]
+    [InlineData(0.1, 1, 1)]
+    public void Calculate_WithDestinationEqualToValue_ReturnsValue(
+        double rateOfChange, double value, double expected)
+    {
+        // Arrange
+        var inertiaMotionFunction = new InertiaMotionFunction(rateOfChange);
+
+        // Act
+        var result = inertiaMotionFunction.Calculate(value);
+
+        // Assert
+        Assert.Equal(expected, result, 3); // Допустимое отклонение в 3 знака после запятой
+    }
 }

@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "rHLwpdvtUERzC+jn6EgsA7+O5MJeZBWb686/6gDq+9rON/2NLLvjrP0gC5jWuBh0pTBYB0U11MvmAZXUSfQzNQ==",
+  "dgSpecHash": "GmHtHcx8uLcO6miyGftZ0ZnEAt63VqBqO9W4v+rAlLcGxvEdOV7uXb+C3Tp2TOqZf/wzC/XVrblPg9cW0aez6A==",
   "success": true,
   "projectFilePath": "D:\\Web-API-Chat\\SensorSim.Infrastructure.Tests\\SensorSim.Infrastructure.Tests.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\SocketSomeone\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\SocketSomeone\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
     "C:\\Users\\SocketSomeone\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\6.0.11\\microsoft.aspnetcore.jsonpatch.6.0.11.nupkg.sha512",
     "C:\\Users\\SocketSomeone\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\6.0.11\\microsoft.aspnetcore.mvc.newtonsoftjson.6.0.11.nupkg.sha512",
@@ -15,6 +16,7 @@
     "C:\\Users\\SocketSomeone\\.nuget\\packages\\microsoft.testplatform.objectmodel\\17.8.0\\microsoft.testplatform.objectmodel.17.8.0.nupkg.sha512",
     "C:\\Users\\SocketSomeone\\.nuget\\packages\\microsoft.testplatform.testhost\\17.8.0\\microsoft.testplatform.testhost.17.8.0.nupkg.sha512",
     "C:\\Users\\SocketSomeone\\.nuget\\packages\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
+    "C:\\Users\\SocketSomeone\\.nuget\\packages\\moq\\4.20.70\\moq.4.20.70.nupkg.sha512",
     "C:\\Users\\SocketSomeone\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
     "C:\\Users\\SocketSomeone\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\SocketSomeone\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
@@ -42,6 +44,7 @@
     "C:\\Users\\SocketSomeone\\.nuget\\packages\\system.console\\4.3.0\\system.console.4.3.0.nupkg.sha512",
     "C:\\Users\\SocketSomeone\\.nuget\\packages\\system.diagnostics.debug\\4.3.0\\system.diagnostics.debug.4.3.0.nupkg.sha512",
     "C:\\Users\\SocketSomeone\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.3.0\\system.diagnostics.diagnosticsource.4.3.0.nupkg.sha512",
+    "C:\\Users\\SocketSomeone\\.nuget\\packages\\system.diagnostics.eventlog\\6.0.0\\system.diagnostics.eventlog.6.0.0.nupkg.sha512",
     "C:\\Users\\SocketSomeone\\.nuget\\packages\\system.diagnostics.tools\\4.3.0\\system.diagnostics.tools.4.3.0.nupkg.sha512",
     "C:\\Users\\SocketSomeone\\.nuget\\packages\\system.diagnostics.tracing\\4.3.0\\system.diagnostics.tracing.4.3.0.nupkg.sha512",
     "C:\\Users\\SocketSomeone\\.nuget\\packages\\system.globalization\\4.3.0\\system.globalization.4.3.0.nupkg.sha512",

@@ -106,3 +106,5 @@ D:\Web-API-Chat\SensorSim.Infrastructure.Tests\obj\Debug\net8.0\refint\SensorSim
 D:\Web-API-Chat\SensorSim.Infrastructure.Tests\obj\Debug\net8.0\SensorSim.Infrastructure.Tests.pdb
 D:\Web-API-Chat\SensorSim.Infrastructure.Tests\obj\Debug\net8.0\SensorSim.Infrastructure.Tests.genruntimeconfig.cache
 D:\Web-API-Chat\SensorSim.Infrastructure.Tests\obj\Debug\net8.0\ref\SensorSim.Infrastructure.Tests.dll
+D:\Web-API-Chat\SensorSim.Infrastructure.Tests\bin\Debug\net8.0\Castle.Core.dll
+D:\Web-API-Chat\SensorSim.Infrastructure.Tests\bin\Debug\net8.0\Moq.dll

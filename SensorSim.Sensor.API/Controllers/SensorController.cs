@@ -52,7 +52,7 @@ public class SensorController(ISensorService sensorService) : ControllerBase
         var quantity = SensorService.SetQuantity(sensorId, dto.Value, dto.Unit);
         var parameter = SensorService.ReadParameter(sensorId);
 
-        return Ok(new GetSensorResponseModel
+        return Ok(new SetSensorResponseModel
         {
             Current = quantity,
             Parameter = parameter

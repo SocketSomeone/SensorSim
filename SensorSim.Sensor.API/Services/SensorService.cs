@@ -92,7 +92,7 @@ public class SensorService(
         {
             // Default must be gaussian
             RandomErrorType.Gaussian => new GaussianRandomError(randomConfig.Mean, randomConfig.StandardDeviation),
-            _ => throw new ArgumentOutOfRangeException()
+            _ => throw new ArgumentOutOfRangeException("RandomErrorConfig.Type")
         };
     }
 
@@ -105,7 +105,7 @@ public class SensorService(
         {
             // Default must be polynomial
             StaticFunctionType.Polynomial => new PolynomialStaticFunction(staticConfig.Coefficients),
-            _ => throw new ArgumentOutOfRangeException()
+            _ => throw new ArgumentOutOfRangeException("StaticFunctionConfig.Type")
         };
     }
 
@@ -117,7 +117,7 @@ public class SensorService(
         return type switch
         {
             SystematicErrorType.Constant => new ConstantSystematicError(systematicConfig.Value),
-            _ => throw new ArgumentOutOfRangeException()
+            _ => throw new ArgumentOutOfRangeException("SystematicErrorConfig.Type")
         };
     }
 }

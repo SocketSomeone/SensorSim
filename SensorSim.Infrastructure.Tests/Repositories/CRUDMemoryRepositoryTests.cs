@@ -9,6 +9,7 @@ public class TestEntityRepository : CrudMemoryRepository<TestEntity>
 
 public class CrudMemoryRepositoryTests
 {
+    
     private CrudMemoryRepository<TestEntity> _repository = new TestEntityRepository();
 
     [Fact]

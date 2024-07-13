@@ -4,7 +4,7 @@ namespace SensorSim.Infrastructure.Helpers;
 
 public class ConstantSystematicError(double value) : ISystematicError
 {
-    private double Value { get; set; } = value;
+    private double Value { get; } = value;
 
     public double Calculate(double value)
     {
