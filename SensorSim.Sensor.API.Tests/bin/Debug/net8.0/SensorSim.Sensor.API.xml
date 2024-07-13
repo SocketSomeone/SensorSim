@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SensorSim.Sensor.API</name>
+    </assembly>
+    <members>
+        <member name="M:SensorSim.Sensor.API.Controllers.SensorController.Get(System.String)">
+            <summary>
+            Get sensor value
+            </summary>
+            <param name="sensorId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SensorSim.Sensor.API.Controllers.SensorController.SetSensorValue(System.String,SensorSim.Domain.DTO.Sensor.SetSensorValueRequestModel)">
+            <summary>
+            Set sensor value
+            </summary>
+            <param name="sensorId"></param>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SensorSim.Sensor.API.Controllers.SensorController.GetConfig(System.String)">
+            <summary>
+            Get sensor config
+            </summary>
+            <param name="sensorId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SensorSim.Sensor.API.Controllers.SensorController.SetConfig(System.String,SensorSim.Domain.DTO.Sensor.SetSensorConfigRequestModel)">
+            <summary>
+            Set sensor config
+            </summary>
+            <param name="sensorId"></param>
+            <param name="config"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
