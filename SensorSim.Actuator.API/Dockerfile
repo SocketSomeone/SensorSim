@@ -8,7 +8,6 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["SensorSim.Actuator.API/SensorSim.Actuator.API.csproj", "SensorSim.Actuator.API/"]
-COPY ["SensorSim.Domain.Migrations/SensorSim.Domain.Migrations.csproj", "SensorSim.Domain.Migrations/"]
 COPY ["SensorSim.Domain/SensorSim.Domain.csproj", "SensorSim.Domain/"]
 COPY ["SensorSim.Infrastructure/SensorSim.Infrastructure.csproj", "SensorSim.Infrastructure/"]
 RUN dotnet restore "SensorSim.Actuator.API/SensorSim.Actuator.API.csproj"
