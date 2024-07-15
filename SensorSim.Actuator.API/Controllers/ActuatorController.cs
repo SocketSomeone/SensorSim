@@ -99,4 +99,15 @@ public class ActuatorController(IActuatorService actuatorService)
             ExternalFactors = []
         });
     }
+    
+    /// <summary>
+    /// Get the events of the actuator
+    /// </summary>
+    /// <param name="actuatorId"></param>
+    /// <returns></returns>
+    [HttpGet("{actuatorId}/events")]
+    public ActionResult<IEnumerable<ActuatorEvent>> GetEvents(string actuatorId)
+    {
+        return Ok(ActuatorService.GetEvents(actuatorId));
+    }
 }

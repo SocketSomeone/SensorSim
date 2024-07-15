@@ -37,6 +37,7 @@ public class Startup
 
         services.AddSingleton<CrudMemoryRepository<ActuatorConfig>, ActuatorConfigsRepository>();
         services.AddSingleton<CrudMemoryRepository<PhysicalQuantity>, QuantitiesRepository>();
+        services.AddSingleton<CrudMemoryRepository<ActuatorEvent>, ActuatorEventsRepository>();
         services.AddSingleton<IActuatorService, ActuatorService>();
 
         services.AddHostedService<ConsumeActuatorHostedService>();

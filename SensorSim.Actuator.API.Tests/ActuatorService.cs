@@ -14,6 +14,7 @@ public class ActuatorServiceTests
     private readonly Mock<ILogger<ActuatorService>> _loggerMock;
     private readonly CrudMemoryRepository<ActuatorConfig> _actuatorConfigsRepository;
     private readonly CrudMemoryRepository<PhysicalQuantity> _quantitiesRepository;
+    private readonly CrudMemoryRepository<ActuatorEvent> _actuatorEventsRepository;
     private readonly Mock<ISensorApi> _sensorApiMock;
     private readonly ActuatorService _actuatorService;
 
@@ -22,11 +23,13 @@ public class ActuatorServiceTests
         _loggerMock = new Mock<ILogger<ActuatorService>>();
         _actuatorConfigsRepository = new ActuatorConfigsRepository();
         _quantitiesRepository = new QuantitiesRepository();
+        _actuatorEventsRepository = new ActuatorEventsRepository();
         _sensorApiMock = new Mock<ISensorApi>();
         _actuatorService = new ActuatorService(
             _loggerMock.Object,
             _actuatorConfigsRepository,
             _quantitiesRepository,
+            _actuatorEventsRepository,
             _sensorApiMock.Object);
     }
 
@@ -172,7 +175,7 @@ public class ActuatorServiceTests
         // Act
         var updateTask = _actuatorService.Update(stoppingToken.Token);
         
-        _actuatorService.ValueReachedEvent += (sender, id, physicalExposure) =>
+        _actuatorService.ValueReachedExposureEvent += (sender, id, physicalExposure) =>
         {
             stoppingToken.Cancel();
             Assert.Empty(exposures);
@@ -190,9 +193,9 @@ public class ActuatorServiceTests
 
         // Assert
         Assert.Empty(exposures);
+        Assert.NotEmpty(_actuatorService.GetEvents(actuatorId));
         _sensorApiMock.Verify(api => api.SetQuantity(actuatorId, It.IsAny<SetSensorValueRequestModel>()),
             Times.AtLeastOnce);
-        _sensorApiMock.Verify(api => api.ReadQuantity(actuatorId), Times.AtLeastOnce);
     }
     
     [Fact]
@@ -219,7 +222,6 @@ public class ActuatorServiceTests
         Assert.Single(exposures);
         _sensorApiMock.Verify(api => api.SetQuantity(actuatorId, It.IsAny<SetSensorValueRequestModel>()),
             Times.Never);
-        _sensorApiMock.Verify(api => api.ReadQuantity(actuatorId), Times.Never);
     }
     
     [Fact]

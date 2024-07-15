@@ -36,6 +36,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:SensorSim.Actuator.API.Controllers.ActuatorController.GetEvents(System.String)">
+            <summary>
+            Get the events of the actuator
+            </summary>
+            <param name="actuatorId"></param>
+            <returns></returns>
+        </member>
         <member name="M:SensorSim.Actuator.API.Interfaces.ISensorApi.ReadQuantity(System.String)">
             <summary>
             Read the quantity of a sensor

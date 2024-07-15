@@ -1,6 +1,5 @@
 ﻿using SensorSim.Actuator.API.Clients;
 using SensorSim.Actuator.API.Interfaces;
-using SensorSim.Domain.DTO.Sensor;
 using SensorSim.Domain.Model;
 using SensorSim.Infrastructure.Helpers;
 using SensorSim.Infrastructure.Repositories;
@@ -11,17 +10,20 @@ public class ActuatorService(
     ILogger<ActuatorService> logger,
     CrudMemoryRepository<ActuatorConfig> actuatorConfigsRepository,
     CrudMemoryRepository<PhysicalQuantity> quantitiesRepository,
+    CrudMemoryRepository<ActuatorEvent> actuatorEventsRepository,
     ISensorApi sensorApi) : IActuatorService
 {
     public event IActuatorService.ValueChangedEventHandler? ValueChangedEvent;
 
-    public event IActuatorService.ValueReachedEventHandler? ValueReachedEvent;
+    public event IActuatorService.ValueReachedExposureEventHandler? ValueReachedExposureEvent;
 
     private ILogger<ActuatorService> Logger { get; } = logger;
 
     private CrudMemoryRepository<ActuatorConfig> ActuatorConfigsRepository { get; } = actuatorConfigsRepository;
 
     private CrudMemoryRepository<PhysicalQuantity> QuantitiesRepository { get; } = quantitiesRepository;
+
+    private CrudMemoryRepository<ActuatorEvent> ActuatorEventsRepository { get; } = actuatorEventsRepository;
 
     private ISensorApi SensorApi { get; } = sensorApi;
 
@@ -65,6 +67,11 @@ public class ActuatorService(
         return ActuatorConfigsRepository.GetOrDefault(id).Exposures;
     }
 
+    public IEnumerable<ActuatorEvent> GetEvents(string id)
+    {
+        return ActuatorEventsRepository.GetAll().Where(e => e.ActuatorId == id).OrderByDescending(e => e.CreatedAt);
+    }
+
     public async Task Update(CancellationToken stoppingToken)
     {
         const int timeUpdate = 250;
@@ -95,20 +102,35 @@ public class ActuatorService(
                 {
                     exposures.Dequeue();
                     config.WaitUntil = DateTime.Now.AddSeconds(exposure.Duration);
-                    ValueReachedEvent?.Invoke(this, actuatorId, exposure);
-                    Logger.LogInformation("Waiting until: {ConfigWaitUntil}", config.WaitUntil);
+                    ValueReachedExposureEvent?.Invoke(this, actuatorId, exposure);
+                    
+                    var eventType = "ValueReachedExposure";
+                    
+                    if (config.Exposures.Count == 0)
+                    {
+                        eventType = "ValueReachedTarget";
+                    }
+                    
+                    actuatorEventsRepository.Add(new ActuatorEvent($"{actuatorId}:{DateTime.Now}:{DateTime.Now.Millisecond}:{eventType}")
+                    {
+                        ActuatorId = actuatorId,
+                        Name = eventType,
+                        Value = measurement.Value
+                    });
                 }
                 else
                 {
                     var motion = new InertiaMotionFunction(timeUpdate / 1000.0);
                     var value = motion.Calculate(measurement.Value, exposure.Value, exposure.Speed);
                     SetCurrentQuantity(actuatorId, value, measurement.Unit);
-
-                    await SensorApi.SetQuantity(actuatorId,
-                        new SetSensorValueRequestModel { Value = measurement.Value, Unit = measurement.Unit });
-                    var sensorValue = await SensorApi.ReadQuantity(actuatorId);
-                    Logger.LogInformation("ValueChanged: {CurrentQuantityValue} | {SensorValueParameter}",
-                        measurement.Value, sensorValue.Parameter);
+                    await SensorApi.SetQuantity(actuatorId, new() { Value = measurement.Value, Unit = measurement.Unit });
+                    
+                    actuatorEventsRepository.Add(new ActuatorEvent($"{actuatorId}:{DateTime.Now}:{DateTime.Now.Millisecond}:ValueChanged")
+                    {
+                        ActuatorId = actuatorId,
+                        Name = "ValueChanged",
+                        Value = measurement.Value
+                    });
                     ValueChangedEvent?.Invoke(this, actuatorId);
                 }
             }

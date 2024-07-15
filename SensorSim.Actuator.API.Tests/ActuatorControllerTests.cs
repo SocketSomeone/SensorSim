@@ -121,4 +121,37 @@ public class ActuatorControllerTests
                 setActuatorModel.TargetQuantity.Unit), Times.Once);
         _actuatorServiceMock.Verify(s => s.SetExposures(actuatorId, It.IsAny<Queue<PhysicalExposure>>()), Times.Once);
     }
+
+    [Fact]
+    public void Read_Events()
+    {
+        // Arrange
+        var actuatorId = "Actuator1";
+        var events = new List<ActuatorEvent>
+        {
+            new ActuatorEvent($"{actuatorId}:1") { ActuatorId = actuatorId, Name = "Event1", Value = 1, },
+            new ActuatorEvent($"{actuatorId}:2") { ActuatorId = actuatorId, Name = "Event2", Value = 2 }
+        };
+
+        _actuatorServiceMock.Setup(s => s.GetEvents(actuatorId)).Returns(events);
+
+
+        // Act
+        var result = _actuatorController.GetEvents(actuatorId);
+        var okResult = Assert.IsType<OkObjectResult>(result.Result);
+        var response = Assert.IsAssignableFrom<IEnumerable<ActuatorEvent>>(okResult.Value);
+
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(200, okResult.StatusCode);
+        Assert.Equal(events.Count, response.Count());
+        Assert.All(response, e =>
+        {
+            Assert.Equal(actuatorId, e.ActuatorId);
+            Assert.StartsWith(actuatorId, e.Id);
+            Assert.Contains("Event", e.Name);
+            Assert.IsType<int>(e.Value);
+        });
+    }
 }

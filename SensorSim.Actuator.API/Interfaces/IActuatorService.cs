@@ -8,9 +8,9 @@ public interface IActuatorService
 
     public event ValueChangedEventHandler ValueChangedEvent;
 
-    public delegate void ValueReachedEventHandler(object sender, string actuatorId, PhysicalExposure exposure);
+    public delegate void ValueReachedExposureEventHandler(object sender, string actuatorId, PhysicalExposure exposure);
 
-    public event ValueReachedEventHandler ValueReachedEvent;
+    public event ValueReachedExposureEventHandler ValueReachedExposureEvent;
 
     string[] GetActuators();
 
@@ -26,4 +26,6 @@ public interface IActuatorService
     void SetTargetQuantity(string actuatorId, double value, string unit);
     
     void SetExposures(string actuatorId, Queue<PhysicalExposure> exposures);
+    
+    IEnumerable<ActuatorEvent> GetEvents(string id);
 }
