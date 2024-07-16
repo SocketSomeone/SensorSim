@@ -54,6 +54,11 @@ public class ActuatorController(IActuatorService actuatorService)
         {
             ActuatorService.SetCurrentQuantity(actuatorId, setActuatorModel.CurrentQuantity.Value, setActuatorModel.CurrentQuantity.Unit);
         }
+        else
+        {
+            var currentQuantity = ActuatorService.ReadCurrentQuantity(actuatorId);
+            ActuatorService.SetCurrentQuantity(actuatorId, currentQuantity.Value, setActuatorModel.TargetQuantity.Unit);
+        }
 
         if (exposures.Count == 0 || !exposures.Last().Value.Equals(targetQuantity.Value))
         {

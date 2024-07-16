@@ -121,6 +121,46 @@ public class ActuatorControllerTests
                 setActuatorModel.TargetQuantity.Unit), Times.Once);
         _actuatorServiceMock.Verify(s => s.SetExposures(actuatorId, It.IsAny<Queue<PhysicalExposure>>()), Times.Once);
     }
+    
+    [Fact]
+    public void Set_UpdatesActuatorWithoutCurrentQuantity()
+    {
+        // Arrange
+        var actuatorId = "Actuator1";
+        var setActuatorModel = new SetActuatorRequestModel
+        {
+            TargetQuantity = new TargetQuantityRequestModel { Value = 25, Unit = "Unit4" },
+            Exposures = new Queue<PhysicalExposure>()
+        };
+        var currentQuantity = new PhysicalQuantity(actuatorId) { Value = 15, Unit = "Unit3" };
+        var targetQuantity = new PhysicalQuantity(actuatorId) { Value = 25, Unit = "Unit4" };
+        var exposures = new Queue<PhysicalExposure>();
+
+        _actuatorServiceMock.Setup(s => s.ReadCurrentQuantity(actuatorId)).Returns(currentQuantity);
+        _actuatorServiceMock.Setup(s => s.ReadTargetQuantity(actuatorId)).Returns(targetQuantity);
+        _actuatorServiceMock.Setup(s => s.ReadExposures(actuatorId)).Returns(exposures);
+
+        // Act
+        var result = _actuatorController.Set(actuatorId, setActuatorModel);
+        var okResult = Assert.IsType<OkObjectResult>(result.Result);
+        var response = Assert.IsType<GetActuatorResponseModel>(okResult.Value);
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(200, okResult.StatusCode);
+        Assert.Equal(currentQuantity, response.Current);
+        Assert.Equal(targetQuantity, response.Target);
+        Assert.Equal(Math.Abs(currentQuantity.Value - targetQuantity.Value) < 0.1, response.IsOnTarget);
+        Assert.Equal(exposures, response.Exposures);
+        Assert.Empty(response.ExternalFactors);
+
+        _actuatorServiceMock.Verify(
+            s => s.SetCurrentQuantity(actuatorId, currentQuantity.Value, setActuatorModel.TargetQuantity.Unit), Times.Once);
+        _actuatorServiceMock.Verify(
+            s => s.SetTargetQuantity(actuatorId, setActuatorModel.TargetQuantity.Value,
+                setActuatorModel.TargetQuantity.Unit), Times.Once);
+        _actuatorServiceMock.Verify(s => s.SetExposures(actuatorId, It.IsAny<Queue<PhysicalExposure>>()), Times.Once);
+    }
 
     [Fact]
     public void Read_Events()
