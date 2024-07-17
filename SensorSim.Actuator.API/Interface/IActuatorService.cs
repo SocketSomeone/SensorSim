@@ -1,6 +1,6 @@
 ﻿using SensorSim.Domain.Model;
 
-namespace SensorSim.Actuator.API.Clients;
+namespace SensorSim.Actuator.API.Interface;
 
 public interface IActuatorService
 {
@@ -28,4 +28,6 @@ public interface IActuatorService
     void SetExposures(string actuatorId, Queue<PhysicalExposure> exposures);
     
     IEnumerable<ActuatorEvent> GetEvents(string id);
+    
+    void Delete(string actuatorId);
 }

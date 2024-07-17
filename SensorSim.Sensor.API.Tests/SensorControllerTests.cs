@@ -4,7 +4,7 @@ using SensorSim.Domain.DTO.Sensor;
 using SensorSim.Domain.Enums;
 using SensorSim.Domain.Model;
 using SensorSim.Sensor.API.Controllers;
-using SensorSim.Sensor.API.Services;
+using SensorSim.Sensor.API.Interface;
 
 namespace SensorSim.Sensor.API.Tests;
 
@@ -130,5 +130,19 @@ public class SensorControllerTests
         var okResult = Assert.IsType<OkObjectResult>(result.Result);
         var response = Assert.IsType<SensorConfig>(okResult.Value);
         Assert.Equal(new List<double> { 2, 3 }, response.StaticFunctionConfig.Coefficients);
+    }
+    
+    [Fact]
+    public void Delete_ShouldDeleteSensor()
+    {
+        // Arrange
+        var sensorId = "sensor1";
+
+        // Act
+        var result = _controller.Delete(sensorId);
+
+        // Assert
+        Assert.IsType<OkResult>(result);
+        _mockSensorService.Verify(service => service.Delete(sensorId), Times.Once);
     }
 }

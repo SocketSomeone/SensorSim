@@ -3,6 +3,7 @@ using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using SensorSim.Domain.Model;
 using SensorSim.Infrastructure.Repositories;
+using SensorSim.Sensor.API.Interface;
 using SensorSim.Sensor.API.Services;
 
 namespace SensorSim.Sensor.API;

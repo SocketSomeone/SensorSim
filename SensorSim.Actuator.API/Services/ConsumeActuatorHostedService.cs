@@ -1,4 +1,4 @@
-﻿using SensorSim.Actuator.API.Clients;
+﻿using SensorSim.Actuator.API.Interface;
 
 namespace SensorSim.Actuator.API.Services;
 

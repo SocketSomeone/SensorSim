@@ -25,6 +25,12 @@
             <param name="dto"></param>
             <returns></returns>
         </member>
+        <member name="M:SensorSim.Sensor.API.Controllers.SensorController.Delete(System.String)">
+            <summary>
+            Delete sensor
+            </summary>
+            <param name="sensorId"></param>
+        </member>
         <member name="M:SensorSim.Sensor.API.Controllers.SensorController.GetConfig(System.String)">
             <summary>
             Get sensor config

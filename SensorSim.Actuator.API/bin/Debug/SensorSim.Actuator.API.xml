@@ -10,7 +10,7 @@
             </summary>
             <param name="actuatorService"></param>
         </member>
-        <member name="M:SensorSim.Actuator.API.Controllers.ActuatorController.#ctor(SensorSim.Actuator.API.Clients.IActuatorService)">
+        <member name="M:SensorSim.Actuator.API.Controllers.ActuatorController.#ctor(SensorSim.Actuator.API.Interface.IActuatorService)">
             <summary>
             Controller for the actuator
             </summary>
@@ -36,6 +36,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:SensorSim.Actuator.API.Controllers.ActuatorController.Delete(System.String)">
+            <summary>
+            Delete actuator and sensor
+            </summary>
+            <param name="actuatorId"></param>
+            <returns></returns>
+        </member>
         <member name="M:SensorSim.Actuator.API.Controllers.ActuatorController.GetEvents(System.String)">
             <summary>
             Get the events of the actuator
@@ -43,14 +50,14 @@
             <param name="actuatorId"></param>
             <returns></returns>
         </member>
-        <member name="M:SensorSim.Actuator.API.Interfaces.ISensorApi.ReadQuantity(System.String)">
+        <member name="M:SensorSim.Actuator.API.Interface.ISensorApi.ReadQuantity(System.String)">
             <summary>
             Read the quantity of a sensor
             </summary>
             <param name="sensorId"></param>
             <returns></returns>
         </member>
-        <member name="M:SensorSim.Actuator.API.Interfaces.ISensorApi.SetQuantity(System.String,SensorSim.Domain.DTO.Sensor.SetSensorValueRequestModel)">
+        <member name="M:SensorSim.Actuator.API.Interface.ISensorApi.SetQuantity(System.String,SensorSim.Domain.DTO.Sensor.SetSensorValueRequestModel)">
             <summary>
             Set the quantity of a sensor
             </summary>
@@ -58,28 +65,41 @@
             <param name="request"></param>
             <returns></returns>
         </member>
+        <member name="M:SensorSim.Actuator.API.Interface.ISensorApi.Delete(System.String)">
+            <summary>
+            Delete param
+            </summary>
+            <param name="actuatorId"></param>
+            <returns></returns>
+        </member>
         <member name="T:Refit.Implementation.Generated">
             <inheritdoc />
         </member>
-        <member name="T:Refit.Implementation.Generated.SensorSimActuatorAPIInterfacesISensorApi">
+        <member name="T:Refit.Implementation.Generated.SensorSimActuatorAPIInterfaceISensorApi">
             <inheritdoc />
         </member>
-        <member name="P:Refit.Implementation.Generated.SensorSimActuatorAPIInterfacesISensorApi.Client">
+        <member name="P:Refit.Implementation.Generated.SensorSimActuatorAPIInterfaceISensorApi.Client">
             <inheritdoc />
         </member>
-        <member name="M:Refit.Implementation.Generated.SensorSimActuatorAPIInterfacesISensorApi.#ctor(System.Net.Http.HttpClient,Refit.IRequestBuilder)">
+        <member name="M:Refit.Implementation.Generated.SensorSimActuatorAPIInterfaceISensorApi.#ctor(System.Net.Http.HttpClient,Refit.IRequestBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:Refit.Implementation.Generated.SensorSimActuatorAPIInterfacesISensorApi.ReadQuantity(System.String)">
+        <member name="M:Refit.Implementation.Generated.SensorSimActuatorAPIInterfaceISensorApi.ReadQuantity(System.String)">
             <inheritdoc />
         </member>
-        <member name="M:Refit.Implementation.Generated.SensorSimActuatorAPIInterfacesISensorApi.SetQuantity(System.String,SensorSim.Domain.DTO.Sensor.SetSensorValueRequestModel)">
+        <member name="M:Refit.Implementation.Generated.SensorSimActuatorAPIInterfaceISensorApi.SetQuantity(System.String,SensorSim.Domain.DTO.Sensor.SetSensorValueRequestModel)">
             <inheritdoc />
         </member>
-        <member name="M:Refit.Implementation.Generated.SensorSimActuatorAPIInterfacesISensorApi.SensorSim#Actuator#API#Interfaces#ISensorApi#ReadQuantity(System.String)">
+        <member name="M:Refit.Implementation.Generated.SensorSimActuatorAPIInterfaceISensorApi.Delete(System.String)">
             <inheritdoc />
         </member>
-        <member name="M:Refit.Implementation.Generated.SensorSimActuatorAPIInterfacesISensorApi.SensorSim#Actuator#API#Interfaces#ISensorApi#SetQuantity(System.String,SensorSim.Domain.DTO.Sensor.SetSensorValueRequestModel)">
+        <member name="M:Refit.Implementation.Generated.SensorSimActuatorAPIInterfaceISensorApi.SensorSim#Actuator#API#Interface#ISensorApi#ReadQuantity(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SensorSimActuatorAPIInterfaceISensorApi.SensorSim#Actuator#API#Interface#ISensorApi#SetQuantity(System.String,SensorSim.Domain.DTO.Sensor.SetSensorValueRequestModel)">
+            <inheritdoc />
+        </member>
+        <member name="M:Refit.Implementation.Generated.SensorSimActuatorAPIInterfaceISensorApi.SensorSim#Actuator#API#Interface#ISensorApi#Delete(System.String)">
             <inheritdoc />
         </member>
     </members>

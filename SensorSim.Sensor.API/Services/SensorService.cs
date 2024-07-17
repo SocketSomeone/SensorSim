@@ -3,19 +3,9 @@ using SensorSim.Domain.Interface;
 using SensorSim.Domain.Model;
 using SensorSim.Infrastructure.Helpers;
 using SensorSim.Infrastructure.Repositories;
+using SensorSim.Sensor.API.Interface;
 
 namespace SensorSim.Sensor.API.Services;
-
-public interface ISensorService
-{
-    PhysicalQuantity SetQuantity(string id, double value, string unit);
-    PhysicalQuantity ReadQuantity(string id);
-    double ReadParameter(string id);
-
-    double ReadLinearRegression(string id);
-    SensorConfig GetConfig(string sensorId);
-    string[] GetSensors();
-}
 
 public class SensorService(
     ILogger<SensorService> logger,
@@ -76,6 +66,12 @@ public class SensorService(
 
         // TODO: Implement linear regression for parameter
         return 1.0;
+    }
+    
+    public void Delete(string sensorId)
+    {
+        SensorConfigsRepository.Delete(sensorId);
+        QuantitiesRepository.Delete(sensorId);
     }
 
     public SensorConfig GetConfig(string sensorId)

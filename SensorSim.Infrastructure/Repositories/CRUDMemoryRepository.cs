@@ -52,4 +52,12 @@ public abstract class CrudMemoryRepository<T> where T : Entity
     {
         Data.Remove(id);
     }
+
+    public void DeleteAll(IEnumerable<T> entities)
+    {
+        foreach (var entity in entities)
+        {
+            Data.Remove(entity.Id);
+        }
+    }
 }

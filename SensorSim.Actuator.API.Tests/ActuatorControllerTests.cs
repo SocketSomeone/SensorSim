@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Moq;
-using SensorSim.Actuator.API.Clients;
 using SensorSim.Actuator.API.Controllers;
+using SensorSim.Actuator.API.Interface;
 using SensorSim.Domain.DTO.Actuator;
 using SensorSim.Domain.Model;
 
@@ -193,5 +193,21 @@ public class ActuatorControllerTests
             Assert.Contains("Event", e.Name);
             Assert.IsType<int>(e.Value);
         });
+    }
+    
+    [Fact]
+    public void Delete_RemovesActuator()
+    {
+        // Arrange
+        var actuatorId = "Actuator1";
+
+        // Act
+        var result = _actuatorController.Delete(actuatorId);
+        var okResult = Assert.IsType<OkResult>(result);
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(200, okResult.StatusCode);
+        _actuatorServiceMock.Verify(s => s.Delete(actuatorId), Times.Once);
     }
 }

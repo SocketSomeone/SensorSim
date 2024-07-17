@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Moq;
-using SensorSim.Actuator.API.Clients;
+using SensorSim.Actuator.API.Interface;
 using SensorSim.Actuator.API.Services;
 
 namespace SensorSim.Actuator.API.Tests;

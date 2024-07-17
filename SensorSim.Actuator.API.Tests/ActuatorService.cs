@@ -1,7 +1,6 @@
 using Microsoft.Extensions.Logging;
 using Moq;
-using SensorSim.Actuator.API.Clients;
-using SensorSim.Actuator.API.Interfaces;
+using SensorSim.Actuator.API.Interface;
 using SensorSim.Actuator.API.Services;
 using SensorSim.Domain.DTO.Sensor;
 using SensorSim.Domain.Model;
@@ -39,8 +38,8 @@ public class ActuatorServiceTests
         // Arrange
         var actuatorConfigs = new List<ActuatorConfig>
         {
-            new ("Actuator1"),
-            new ("Actuator2")
+            new("Actuator1"),
+            new("Actuator2")
         };
 
         foreach (var config in actuatorConfigs.ToList())
@@ -61,7 +60,7 @@ public class ActuatorServiceTests
         // Arrange
         var actuatorId = "Actuator1";
         var quantity = new PhysicalQuantity(actuatorId) { Value = 0, Unit = "Unit1" };
-        
+
         _quantitiesRepository.Add(quantity);
 
         // Act
@@ -79,7 +78,7 @@ public class ActuatorServiceTests
         var actuatorId = "Actuator1";
         var config = new ActuatorConfig(actuatorId)
             { TargetQuantity = new PhysicalQuantity(actuatorId) { Value = 0, Unit = "Unit1" } };
-       _actuatorConfigsRepository.Add(config);
+        _actuatorConfigsRepository.Add(config);
 
         // Act
         _actuatorService.SetTargetQuantity(actuatorId, 20, "Unit3");
@@ -143,7 +142,7 @@ public class ActuatorServiceTests
         var actuatorId = "Actuator1";
         var exposures = new Queue<PhysicalExposure>();
         var config = new ActuatorConfig(actuatorId) { Exposures = exposures };
-       _actuatorConfigsRepository.Add(config);
+        _actuatorConfigsRepository.Add(config);
 
         // Act
         var result = _actuatorService.ReadExposures(actuatorId);
@@ -164,7 +163,7 @@ public class ActuatorServiceTests
         var config = new ActuatorConfig(actuatorId) { Exposures = exposures, WaitUntil = DateTime.Now.AddSeconds(-1) };
         _actuatorConfigsRepository.Add(config);
         _quantitiesRepository.Add(quantity);
-        
+
         _sensorApiMock.Setup(api => api.SetQuantity(It.IsAny<string>(), It.IsAny<SetSensorValueRequestModel>()))
             .ReturnsAsync(
                 new SetSensorResponseModel()
@@ -174,7 +173,7 @@ public class ActuatorServiceTests
 
         // Act
         var updateTask = _actuatorService.Update(stoppingToken.Token);
-        
+
         _actuatorService.ValueReachedExposureEvent += (sender, id, physicalExposure) =>
         {
             stoppingToken.Cancel();
@@ -189,7 +188,7 @@ public class ActuatorServiceTests
         catch (TaskCanceledException e)
         {
         }
-        
+
 
         // Assert
         Assert.Empty(exposures);
@@ -197,7 +196,7 @@ public class ActuatorServiceTests
         _sensorApiMock.Verify(api => api.SetQuantity(actuatorId, It.IsAny<SetSensorValueRequestModel>()),
             Times.AtLeastOnce);
     }
-    
+
     [Fact]
     public async Task Update_HandlesWaitingCorrectly()
     {
@@ -223,7 +222,7 @@ public class ActuatorServiceTests
         _sensorApiMock.Verify(api => api.SetQuantity(actuatorId, It.IsAny<SetSensorValueRequestModel>()),
             Times.Never);
     }
-    
+
     [Fact]
     public async Task Update_HandlesNoExposuresCorrectly()
     {
@@ -235,12 +234,11 @@ public class ActuatorServiceTests
         var config = new ActuatorConfig(actuatorId) { Exposures = exposures, WaitUntil = DateTime.Now.AddSeconds(-1) };
         _actuatorConfigsRepository.Add(config);
         _quantitiesRepository.Add(quantity);
-        
 
 
         // Act
         var updateTask = _actuatorService.Update(stoppingToken.Token);
-        
+
         Assert.Empty(exposures);
         await Task.Delay(100);
         stoppingToken.Cancel();
@@ -275,5 +273,27 @@ public class ActuatorServiceTests
         _sensorApiMock.Verify(api => api.SetQuantity(actuatorId, It.IsAny<SetSensorValueRequestModel>()),
             Times.Never);
         _sensorApiMock.Verify(api => api.ReadQuantity(actuatorId), Times.Never);
+    }
+
+    [Fact]
+    public void Delete_ShouldRemoveActuatorConfigAndQuantity()
+    {
+        // Arrange
+        var actuatorId = "Actuator1";
+        var config = new ActuatorConfig(actuatorId);
+        var quantity = new PhysicalQuantity(actuatorId);
+        var actuatorEvent = new ActuatorEvent("1") { ActuatorId = actuatorId };
+        _actuatorConfigsRepository.Add(config);
+        _quantitiesRepository.Add(quantity);
+        _actuatorEventsRepository.Add(actuatorEvent);
+
+        // Act
+        _actuatorService.Delete(actuatorId);
+
+        // Assert
+        Assert.Null(_actuatorConfigsRepository.Get(actuatorId));
+        Assert.Null(_quantitiesRepository.Get(actuatorId));
+        Assert.Empty(_actuatorService.GetEvents(actuatorId));
+        _sensorApiMock.Verify(api => api.Delete(actuatorId), Times.Once);
     }
 }

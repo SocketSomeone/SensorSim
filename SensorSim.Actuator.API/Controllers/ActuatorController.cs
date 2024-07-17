@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SensorSim.Actuator.API.Clients;
+using SensorSim.Actuator.API.Interface;
 using SensorSim.Actuator.API.Services;
 using SensorSim.Domain.DTO.Actuator;
 using SensorSim.Domain.Interface;
@@ -79,7 +79,7 @@ public class ActuatorController(IActuatorService actuatorService)
         {
             Current = current,
             Target = target,
-            IsOnTarget = current.Value.Equals(target.Value),
+            IsOnTarget = current.Value.Equals(target.Value) && exposures.Count == 0,
             Exposures = ActuatorService.ReadExposures(actuatorId),
             ExternalFactors = []
         });
@@ -94,15 +94,28 @@ public class ActuatorController(IActuatorService actuatorService)
     {
         var current = ActuatorService.ReadCurrentQuantity(actuatorId);
         var target = ActuatorService.ReadTargetQuantity(actuatorId);
+        var exposures = ActuatorService.ReadExposures(actuatorId);
 
         return Ok(new GetActuatorResponseModel()
         {
             Current = current,
             Target = target,
-            IsOnTarget = current.Value.Equals(target.Value),
-            Exposures = ActuatorService.ReadExposures(actuatorId),
+            IsOnTarget = current.Value.Equals(target.Value) && exposures.Count == 0,
+            Exposures = exposures,
             ExternalFactors = []
         });
+    }
+    
+    /// <summary>
+    /// Delete actuator and sensor
+    /// </summary>
+    /// <param name="actuatorId"></param>
+    /// <returns></returns>
+    [HttpDelete("{actuatorId}")]
+    public ActionResult Delete(string actuatorId)
+    {
+        ActuatorService.Delete(actuatorId);
+        return Ok();
     }
     
     /// <summary>

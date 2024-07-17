@@ -1,7 +1,7 @@
 ﻿using Refit;
 using SensorSim.Domain.DTO.Sensor;
 
-namespace SensorSim.Actuator.API.Interfaces;
+namespace SensorSim.Actuator.API.Interface;
 
 public interface ISensorApi
 {
@@ -21,4 +21,12 @@ public interface ISensorApi
     /// <returns></returns>
     [Post("/api/sensors/{sensorId}")]
     Task<SetSensorResponseModel> SetQuantity(string sensorId, [Body] SetSensorValueRequestModel request);
+
+    /// <summary>
+    /// Delete param
+    /// </summary>
+    /// <param name="actuatorId"></param>
+    /// <returns></returns>
+    [Delete("/api/sensors/{actuatorId}")]
+    Task Delete(string actuatorId);
 }

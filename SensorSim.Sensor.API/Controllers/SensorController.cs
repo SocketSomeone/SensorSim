@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SensorSim.Domain.DTO.Sensor;
 using SensorSim.Domain.Model;
-using SensorSim.Sensor.API.Services;
+using SensorSim.Sensor.API.Interface;
 
 namespace SensorSim.Sensor.API.Controllers;
 
@@ -61,6 +61,17 @@ public class SensorController(ISensorService sensorService) : ControllerBase
             Current = quantity,
             Parameter = parameter
         });
+    }
+    
+    /// <summary>
+    /// Delete sensor
+    /// </summary>
+    /// <param name="sensorId"></param>
+    [HttpDelete("{sensorId}")]
+    public ActionResult Delete(string sensorId)
+    {
+        SensorService.Delete(sensorId);
+        return Ok();
     }
 
     /// <summary>

@@ -210,4 +210,22 @@ public class SensorServiceTests
         // Assert
         Assert.Equal(expectedConfig, actualConfig);
     }
+    
+    [Fact]
+    public void Delete_ShouldRemoveSensorConfigAndQuantity()
+    {
+        // Arrange
+        var id = "sensor1";
+        var config = new SensorConfig(id);
+        var quantity = new PhysicalQuantity(id);
+        _sensorConfigsRepository.Add(config);
+        _quantitiesRepository.Add(quantity);
+
+        // Act
+        _sensorService.Delete(id);
+
+        // Assert
+        Assert.Null(_sensorConfigsRepository.Get(id));
+        Assert.Null(_quantitiesRepository.Get(id));
+    }
 }

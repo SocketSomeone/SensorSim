@@ -1,5 +1,4 @@
-﻿using SensorSim.Actuator.API.Clients;
-using SensorSim.Actuator.API.Interfaces;
+﻿using SensorSim.Actuator.API.Interface;
 using SensorSim.Domain.Model;
 using SensorSim.Infrastructure.Helpers;
 using SensorSim.Infrastructure.Repositories;
@@ -67,6 +66,14 @@ public class ActuatorService(
         return ActuatorConfigsRepository.GetOrDefault(id).Exposures;
     }
 
+    public void Delete(string actuatorId)
+    {
+        ActuatorConfigsRepository.Delete(actuatorId);
+        QuantitiesRepository.Delete(actuatorId);
+        ActuatorEventsRepository.DeleteAll(ActuatorEventsRepository.GetAll().Where(e => e.ActuatorId == actuatorId));
+        SensorApi.Delete(actuatorId);
+    }
+
     public IEnumerable<ActuatorEvent> GetEvents(string id)
     {
         return ActuatorEventsRepository.GetAll().Where(e => e.ActuatorId == id).OrderByDescending(e => e.CreatedAt);
@@ -103,34 +110,37 @@ public class ActuatorService(
                     exposures.Dequeue();
                     config.WaitUntil = DateTime.Now.AddSeconds(exposure.Duration);
                     ValueReachedExposureEvent?.Invoke(this, actuatorId, exposure);
-                    
+
                     var eventType = "ValueReachedExposure";
-                    
+
                     if (config.Exposures.Count == 0)
                     {
                         eventType = "ValueReachedTarget";
                     }
-                    
-                    actuatorEventsRepository.Add(new ActuatorEvent($"{actuatorId}:{DateTime.Now}:{DateTime.Now.Millisecond}:{eventType}")
-                    {
-                        ActuatorId = actuatorId,
-                        Name = eventType,
-                        Value = measurement.Value
-                    });
+
+                    actuatorEventsRepository.Add(
+                        new ActuatorEvent($"{actuatorId}:{DateTime.Now}:{DateTime.Now.Millisecond}:{eventType}")
+                        {
+                            ActuatorId = actuatorId,
+                            Name = eventType,
+                            Value = measurement.Value
+                        });
                 }
                 else
                 {
                     var motion = new InertiaMotionFunction(timeUpdate / 1000.0);
                     var value = motion.Calculate(measurement.Value, exposure.Value, exposure.Speed);
                     SetCurrentQuantity(actuatorId, value, measurement.Unit);
-                    await SensorApi.SetQuantity(actuatorId, new() { Value = measurement.Value, Unit = measurement.Unit });
-                    
-                    actuatorEventsRepository.Add(new ActuatorEvent($"{actuatorId}:{DateTime.Now}:{DateTime.Now.Millisecond}:ValueChanged")
-                    {
-                        ActuatorId = actuatorId,
-                        Name = "ValueChanged",
-                        Value = measurement.Value
-                    });
+                    await SensorApi.SetQuantity(actuatorId,
+                        new() { Value = measurement.Value, Unit = measurement.Unit });
+
+                    actuatorEventsRepository.Add(
+                        new ActuatorEvent($"{actuatorId}:{DateTime.Now}:{DateTime.Now.Millisecond}:ValueChanged")
+                        {
+                            ActuatorId = actuatorId,
+                            Name = "ValueChanged",
+                            Value = measurement.Value
+                        });
                     ValueChangedEvent?.Invoke(this, actuatorId);
                 }
             }

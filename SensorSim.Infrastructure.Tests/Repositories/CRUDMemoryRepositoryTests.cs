@@ -132,6 +132,25 @@ public class CrudMemoryRepositoryTests
         var result = _repository.Get("1");
         Assert.Null(result);
     }
+    
+    [Fact]
+    public void DeleteAll_ShouldRemoveAllEntities()
+    {
+        // Arrange
+        var entity1 = new TestEntity("1", "Entity1");
+        var entity2 = new TestEntity("2", "Entity2");
+        _repository.Add(entity1);
+        _repository.Add(entity2);
+
+        // Act
+        _repository.DeleteAll(new[] { entity1, entity2 });
+
+        // Assert
+        var result1 = _repository.Get("1");
+        var result2 = _repository.Get("2");
+        Assert.Null(result1);
+        Assert.Null(result2);
+    }
 
     [Fact]
     public void GetAll_ShouldReturnAllEntities()
