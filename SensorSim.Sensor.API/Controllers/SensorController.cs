@@ -18,10 +18,17 @@ public class SensorController(ISensorService sensorService) : ControllerBase
     [HttpGet]
     public ActionResult<IEnumerable<GetSensorResponseModel[]>> Get()
     {
-        return Ok(SensorService.GetSensors().Select(sensorId => new GetSensorResponseModel
+        return Ok(SensorService.GetSensors().Select(sensorId =>
         {
-            Current = SensorService.ReadQuantity(sensorId),
-            Parameter = SensorService.ReadParameter(sensorId)
+            var quantity = SensorService.ReadQuantity(sensorId);
+            var parameter = SensorService.ReadParameter(sensorId);
+
+            return new GetSensorResponseModel
+            {
+                Current = quantity,
+                Parameter = parameter,
+                ApproximatedValue = SensorService.ReadApproximatedValue(sensorId, parameter)
+            };
         }));
     }
 
@@ -39,7 +46,8 @@ public class SensorController(ISensorService sensorService) : ControllerBase
         return Ok(new GetSensorResponseModel
         {
             Current = quantity,
-            Parameter = parameter
+            Parameter = parameter,
+            ApproximatedValue = SensorService.ReadApproximatedValue(sensorId, parameter)
         });
     }
 
@@ -96,8 +104,7 @@ public class SensorController(ISensorService sensorService) : ControllerBase
     {
         var sensorConfig = SensorService.GetConfig(sensorId);
 
-        sensorConfig.StaticFunctionConfig.Coefficients =
-            new List<double>(config.StaticFunctionConfig.Coefficients[2..]);
+        sensorConfig.ApproximateCoefficients = config.ApproximateCoefficients;
 
         return Ok(sensorConfig);
     }

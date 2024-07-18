@@ -8,12 +8,6 @@ public class PolynomialStaticFunction(List<double> coefficients) : IStaticFuncti
 
     public double Calculate(double value)
     {
-        double result = 0;
-        for (int i = 0; i < Coefficients.Count; i++)
-        {
-            result += Coefficients[i] * Math.Pow(value, i);
-        }
-
-        return result;
+        return Coefficients.Select((t, i) => t * Math.Pow(value, i)).Sum();
     }
 }

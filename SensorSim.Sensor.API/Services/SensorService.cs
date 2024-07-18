@@ -1,4 +1,5 @@
-﻿using SensorSim.Domain.Enums;
+﻿using MathNet.Numerics;
+using SensorSim.Domain.Enums;
 using SensorSim.Domain.Interface;
 using SensorSim.Domain.Model;
 using SensorSim.Infrastructure.Helpers;
@@ -13,8 +14,6 @@ public class SensorService(
     CrudMemoryRepository<PhysicalQuantity> quantitiesRepository)
     : ISensorService
 {
-    private ILogger<ISensorService> Logger { get; } = logger;
-
     private CrudMemoryRepository<SensorConfig> SensorConfigsRepository { get; } = sensorConfigsRepository;
 
     private CrudMemoryRepository<PhysicalQuantity> QuantitiesRepository { get; } = quantitiesRepository;
@@ -52,20 +51,12 @@ public class SensorService(
                randomError.Calculate(quantity.Value);
     }
 
-    public double ReadLinearRegression(string id)
+    public double ReadApproximatedValue(string id, double parameter)
     {
-        var quantity = QuantitiesRepository.GetOrDefault(id);
+        var config = SensorConfigsRepository.GetOrDefault(id);
+        var coefficients = config.ApproximateCoefficients;
 
-        var parameter = ReadParameter(id);
-
-        Logger.LogInformation($"Parameter: {parameter}, Quantity: {quantity.Value}");
-
-        var xData = Enumerable.Range(0, 10).Select(i => quantity.Value).ToArray();
-        var yData = Enumerable.Range(0, 10).Select(x => ReadParameter(id)).ToArray();
-
-
-        // TODO: Implement linear regression for parameter
-        return 1.0;
+        return coefficients.Select((t, i) => t * Math.Pow(parameter, i)).Sum();
     }
     
     public void Delete(string sensorId)

@@ -33,4 +33,6 @@ public class SensorConfig(string id) : Entity(id)
     public StaticFunctionConfig StaticFunctionConfig { get; set; } = new();
 
     public SystematicErrorConfig SystematicErrorConfig { get; set; } = new();
+    
+    public List<double> ApproximateCoefficients { get; set; } = new() { 0, 1 };
 }

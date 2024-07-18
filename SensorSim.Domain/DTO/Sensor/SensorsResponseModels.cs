@@ -7,6 +7,8 @@ public class GetSensorResponseModel
     public PhysicalQuantity Current { get; set; }
 
     public double Parameter { get; set; }
+    
+    public double ApproximatedValue { get; set; }
 }
 
 public class SetSensorResponseModel : GetSensorResponseModel

@@ -10,7 +10,7 @@ public interface ISensorService
     
     double ReadParameter(string id);
 
-    double ReadLinearRegression(string id);
+    double ReadApproximatedValue(string id, double parameter);
     
     SensorConfig GetConfig(string sensorId);
     

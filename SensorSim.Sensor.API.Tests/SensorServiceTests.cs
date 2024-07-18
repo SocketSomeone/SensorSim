@@ -172,28 +172,22 @@ public class SensorServiceTests
         var id = "sensor1";
         var config = new SensorConfig(id)
         {
-            RandomErrorConfig = new RandomErrorConfig { Type = RandomErrorType.Gaussian, Mean = 0, StandardDeviation = 1 },
-            StaticFunctionConfig = new StaticFunctionConfig { Type = StaticFunctionType.Polynomial, Coefficients = new List<double>() { 1.0, 0.0 } },
-            SystematicErrorConfig = new SystematicErrorConfig { Type = SystematicErrorType.Constant, Value = 2 }
+            RandomErrorConfig = new RandomErrorConfig { Type = RandomErrorType.Gaussian, Mean = 0, StandardDeviation = 0 },
+            StaticFunctionConfig = new StaticFunctionConfig { Type = StaticFunctionType.Polynomial, Coefficients = new List<double>() { 0.0, 1.0 } },
+            SystematicErrorConfig = new SystematicErrorConfig { Type = SystematicErrorType.Constant, Value = 2 },
+            ApproximateCoefficients = new List<double>() { 0.0, 1.0 }
         };
         var quantity = new PhysicalQuantity(id) { Value = 10, Unit = "Celsius" };
         _sensorConfigsRepository.Add(config);
         _quantitiesRepository.Add(quantity);
 
         // Act
-        _sensorService.ReadLinearRegression(id);
+        var parameter = _sensorService.ReadParameter(id);
+        var response = _sensorService.ReadApproximatedValue(id, parameter);
 
         // Assert
-        _mockLogger.Verify(
-            x => x.Log(
-                It.IsAny<LogLevel>(),
-                It.IsAny<EventId>(),
-                It.Is<It.IsAnyType>((v, t) => v.ToString().Contains("Parameter") && v.ToString().Contains("Quantity")),
-                It.IsAny<Exception>(),
-                It.IsAny<Func<It.IsAnyType, Exception, string>>()
-            ),
-            Times.Once
-        );
+        Assert.Equal(12, parameter);
+        Assert.Equal(12, response);
     }
 
     [Fact]

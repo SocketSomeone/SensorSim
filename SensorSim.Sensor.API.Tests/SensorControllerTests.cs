@@ -46,6 +46,7 @@ public class SensorControllerTests
         _mockSensorService.Setup(service => service.ReadQuantity(sensorId)).Returns(new PhysicalQuantity(sensorId)
             { Value = 10, Unit = "Celsius" });
         _mockSensorService.Setup(service => service.ReadParameter(sensorId)).Returns(20);
+        _mockSensorService.Setup(service => service.ReadApproximatedValue(sensorId, 20)).Returns(10);
 
         // Act
         var result = _controller.Get(sensorId);
@@ -57,6 +58,7 @@ public class SensorControllerTests
         Assert.Equal(10, response.Current.Value);
         Assert.Equal("Celsius", response.Current.Unit);
         Assert.Equal(20, response.Parameter);
+        Assert.Equal(10, response.ApproximatedValue);
     }
 
     [Fact]
@@ -112,14 +114,11 @@ public class SensorControllerTests
         var sensorId = "sensor1";
         var setConfig = new SetSensorConfigRequestModel
         {
-            StaticFunctionConfig = new StaticFunctionConfig
-            {
-                Coefficients = new List<double> { 0, 1, 2, 3 }
-            }
+            ApproximateCoefficients = new List<double> { 2, 3 }
         };
         var existingConfig = new SensorConfig(sensorId)
         {
-            StaticFunctionConfig = new StaticFunctionConfig { Coefficients = new List<double>() { 1.0, 2.0 } }
+            ApproximateCoefficients = new List<double>() {1, 2}
         };
         _mockSensorService.Setup(service => service.GetConfig(sensorId)).Returns(existingConfig);
 
@@ -129,7 +128,7 @@ public class SensorControllerTests
         // Assert
         var okResult = Assert.IsType<OkObjectResult>(result.Result);
         var response = Assert.IsType<SensorConfig>(okResult.Value);
-        Assert.Equal(new List<double> { 2, 3 }, response.StaticFunctionConfig.Coefficients);
+        Assert.Equal(new List<double> { 2, 3 }, response.ApproximateCoefficients);
     }
     
     [Fact]
