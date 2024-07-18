@@ -1,4 +1,5 @@
-﻿using SensorSim.Domain.Enums;
+﻿using Newtonsoft.Json.Linq;
+using SensorSim.Domain.Enums;
 using SensorSim.Domain.Interface;
 using SensorSim.Domain.Model;
 using SensorSim.Infrastructure.Helpers;
@@ -64,8 +65,11 @@ public class SensorService(
         var yData = Enumerable.Range(0, 10).Select(x => ReadParameter(id)).ToArray();
 
 
-        // TODO: Implement linear regression for parameter
-        return 1.0;
+        // Linear regression for parameter
+        double rSquared, intercept, slope;
+        LinearRegression(xData, yData, out rSquared, out intercept, out slope);
+        // Predict x
+        return (double)yData.GetValue(0) * slope + intercept;
     }
     
     public void Delete(string sensorId)
@@ -115,5 +119,43 @@ public class SensorService(
             SystematicErrorType.Constant => new ConstantSystematicError(systematicConfig.Value),
             _ => throw new ArgumentOutOfRangeException("SystematicErrorConfig.Type")
         };
+    }
+
+    private static void LinearRegression(double[] xVals, double[] yVals, out double rSquared, out double yIntercept, out double slope) {
+        if (xVals.Length != yVals.Length) {
+            throw new Exception("Input values should be with the same length.");
+        }
+
+        double sumOfX = 0;
+        double sumOfY = 0;
+        double sumOfXSq = 0;
+        double sumOfYSq = 0;
+        double sumCodeviates = 0;
+
+        for (var i = 0; i < xVals.Length; i++) {
+            var x = xVals[i];
+            var y = yVals[i];
+            sumCodeviates += x * y;
+            sumOfX += x;
+            sumOfY += y;
+            sumOfXSq += x * x;
+            sumOfYSq += y * y;
+        }
+
+        var count = xVals.Length;
+        var ssX = sumOfXSq - ((sumOfX * sumOfX) / count);
+        var ssY = sumOfYSq - ((sumOfY * sumOfY) / count);
+
+        var rNumerator = (count * sumCodeviates) - (sumOfX * sumOfY);
+        var rDenom = (count * sumOfXSq - (sumOfX * sumOfX)) * (count * sumOfYSq - (sumOfY * sumOfY));
+        var sCo = sumCodeviates - ((sumOfX * sumOfY) / count);
+
+        var meanX = sumOfX / count;
+        var meanY = sumOfY / count;
+        var dblR = rNumerator / Math.Sqrt(rDenom);
+
+        rSquared = dblR * dblR;
+        yIntercept = meanY - ((sCo / ssX) * meanX);
+        slope = sCo / ssX;
     }
 }
