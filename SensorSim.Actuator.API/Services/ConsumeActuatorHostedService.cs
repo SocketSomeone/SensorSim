@@ -2,22 +2,16 @@
 
 namespace SensorSim.Actuator.API.Services;
 
-public class ConsumeActuatorHostedService : BackgroundService
+public class ConsumeActuatorHostedService(
+    IServiceProvider services,
+    ILogger<ConsumeActuatorHostedService> logger)
+    : BackgroundService
 {
-    private readonly ILogger<ConsumeActuatorHostedService> _logger;
-
-    public ConsumeActuatorHostedService(IServiceProvider services,
-        ILogger<ConsumeActuatorHostedService> logger)
-    {
-        Services = services;
-        _logger = logger;
-    }
-
-    public IServiceProvider Services { get; }
+    public IServiceProvider Services { get; } = services;
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        _logger.LogInformation(
+        logger.LogInformation(
             "Consume Scoped Service Hosted Service running.");
 
         await DoWork(stoppingToken);
@@ -25,10 +19,9 @@ public class ConsumeActuatorHostedService : BackgroundService
 
     private async Task DoWork(CancellationToken stoppingToken)
     {
-        _logger.LogInformation(
+        logger.LogInformation(
             "Consume Scoped Service Hosted Service is working.");
 
-        // need get all actuators by IActutator<T> interface
         var actuatorService = Services.GetRequiredService<IActuatorService>();
 
         await actuatorService.Update(stoppingToken);
@@ -36,7 +29,7 @@ public class ConsumeActuatorHostedService : BackgroundService
 
     public override async Task StopAsync(CancellationToken stoppingToken)
     {
-        _logger.LogInformation(
+        logger.LogInformation(
             "Consume Scoped Service Hosted Service is stopping.");
 
         await base.StopAsync(stoppingToken);

@@ -16,7 +16,7 @@ public class StaticFunctionConfig
     public string Type { get; set; } = StaticFunctionType.Polynomial;
 
 
-    public List<double> Coefficients { get; set; } = new() { 0, 1 };
+    public List<double> Coefficients { get; set; } = new() { 2, 2, 3, 0.5 };
 }
 
 public class SystematicErrorConfig

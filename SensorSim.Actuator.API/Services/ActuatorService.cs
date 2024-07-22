@@ -30,7 +30,6 @@ public class ActuatorService(
     {
         return ActuatorConfigsRepository.GetAll().Select(q => q.Id).ToArray();
     }
-
     public void SetCurrentQuantity(string actuatorId, double value, string unit)
     {
         var quantity = QuantitiesRepository.GetOrDefault(actuatorId);
