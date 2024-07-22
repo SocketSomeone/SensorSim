@@ -50,28 +50,6 @@
             <param name="actuatorId"></param>
             <returns></returns>
         </member>
-        <member name="M:SensorSim.Actuator.API.Interface.ISensorApi.ReadQuantity(System.String)">
-            <summary>
-            Read the quantity of a sensor
-            </summary>
-            <param name="sensorId"></param>
-            <returns></returns>
-        </member>
-        <member name="M:SensorSim.Actuator.API.Interface.ISensorApi.SetQuantity(System.String,SensorSim.Domain.DTO.Sensor.SetSensorValueRequestModel)">
-            <summary>
-            Set the quantity of a sensor
-            </summary>
-            <param name="sensorId"></param>
-            <param name="request"></param>
-            <returns></returns>
-        </member>
-        <member name="M:SensorSim.Actuator.API.Interface.ISensorApi.Delete(System.String)">
-            <summary>
-            Delete param
-            </summary>
-            <param name="actuatorId"></param>
-            <returns></returns>
-        </member>
         <member name="T:Refit.Implementation.Generated">
             <inheritdoc />
         </member>

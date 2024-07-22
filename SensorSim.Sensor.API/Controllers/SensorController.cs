@@ -104,6 +104,7 @@ public class SensorController(ISensorService sensorService) : ControllerBase
     {
         var sensorConfig = SensorService.GetConfig(sensorId);
 
+        sensorConfig.StaticFunctionConfig.Coefficients = config.StaticFunctionCoefficients;
         sensorConfig.ApproximateCoefficients = config.ApproximateCoefficients;
 
         return Ok(sensorConfig);

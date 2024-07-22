@@ -11,5 +11,7 @@ public class SetSensorValueRequestModel
 
 public class SetSensorConfigRequestModel
 {
+    public required List<double> StaticFunctionCoefficients { get; set; }
+    
     public required List<double> ApproximateCoefficients { get; set; }
 }
